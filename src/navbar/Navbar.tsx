@@ -1,11 +1,11 @@
 import "./Navbar.scss";
 
-function Navbar() {
+export const Navbar = () => {
   return (
     <>
       <div id="navbar-wrapper">test</div>
     </>
   );
-}
+};
 
 export default Navbar;
