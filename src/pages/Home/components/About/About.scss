@@ -1,7 +1,33 @@
-.about-wrapper {
-  height: 80vh;
-  width: 100%;
-}
-
 @media only screen and (max-width: 768px) {
+  .about-wrapper {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0.5rem;
+
+    .stat-section {
+      display: flex;
+      gap: 2rem;
+
+      .stat-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .stat {
+          font-family: "Bebas Neue", sans-serif;
+          font-size: 2.25rem;
+        }
+
+        .label {
+          font-family: "Libre Franklin", sans-serif;
+          font-family: 300;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
 }
