@@ -1,10 +1,4 @@
-import HeroImage from "../../../../assets/images/hero_header.png";
-import Testimony1 from "../../../../assets/images/testimony_1.png";
-import Testimony2 from "../../../../assets/images/testimony_2.png";
-import Testimony3 from "../../../../assets/images/testimony_3.png";
 import "./About.scss";
-import ScrollIcon from "../../../../assets/icons/mouse.svg?react";
-import CpiButton from "../../../../cpiButton/CpiButton";
 import { CpiTag } from "../../../../cpiTag/CpiTag";
 
 export const About = () => {
@@ -12,6 +6,28 @@ export const About = () => {
     <>
       <div className="about-wrapper">
         <CpiTag index="01" label="ABOUT" />
+
+        <h2>
+          Let our experienced team elevate
+          <br /> your game to the next level
+        </h2>
+
+        <div className="stat-section">
+          <div className="stat-wrapper">
+            <span className="stat">200+</span>
+            <span className="label">Players Trained</span>
+          </div>
+          <div className="stat-wrapper">
+            <span className="stat">5+</span>
+            <span className="label">Years Training</span>
+          </div>
+        </div>
+
+        <p>
+          At Conner Pohl Instruction, it’s about more than just reps. With years of experience as a D1 athlete and
+          varsity coach, Conner brings a passion for teaching and a sharp focus on mechanics to every session. From
+          young players to serious competitors, CPI helps athletes grow their game the right way.
+        </p>
       </div>
     </>
   );
