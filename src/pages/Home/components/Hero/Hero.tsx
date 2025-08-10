@@ -4,7 +4,7 @@ import Testimony2 from "../../../../assets/images/testimony_2.png";
 import Testimony3 from "../../../../assets/images/testimony_3.png";
 import "./Hero.scss";
 import ScrollIcon from "../../../../assets/icons/mouse.svg?react";
-import CpiButton from "../../../../cpiButton/CpiButton";
+import CpiButton from "../../../../components/cpiButton/CpiButton";
 
 export const Hero = () => {
   return (

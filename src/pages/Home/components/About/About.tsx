@@ -1,5 +1,5 @@
 import "./About.scss";
-import { CpiTag } from "../../../../cpiTag/CpiTag";
+import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 
 export const About = () => {
   return (

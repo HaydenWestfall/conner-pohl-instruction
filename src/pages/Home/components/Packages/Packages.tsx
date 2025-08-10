@@ -1,4 +1,4 @@
-import { CpiTag } from "../../../../cpiTag/CpiTag";
+import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import "./Packages.scss";
 import HittingImage from "../../../../assets/images/hitting.png";
 import PitchingImage from "../../../../assets/images/pitching.png";

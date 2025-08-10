@@ -3,7 +3,7 @@ import reactLogo from "./assets/icons/react.svg";
 import arrow from "./assets/icons/arrow.svg";
 import image from "./assets/images/logo.png";
 import Navbar from "./navbar/Navbar";
-import CpiButton from "./cpiButton/CpiButton";
+import CpiButton from "./components/cpiButton/CpiButton";
 import "./App.css";
 import { AllRoutes } from "./routes/AllRoutes";
 
