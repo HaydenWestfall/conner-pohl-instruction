@@ -1,0 +1,82 @@
+:root {
+  --primary-color: #f4bd01;
+
+  --border-radius-0: 1.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Libre Franklin";
+  background-color: #f1f1f1;
+}
+
+h1 {
+  font-family: "Bebas Neue";
+  color: white;
+  font-size: 6.5rem;
+  line-height: 6.25rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+h2 {
+  font-family: "Bebas Neue";
+  font-size: 1.75rem;
+  line-height: 2rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+p {
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+}
+
+.route-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem;
+
+  .hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 1rem);
+  }
+
+  .route-header-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-0);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 4.25rem;
+    line-height: 4.5rem;
+  }
+
+  .route-wrapper {
+    padding: 0.25rem;
+
+    .hero-wrapper {
+      height: calc(100vh - 0.5rem);
+    }
+  }
+}
