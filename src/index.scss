@@ -106,10 +106,14 @@ p {
   }
 
   .route-wrapper {
-    padding: 0.4rem;
+    padding: 0rem;
 
     .hero-wrapper {
-      height: calc(97vh - 0.8rem);
+      height: calc(97vh - 0rem);
+    }
+
+    .route-header-img {
+      border-radius: 0;
     }
   }
 }
