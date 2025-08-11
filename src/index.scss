@@ -1,9 +1,32 @@
 :root {
   --primary-color: #f4bd01;
+
+  --surface-0: #f1f1f1;
+  --surface-1: white;
+
+  --text-dark: black;
+  --text-light: white;
+  --text-subdued: #999999;
+
+  --surface-0-border: #ededed;
+
+  --text-size-tiny-2: 0.7rem;
+  --text-size-tiny: 0.75rem;
+  --text-size-small-2: 0.8rem;
+  --text-size-small: 0.9rem;
+  --text-size-regular: 1rem;
+  --text-size-large: 1.25rem;
+  --text-size-large-2: 1.5rem;
+  --text-size-large-3: 1.75rem;
+  --text-size-large-4: 2rem;
+  --text-size-extra-large: 3rem;
+  --text-size-extra-large-2: 4rem;
+
   --border-radius-0: 1.5rem;
   --border-radius-1: 1.25rem;
   --border-radius-2: 1rem;
   --border-radius-3: 0.75rem;
+  --border-radius-rounded: 10rem;
 }
 
 *,
@@ -19,7 +42,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Libre Franklin";
-  background-color: #f1f1f1;
+  background-color: var(--surface-0);
   line-height: 1.5;
 }
 
@@ -34,14 +57,14 @@ h1 {
 
 h2 {
   font-family: "Bebas Neue";
-  font-size: 1.75rem;
+  font-size: var(--text-size-large-3);
   line-height: 2rem;
   font-weight: 500;
   margin: 0;
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: var(--text-size-large);
   font-weight: 400;
   margin: 0;
 }
@@ -49,7 +72,7 @@ h3 {
 p {
   font-family: "Libre Franklin", sans-serif;
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: var(--text-size-small);
   line-height: 1.4rem;
 }
 
@@ -78,7 +101,7 @@ p {
 
 @media only screen and (max-width: 768px) {
   h1 {
-    font-size: 4rem;
+    font-size: var(--text-size-extra-large-2);
     line-height: 3.75rem;
   }
 

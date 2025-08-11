@@ -1,5 +1,5 @@
-import "./CpiButton.scss";
 import ArrowIcon from "../../assets/icons/arrow.svg?react";
+import "./CpiButton.scss";
 
 interface CpiButtonProps {
   label: string;

@@ -2,24 +2,24 @@
   display: flex;
   padding: 0.2rem 1.25rem 0.2rem 0.2rem;
   gap: 0.75rem;
-  border-radius: 10rem;
+  border-radius: var(--border-radius-rounded);
+  border: 1px solid var(--surface-0-border);
+  background-color: var(--surface-1);
   border: none;
-  background-color: white;
   display: flex;
   align-items: center;
   cursor: pointer;
   width: fit-content;
-  border: 1px solid #ededed;
 
   .section {
     font-family: "Bebas Neue", sans-serif;
-    font-size: 0.9rem;
+    font-size: var(--text-size-small);
     white-space: nowrap;
     height: 2.25rem;
     width: 2.25rem;
     background-color: black;
-    color: white;
-    border-radius: 10rem;
+    color: var(--text-light);
+    border-radius: var(--border-radius-rounded);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,11 +28,11 @@
 
   .label {
     font-family: "Bebas Neue", sans-serif;
-    font-size: 1rem;
+    font-size: var(--text-size-regular);
     white-space: nowrap;
   }
 
   &.dark {
-    background-color: #f1f1f1;
+    background-color: var(--surface-0);
   }
 }
