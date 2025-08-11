@@ -9,13 +9,14 @@
   align-items: center;
   cursor: pointer;
   width: fit-content;
+  border: 1px solid #ededed;
 
   .section {
     font-family: "Bebas Neue", sans-serif;
     font-size: 0.9rem;
     white-space: nowrap;
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2.25rem;
+    width: 2.25rem;
     background-color: black;
     color: white;
     border-radius: 10rem;
@@ -27,7 +28,11 @@
 
   .label {
     font-family: "Bebas Neue", sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     white-space: nowrap;
+  }
+
+  &.dark {
+    background-color: #f1f1f1;
   }
 }

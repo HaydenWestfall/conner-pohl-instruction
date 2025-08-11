@@ -1,4 +1,4 @@
-import HittingImage from "../../assets/images/hitting.png";
+import HittingImage from "../../assets/images/contact_hitting.png";
 import CpiButton from "../../components/cpiButton/CpiButton";
 import "./ContactSection.scss";
 

@@ -1,6 +1,9 @@
 :root {
   --primary-color: #f4bd01;
   --border-radius-0: 1.5rem;
+  --border-radius-1: 1.25rem;
+  --border-radius-2: 1rem;
+  --border-radius-3: 0.75rem;
 }
 
 *,
@@ -45,7 +48,7 @@ h3 {
 
 p {
   font-family: "Libre Franklin", sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 0.9rem;
   line-height: 1.4rem;
 }
@@ -80,10 +83,10 @@ p {
   }
 
   .route-wrapper {
-    padding: 0.25rem;
+    padding: 0.4rem;
 
     .hero-wrapper {
-      height: calc(97vh - 0.5rem);
+      height: calc(97vh - 0.8rem);
     }
   }
 }

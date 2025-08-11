@@ -8,7 +8,7 @@ export const Packages = () => {
   return (
     <>
       <div className="packages-wrapper">
-        <CpiTag index="02" label="WHAT WE OFFER" />
+        <CpiTag index="02" label="WHAT WE OFFER" className="dark" />
 
         <div className="lesson-wrapper">
           <img src={HittingImage} alt="Player at bat" />
@@ -23,9 +23,9 @@ export const Packages = () => {
         </div>
 
         <div className="lesson-wrapper">
-          <img src={PitchingImage} alt="Player at bat" />
+          <img src={FiledingImage} alt="Player at bat" />
           <div>
-            <h2>PITCHING LESSONS</h2>
+            <h2>FIELDING LESSONS</h2>
             <p>
               At Conner Pohl Instruction, it’s about more than just reps. With years of experience as a D1 athlete and
               varsity coach, Conner brings a passion for teaching and a sharp focus on mechanics to every session. From
@@ -35,9 +35,9 @@ export const Packages = () => {
         </div>
 
         <div className="lesson-wrapper">
-          <img src={FiledingImage} alt="Player at bat" />
+          <img src={PitchingImage} alt="Player at bat" />
           <div>
-            <h2>FIELDING LESSONS</h2>
+            <h2>PITCHING LESSONS</h2>
             <p>
               At Conner Pohl Instruction, it’s about more than just reps. With years of experience as a D1 athlete and
               varsity coach, Conner brings a passion for teaching and a sharp focus on mechanics to every session. From

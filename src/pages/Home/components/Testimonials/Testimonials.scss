@@ -28,8 +28,8 @@
         img {
           flex-grow: 1;
           object-fit: cover;
-          aspect-ratio: 1.2;
-          height: 10rem;
+          aspect-ratio: 1.1;
+          height: 12rem;
           border-radius: 1rem;
         }
 
@@ -50,7 +50,8 @@
 
           .rating {
             display: flex;
-            font-size: 0.65rem;
+            align-items: center;
+            font-size: 0.6rem;
 
             #star-icon {
               height: 1rem;
@@ -59,6 +60,7 @@
 
             span {
               margin-left: 0.15rem;
+              font-size: 0.7rem;
             }
           }
         }
