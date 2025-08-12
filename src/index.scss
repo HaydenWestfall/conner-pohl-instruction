@@ -6,6 +6,7 @@
 
   --text-dark: black;
   --text-light: white;
+  --text-selectable: #838383;
   --text-subdued: #999999;
 
   --surface-0-border: #ededed;
@@ -42,7 +43,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Libre Franklin";
-  background-color: var(--surface-0);
+  background-color: black;
   line-height: 1.5;
 }
 
@@ -81,6 +82,7 @@ p {
   height: 100%;
   width: 100%;
   padding: 0.5rem;
+  background-color: var(--surface-0);
 
   .hero-wrapper {
     position: relative;
