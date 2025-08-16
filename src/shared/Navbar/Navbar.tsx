@@ -2,12 +2,15 @@ import "./Navbar.scss";
 import Logo from "../../assets/images/logo.png";
 import Arrow from "../../assets/icons/arrow.svg?react";
 import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import gsap from "gsap";
 import CpiButton from "../../components/cpiButton/CpiButton";
 
 export const Navbar = () => {
+  const location = typeof window !== "undefined" ? window.location : { pathname: "/" };
   const menuButton = useRef<HTMLButtonElement | null>(null);
   const menu = useRef<HTMLDivElement | null>(null);
+  const menuBgWrapper = useRef<HTMLDivElement | null>(null);
   const menuWrapper = useRef<HTMLDivElement | null>(null);
   const cpiWrapper = useRef<HTMLDivElement | null>(null);
   const cpiText = useRef<HTMLSpanElement | null>(null);
@@ -28,11 +31,11 @@ export const Navbar = () => {
       document.body.style.width = "100vw";
 
       // Find nav-icon distance from top and set menu top
-      if (menuButton.current && menu.current) {
+      if (menuButton.current && menuBgWrapper.current) {
         const navIconRect = menuButton.current.getBoundingClientRect();
         const scrollY = window.scrollY || window.pageYOffset;
         const navIconTop = navIconRect.top + scrollY;
-        menu.current.style.top = `calc(${navIconTop}px - 1.5rem)`;
+        menuBgWrapper.current.style.top = `calc(${navIconTop}px - 5rem)`;
       }
 
       // Animate in
@@ -91,7 +94,9 @@ export const Navbar = () => {
         </svg>
       </button>
 
-      <div id="menu-background" ref={menu}></div>
+      <div id="menu-background-wrapper" ref={menuBgWrapper}>
+        <div id="menu-background" ref={menu}></div>
+      </div>
 
       <div className="menu-wrapper" ref={menuWrapper}>
         <img className="logo-overlay" src={Logo} alt="CPI logo" />
@@ -116,11 +121,21 @@ export const Navbar = () => {
             </div>
           </div>
           <div className="route-links" ref={routesRef}>
-            <a href="/">Home</a>
-            <a href="/">About</a>
-            <a href="/">Testimonies</a>
-            <a href="/">Contact</a>
-            <a href="/">FAQ</a>
+            <a href="/" className={location.pathname === "/" ? "active" : ""}>
+              Home
+            </a>
+            <a href="/about" className={location.pathname === "/about" ? "active" : ""}>
+              About
+            </a>
+            <a href="/testimonies" className={location.pathname === "/testimonies" ? "active" : ""}>
+              Testimonies
+            </a>
+            <a href="/contact" className={location.pathname === "/contact" ? "active" : ""}>
+              Contact
+            </a>
+            <a href="/faq" className={location.pathname === "/faq" ? "active" : ""}>
+              FAQ
+            </a>
             <CpiButton label="Book a session" onClick={() => window.alert("Test")} className="cpi-button light" />
           </div>
         </div>
