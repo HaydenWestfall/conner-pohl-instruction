@@ -47,6 +47,17 @@ body {
   line-height: 1.5;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: env(safe-area-inset-bottom);
+  background: black;
+  pointer-events: none; /* so it doesn’t block clicks */
+}
+
 h1 {
   font-family: "Bebas Neue";
   color: white;
