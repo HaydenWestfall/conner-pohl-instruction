@@ -1,20 +1,23 @@
 import "./Navbar.scss";
 import Logo from "../../assets/images/logo.png";
 import Arrow from "../../assets/icons/arrow.svg?react";
-import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import MobileMenu from "./MobileMenu/MobileMenu";
+import DesktopMenu from "./DesktopMenu/DesktopMenu";
 import gsap from "gsap";
 import CpiButton from "../../components/cpiButton/CpiButton";
+import ParallaxButton from "../../components/parallaxButton/ParallaxButton";
+import { IconButton } from "../../components/IconButton/IconButton";
 
 export const Navbar = () => {
-  const location = typeof window !== "undefined" ? window.location : { pathname: "/" };
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const menuButton = useRef<HTMLButtonElement | null>(null);
   const menu = useRef<HTMLDivElement | null>(null);
   const menuBgWrapper = useRef<HTMLDivElement | null>(null);
   const menuWrapper = useRef<HTMLDivElement | null>(null);
   const cpiWrapper = useRef<HTMLDivElement | null>(null);
-  const cpiText = useRef<HTMLSpanElement | null>(null);
-  const heroRef = useRef<HTMLSpanElement | null>(null);
+  const cpiText = useRef<HTMLDivElement | null>(null);
+  const heroRef = useRef<HTMLDivElement | null>(null);
   const socialsRef = useRef<HTMLDivElement | null>(null);
   const routesRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,11 +27,7 @@ export const Navbar = () => {
       menuButton.current!.setAttribute("data-state", "opened");
       menuButton.current!.setAttribute("aria-expanded", "true");
       menuWrapper.current!.style.display = "flex";
-
-      // Disable page scrolling
-      document.body.style.overflow = "hidden";
-      document.body.style.position = "relative";
-      document.body.style.width = "100vw";
+      menuBgWrapper.current!.style.display = "block";
 
       // Find nav-icon distance from top and set menu top
       if (menuButton.current && menuBgWrapper.current) {
@@ -42,33 +41,30 @@ export const Navbar = () => {
       gsap.to(menu.current, { height: "500vw", width: "500vw", duration: 0.75 });
       gsap.set([heroRef.current, socialsRef.current, routesRef.current], { opacity: 0 });
       gsap.set([socialsRef.current, routesRef.current], { y: 20 });
-      gsap.to(heroRef.current, { opacity: 1, duration: 1, delay: 0.2 });
+      gsap.to(heroRef.current, { opacity: 1, duration: 1, delay: 0 });
       gsap.to(socialsRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
       gsap.to(routesRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.3 });
-      // gsap.set(cpiWrapper.current, { background: "black", duration: 1, delay: 0.2 });
     } else {
       menuButton.current!.setAttribute("data-state", "closed");
       menuButton.current!.setAttribute("aria-expanded", "false");
-
-      // Re-enable page scrolling
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.width = "";
 
       // Animate out
       gsap.to(menu.current, { height: "0", width: "0", duration: 0.5 });
       gsap.to(heroRef.current, { opacity: 0, duration: 0.2 });
       gsap.to(socialsRef.current, { opacity: 0, y: 20, duration: 0.2 });
       gsap.to(routesRef.current, { opacity: 0, y: 20, duration: 0.2 });
-      // gsap.set(cpiWrapper.current, { background: "white", duration: 0.2 });
-      // gsap.set(cpiText.current, { color: "black", duration: 0.2 });
+      gsap.set(menuWrapper.current, { display: "none", delay: 0.2 });
+      gsap.set(menuBgWrapper.current, { display: "none", delay: 0.5 });
     }
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      // toggleMenu();
-    }, 150);
+    const handleResize = () => {
+      console.log("tracking");
+      setIsMobile(window.innerWidth < 1280);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -77,7 +73,20 @@ export const Navbar = () => {
         <div className="logo-wrapper">
           <img src={Logo} alt="CPI logo" />
         </div>
-        <span ref={cpiText}>CONNER POHL INSTRUCTION</span>
+        <div className="cpi-text" ref={cpiText}>
+          CONNER POHL INSTRUCTION
+        </div>
+      </div>
+
+      {/* <ParallaxButton className="test">
+        <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="20px">
+          <rect className="line top" width="80" height="6" x="10" y="37" rx="5" fill="black"></rect>
+          <rect className="line bottom" width="80" height="6" x="10" y="63" rx="5" fill="black"></rect>
+        </svg>
+      </ParallaxButton> */}
+
+      <div className="test">
+        <IconButton icon="/menu.svg" bgColor="" borderColor="rgb(26, 26, 26, 0.1)" overlayColor="#ADD8E6" />
       </div>
 
       <button
@@ -88,9 +97,9 @@ export const Navbar = () => {
         ref={menuButton}
         onClick={toggleMenu}
       >
-        <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="20px">
-          <rect className="line top" width="80" height="6" x="10" y="37" rx="5" fill="black"></rect>
-          <rect className="line bottom" width="80" height="6" x="10" y="63" rx="5" fill="black"></rect>
+        <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="30px">
+          <rect className="line top" width="80" x="10" y="37" rx="5" fill="black"></rect>
+          <rect className="line bottom" width="80" x="10" y="63" rx="5" fill="black"></rect>
         </svg>
       </button>
 
@@ -98,48 +107,11 @@ export const Navbar = () => {
         <div id="menu-background" ref={menu}></div>
       </div>
 
-      <div className="menu-wrapper" ref={menuWrapper}>
-        <img className="logo-overlay" src={Logo} alt="CPI logo" />
-
-        <span className="hero" ref={heroRef}>
-          YOUR JOURNEY BEGINS TODAY
-        </span>
-
-        <div className="body">
-          <div className="socials-links" ref={socialsRef}>
-            <div className="social">
-              Facebook <Arrow className="arrow" />
-            </div>
-            <div className="social">
-              Instagram <Arrow className="arrow" />
-            </div>
-            <div className="social">
-              Twitter <Arrow className="arrow" />
-            </div>
-            <div className="social">
-              YouTube <Arrow className="arrow" />
-            </div>
-          </div>
-          <div className="route-links" ref={routesRef}>
-            <a href="/" className={location.pathname === "/" ? "active" : ""}>
-              Home
-            </a>
-            <a href="/about" className={location.pathname === "/about" ? "active" : ""}>
-              About
-            </a>
-            <a href="/testimonies" className={location.pathname === "/testimonies" ? "active" : ""}>
-              Testimonies
-            </a>
-            <a href="/contact" className={location.pathname === "/contact" ? "active" : ""}>
-              Contact
-            </a>
-            <a href="/faq" className={location.pathname === "/faq" ? "active" : ""}>
-              FAQ
-            </a>
-            <CpiButton label="Book a session" onClick={() => window.alert("Test")} className="cpi-button light" />
-          </div>
-        </div>
-      </div>
+      {isMobile ? (
+        <MobileMenu menuWrapper={menuWrapper} heroRef={heroRef} socialsRef={socialsRef} routesRef={routesRef} />
+      ) : (
+        <DesktopMenu menuWrapper={menuWrapper} heroRef={heroRef} socialsRef={socialsRef} routesRef={routesRef} />
+      )}
     </>
   );
 };

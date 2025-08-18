@@ -20,10 +20,11 @@
   --text-size-large-2: 1.5rem;
   --text-size-large-3: 1.75rem;
   --text-size-large-4: 2rem;
+  --text-size-large-5: 2.5rem;
   --text-size-extra-large: 3rem;
   --text-size-extra-large-2: 4rem;
 
-  --border-radius-0: 1.5rem;
+  --border-radius-0: 1.75rem;
   --border-radius-1: 1.25rem;
   --border-radius-2: 1rem;
   --border-radius-3: 0.75rem;
@@ -43,8 +44,9 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Libre Franklin";
-  background-color: black;
+  background-color: white;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -81,13 +83,13 @@ p {
   position: relative;
   height: 100%;
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.9rem;
   background-color: var(--surface-0);
 
   .hero-wrapper {
     position: relative;
     width: 100%;
-    height: calc(100vh - 1rem);
+    height: calc(100vh - 1.8rem);
   }
 
   .route-header-img {
@@ -98,6 +100,38 @@ p {
     width: 100%;
     object-fit: cover;
     border-radius: var(--border-radius-0);
+  }
+}
+
+.rolling-link {
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+  float: left;
+
+  span {
+    position: relative;
+    display: inline-block;
+    -webkit-transition: -webkit-transform 0.4s;
+    transition: transform 0.4s;
+    font-size: attr(font-size);
+    line-height: attr(line-height);
+  }
+
+  span::before {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: attr(font-size);
+    line-height: attr(line-height);
+    content: attr(data-hover);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  &:hover span {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
   }
 }
 
@@ -118,4 +152,24 @@ p {
       border-radius: 0;
     }
   }
+}
+
+.circle-button {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  font-weight: 600;
+  font-size: 1.25rem;
+  height: 2.75rem;
+  width: 2.75rem;
+  text-decoration: none;
+  z-index: 10;
+  border: none;
 }
