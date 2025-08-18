@@ -9,7 +9,7 @@ type MagneticProps = {
   distance?: number;
 };
 
-const Magnetic: React.FC<MagneticProps> = ({ children, distance = 4 }) => {
+const Magnetic: React.FC<MagneticProps> = ({ children, distance = 3.25 }) => {
   const magnetic = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -48,13 +48,13 @@ type TextMagnetProps = {
   distance?: number;
 };
 
-const TextMagnet: React.FC<TextMagnetProps> = ({ children, distance = 8 }) => {
+const TextMagnet: React.FC<TextMagnetProps> = ({ children, distance = 2 }) => {
   const magnetic = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!magnetic.current) return;
-    const xTo = gsap.quickTo(magnetic.current, "x", { duration: 1, ease: "elastic.out(1, 0.3)" });
-    const yTo = gsap.quickTo(magnetic.current, "y", { duration: 1, ease: "elastic.out(1, 0.3)" });
+    const xTo = gsap.quickTo(magnetic.current, "x", { duration: 1.5, ease: "elastic.out(1, 0.3)" });
+    const yTo = gsap.quickTo(magnetic.current, "y", { duration: 1.5, ease: "elastic.out(1, 0.3)" });
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!magnetic.current) return;
@@ -83,13 +83,13 @@ const TextMagnet: React.FC<TextMagnetProps> = ({ children, distance = 8 }) => {
 };
 
 type IconButtonProps = {
-  icon: string;
+  children: React.ReactNode;
   bgColor: string;
-  borderColor: string;
   overlayColor: string;
+  onClick?: () => void;
 };
 
-export const IconButton: React.FC<IconButtonProps> = ({ icon, bgColor, borderColor, overlayColor }) => {
+export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overlayColor, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -97,7 +97,6 @@ export const IconButton: React.FC<IconButtonProps> = ({ icon, bgColor, borderCol
       <motion.div
         style={{
           backgroundColor: `${bgColor}`,
-          border: `1.5px solid ${borderColor}`,
         }}
         className="icon-btn-wrapper"
         onHoverStart={() => setIsHovered(true)}
@@ -116,20 +115,7 @@ export const IconButton: React.FC<IconButtonProps> = ({ icon, bgColor, borderCol
           className="icon-btn-overlay"
         />
         <TextMagnet>
-          <div className="icon-btn-content">
-            <div className="icon-btn-content-inner">
-              <div className="icon-btn-img-wrapper">
-                {/* <img src={icon} alt="" className="icon-btn-img" /> */}
-
-                <div id="nav-icon" className="more-btn" aria-controls="primary-navigation" aria-expanded="false">
-                  <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="30px">
-                    <rect className="line top" width="80" x="10" y="37" rx="5" fill="black"></rect>
-                    <rect className="line bottom" width="80" x="10" y="63" rx="5" fill="black"></rect>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
+          <button onClick={onClick}>{children}</button>
         </TextMagnet>
       </motion.div>
     </Magnetic>

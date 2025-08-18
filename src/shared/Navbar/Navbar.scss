@@ -1,10 +1,3 @@
-.test {
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  z-index: 50;
-}
-
 .cpi-wrapper {
   position: fixed;
   top: 2.65rem;
@@ -41,6 +34,13 @@
   }
 }
 
+.menu-button-wrapper {
+  position: fixed;
+  top: 2.65rem;
+  right: 2.65rem;
+  z-index: 50;
+}
+
 #menu-background-wrapper {
   position: absolute;
   left: 0;
@@ -49,6 +49,7 @@
   max-width: 100vw;
   z-index: 11;
   overflow: hidden;
+  display: none;
 
   #menu-background {
     background-color: black;
@@ -65,20 +66,13 @@
 }
 
 .more-btn {
-  border-radius: var(--border-radius-rounded);
-  // background-color: white;
-  height: 4rem;
-  width: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-  cursor: pointer;
+  height: 30px;
+  width: 30px;
 
   .line {
     transition: y 150ms ease-in 150ms, transform 150ms ease-in, opacity 0ms 150ms;
     transform-origin: center;
-    height: 6px;
+    height: 5px;
   }
 
   &[aria-expanded="true"] .line {

@@ -1,17 +1,14 @@
 import "./Navbar.scss";
 import Logo from "../../assets/images/logo.png";
-import Arrow from "../../assets/icons/arrow.svg?react";
 import { useEffect, useRef, useState } from "react";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
 import gsap from "gsap";
-import CpiButton from "../../components/cpiButton/CpiButton";
-import ParallaxButton from "../../components/parallaxButton/ParallaxButton";
 import { IconButton } from "../../components/IconButton/IconButton";
 
 export const Navbar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const menuButton = useRef<HTMLButtonElement | null>(null);
+  const menuButton = useRef<HTMLDivElement | null>(null);
   const menu = useRef<HTMLDivElement | null>(null);
   const menuBgWrapper = useRef<HTMLDivElement | null>(null);
   const menuWrapper = useRef<HTMLDivElement | null>(null);
@@ -78,30 +75,16 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* <ParallaxButton className="test">
-        <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="20px">
-          <rect className="line top" width="80" height="6" x="10" y="37" rx="5" fill="black"></rect>
-          <rect className="line bottom" width="80" height="6" x="10" y="63" rx="5" fill="black"></rect>
-        </svg>
-      </ParallaxButton> */}
-
-      <div className="test">
-        <IconButton icon="/menu.svg" bgColor="" borderColor="rgb(26, 26, 26, 0.1)" overlayColor="#ADD8E6" />
+      <div className="menu-button-wrapper">
+        <IconButton bgColor="" overlayColor="var(--primary-color)" onClick={toggleMenu}>
+          <div ref={menuButton} className="more-btn" aria-controls="primary-navigation" aria-expanded="false">
+            <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="30px" height="30px">
+              <rect className="line top" width="100" x="0" y="35" rx="5" fill="black"></rect>
+              <rect className="line bottom" width="100" x="0" y="60" rx="5" fill="black"></rect>
+            </svg>
+          </div>
+        </IconButton>
       </div>
-
-      <button
-        id="nav-icon"
-        className="more-btn"
-        aria-controls="primary-navigation"
-        aria-expanded="false"
-        ref={menuButton}
-        onClick={toggleMenu}
-      >
-        <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="30px">
-          <rect className="line top" width="80" x="10" y="37" rx="5" fill="black"></rect>
-          <rect className="line bottom" width="80" x="10" y="63" rx="5" fill="black"></rect>
-        </svg>
-      </button>
 
       <div id="menu-background-wrapper" ref={menuBgWrapper}>
         <div id="menu-background" ref={menu}></div>
