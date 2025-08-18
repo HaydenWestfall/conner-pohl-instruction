@@ -87,10 +87,25 @@ type IconButtonProps = {
   bgColor: string;
   overlayColor: string;
   onClick?: () => void;
+  disableMotion?: boolean;
 };
 
-export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overlayColor, onClick }) => {
+export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overlayColor, onClick, disableMotion }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  if (
+    typeof window !== "undefined" &&
+    (window.innerWidth < 768 || (typeof disableMotion !== "undefined" && disableMotion))
+  ) {
+    // Mobile: no motion, no magnetic
+    return (
+      <div className="icon-btn-wrapper">
+        <button className="icon-btn" onClick={onClick}>
+          {children}
+        </button>
+      </div>
+    );
+  }
 
   return (
     <Magnetic>
@@ -115,7 +130,9 @@ export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overl
           className="icon-btn-overlay"
         />
         <TextMagnet>
-          <button onClick={onClick}>{children}</button>
+          <button className="icon-btn" onClick={onClick}>
+            {children}
+          </button>
         </TextMagnet>
       </motion.div>
     </Magnetic>

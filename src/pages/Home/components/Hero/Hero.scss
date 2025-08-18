@@ -12,30 +12,30 @@
   .review-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
     width: fit-content;
 
     .review-images {
       display: flex;
       background-color: rgba(255, 255, 255, 0.541);
       border-radius: var(--border-radius-rounded);
-      padding: 0.25rem;
+      padding: 0.3rem;
       width: fit-content;
 
       img {
-        height: 4rem;
-        width: 4rem;
+        height: 2.75rem;
+        width: 2.75rem;
         border: 2px solid white;
         border-radius: var(--border-radius-rounded);
 
         &:not(:first-child) {
-          margin-left: -1.25rem;
+          margin-left: -1rem;
         }
       }
     }
 
     .review {
-      max-width: 28rem;
+      max-width: 20rem;
       color: white;
       font-weight: 300;
       display: flex;
@@ -43,7 +43,7 @@
       gap: 0.75rem;
 
       .testimony {
-        font-size: var(--text-size-small);
+        font-size: var(--text-size-tiny);
       }
 
       .customer {
@@ -72,14 +72,14 @@
     bottom: 2rem;
     right: 2rem;
     display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.95rem;
+    align-items: flex-end;
+    gap: 0.4rem;
+    font-size: 0.8rem;
     color: white;
 
     svg {
-      height: 1.3rem;
-      width: 1.3rem;
+      height: 1.1rem;
+      width: 1.1rem;
     }
   }
 }

@@ -15,9 +15,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuWrapper, heroRef, socialsRe
   <div className="mobile-menu-wrapper" ref={menuWrapper}>
     <div className="mobile-content-wrapper">
       <img className="logo-overlay" src={Logo} alt="CPI logo" />
+
       <span className="hero" ref={heroRef}>
         YOUR JOURNEY BEGINS TODAY
       </span>
+
       <div className="body">
         <div className="socials-links" ref={socialsRef}>
           <div className="social">

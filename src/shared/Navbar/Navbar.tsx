@@ -76,7 +76,7 @@ export const Navbar = () => {
       </div>
 
       <div className="menu-button-wrapper">
-        <IconButton bgColor="" overlayColor="var(--primary-color)" onClick={toggleMenu}>
+        <IconButton bgColor="" overlayColor="var(--primary-color)" onClick={toggleMenu} disableMotion={isMobile}>
           <div ref={menuButton} className="more-btn" aria-controls="primary-navigation" aria-expanded="false">
             <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="30px" height="30px">
               <rect className="line top" width="100" x="0" y="35" rx="5" fill="black"></rect>
