@@ -1,38 +1,72 @@
-.about-wrapper {
-  height: 100vh;
+.about-section {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
-  padding: 0.5rem;
+  gap: 4rem;
+  padding: 12rem 3rem;
 
-  h2 {
-    margin-top: 1rem;
-  }
-
-  .stat-section {
+  .about-wrapper {
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 3rem;
+    z-index: 1;
 
-    .stat-wrapper {
+    .about-header {
       display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
+      justify-content: space-between;
+      align-items: flex-end;
 
-      .stat {
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 2.25rem;
+      h2 {
+        margin-top: 1rem;
+      }
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      .stat-section {
+        display: flex;
+        gap: 2rem;
+
+        .stat-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+
+          .stat {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 2.25rem;
+          }
+
+          .label {
+            font-family: "Libre Franklin", sans-serif;
+            font-family: 300;
+            font-size: var(--text-size-small-2);
+          }
+        }
       }
 
-      .label {
-        font-family: "Libre Franklin", sans-serif;
-        font-family: 300;
-        font-size: var(--text-size-small-2);
+      p {
+        max-width: 28rem;
+        font-weight: 300;
       }
     }
   }
+
+  .baseball-accent {
+    position: absolute;
+    bottom: -15rem;
+    right: -8rem;
+    height: 35rem;
+    width: 35rem;
+    z-index: 0;
+  }
 }
+
 @media only screen and (max-width: 768px) {
   .about-wrapper {
     height: 100vh;
