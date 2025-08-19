@@ -1,0 +1,65 @@
+.packages-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 7rem;
+  background-color: white;
+  border-radius: var(--border-radius-0);
+  padding: 4rem 3rem;
+  overflow: hidden;
+  z-index: 10;
+
+  .lesson-wrapper {
+    display: flex;
+    gap: 5rem;
+
+    .lesson-description {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid #dcdcdc;
+      width: 25rem;
+      flex-shrink: 0;
+      padding: 2rem 2rem 2rem 0;
+
+      h2 {
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 0.75rem;
+        line-height: 1rem;
+        font-weight: 300;
+      }
+
+      .chips {
+        display: flex;
+        gap: 0.35rem;
+
+        .chip {
+          background-color: #f0f0f0;
+          border-radius: var(--border-radius-1);
+          padding: 0.3rem 0.6rem;
+          font-size: 0.55rem;
+          line-height: 1rem;
+          font-weight: 300;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .images {
+      display: flex;
+      gap: 1rem;
+      padding: 2rem 0;
+
+      img {
+        width: 35rem;
+        height: 22rem;
+        border-radius: var(--border-radius-1);
+        flex-shrink: 0;
+        object-fit: cover;
+      }
+    }
+  }
+}

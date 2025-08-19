@@ -33,8 +33,19 @@ export const Hero = () => {
               INSTRUCTION
             </h1>
             <div className="call-to-action">
-              <CpiButton label="Book now" onClick={() => window.alert("Test")} className="cpi-button dark" />
-              <CpiButton label="Contact" onClick={() => window.alert("Test")} className="cpi-button light" />
+              <div id="book-now">
+                <CpiButton label="Book now" onClick={() => window.alert("Test")} className="cpi-button dark" />
+              </div>
+              <div id="contact">
+                <CpiButton label="Contact" onClick={() => window.alert("Test")} className="cpi-button light" />
+              </div>
+              <div id="schedule-session">
+                <CpiButton
+                  label="Schedule a Session"
+                  onClick={() => window.alert("Test")}
+                  className="cpi-button dark"
+                />
+              </div>
             </div>
           </div>
           <div className="scroll-accent">

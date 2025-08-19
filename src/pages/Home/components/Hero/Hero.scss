@@ -59,7 +59,15 @@
     flex-direction: column;
 
     .call-to-action {
-      button {
+      #book-now {
+        display: none;
+      }
+
+      #contact {
+        display: none;
+      }
+
+      #schedule-session {
         position: absolute;
         left: 50%;
         bottom: 1.75rem;
