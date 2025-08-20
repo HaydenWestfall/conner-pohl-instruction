@@ -21,6 +21,8 @@
       width: 25rem;
       flex-shrink: 0;
       padding: 2rem 2rem 2rem 0;
+      background-color: white;
+      z-index: 11;
 
       h2 {
         margin-bottom: 0.5rem;
@@ -50,7 +52,7 @@
 
     .images {
       display: flex;
-      gap: 1rem;
+      gap: 4rem;
       padding: 2rem 0;
 
       img {
