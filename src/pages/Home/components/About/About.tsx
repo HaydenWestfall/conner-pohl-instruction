@@ -11,8 +11,9 @@ export const About = () => {
         <div className="about-wrapper">
           <div className="about-header">
             <h2>
-              Let our experienced team elevate
-              <br /> your game to the next level
+              Turning Potential Into Performance —
+              <br />
+              One Player at a Time
             </h2>
             <CpiButton label="Learn More" onClick={() => window.alert("Test")} className="cpi-button dark" />
           </div>
@@ -30,9 +31,11 @@ export const About = () => {
             </div>
 
             <p>
-              At Conner Pohl Instruction, it’s about more than just reps. With years of experience as a D1 athlete and
-              varsity coach, Conner brings a passion for teaching and a sharp focus on mechanics to every session. From
-              young players to serious competitors, CPI helps athletes grow their game the right way.
+              Conner Pohl Instruction, led by experienced collegiate baseball player Conner Pohl, is built on a deep
+              competitive drive and a passion for bringing out the best in every player. Conner and his team combine
+              high-level playing experience with a personalized coaching approach to help athletes sharpen their skills
+              and build lasting confidence. Each lesson is designed to challenge, encourage, and inspire growth both on
+              and off the field.
             </p>
           </div>
         </div>

@@ -19,7 +19,6 @@
       align-items: flex-end;
 
       h2 {
-        margin-top: 1rem;
       }
     }
 
@@ -68,39 +67,49 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .about-wrapper {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    padding: 0.5rem;
+  .about-section {
+    height: unset;
+    gap: 3rem;
+    padding: 10rem 1rem;
 
-    h2 {
-      margin-top: 1rem;
-    }
+    .about-wrapper {
+      height: fit-content;
+      justify-content: flex-start;
+      gap: 3rem;
+      padding: 0rem;
 
-    .stat-section {
-      display: flex;
-      gap: 2rem;
-
-      .stat-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-
-        .stat {
-          font-family: "Bebas Neue", sans-serif;
-          font-size: 2.25rem;
+      .about-header {
+        h2 {
         }
 
-        .label {
-          font-family: "Libre Franklin", sans-serif;
-          font-family: 300;
-          font-size: var(--text-size-small-2);
+        button {
+          display: none;
         }
       }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+
+        .stat-section {
+          .stat-wrapper {
+            .stat {
+            }
+
+            .label {
+            }
+          }
+        }
+      }
+    }
+
+    .baseball-accent {
+      bottom: -16rem;
+      right: -7rem;
+      height: 25rem;
+      width: 25rem;
+      transform: rotate(47deg);
     }
   }
 }

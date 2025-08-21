@@ -139,6 +139,18 @@
         gap: 0.5rem;
         justify-content: center;
 
+        #book-now {
+          display: unset;
+        }
+
+        #contact {
+          display: unset;
+        }
+
+        #schedule-session {
+          display: none;
+        }
+
         button {
           position: relative;
           left: 0;

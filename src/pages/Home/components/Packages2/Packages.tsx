@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { CpiTag } from "../../../../components/cpiTag/CpiTag";
-import "./Packages2.scss";
+import "./Packages.scss";
 import HittingImage from "../../../../assets/images/hitting.png";
 import PitchingImage from "../../../../assets/images/pitching.png";
 import FiledingImage from "../../../../assets/images/stealing.png";
@@ -10,7 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const Packages2 = () => {
+export const Packages = () => {
   const packageImages = [HittingImage, PitchingImage, FiledingImage];
   const packageDescriptions = [
     "Explore our range of training packages, designed to elevate skills through expert coaching and personalized programs.",

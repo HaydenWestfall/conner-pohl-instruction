@@ -1,10 +1,10 @@
 import { CpiTag } from "../../../../components/cpiTag/CpiTag";
-import "./Packages.scss";
+import "./MobilePackages.scss";
 import HittingImage from "../../../../assets/images/hitting.png";
 import PitchingImage from "../../../../assets/images/pitching.png";
 import FiledingImage from "../../../../assets/images/stealing.png";
 
-export const Packages = () => {
+export const MobilePackages = () => {
   return (
     <>
       <div className="packages-wrapper">
