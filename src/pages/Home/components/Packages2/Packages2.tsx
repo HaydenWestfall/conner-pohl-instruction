@@ -56,20 +56,22 @@ export const Packages2 = () => {
   // Overlay content for each image
   const overlayData = [
     {
-      header: "Hitting Lessons",
-      description: "Personalized instruction to make hitting simpler, more understandable, and more achievable.",
+      header: "SOLO SESSION",
+      description:
+        "Personalized, one-on-one coaching focused on refining skills and building confidence at your own pace.",
     },
     {
-      header: "Pitching Lessons",
-      description: "Develop efficient, repeatable delivery and maximize your potential on the mound.",
+      header: "DOUBLE SESSION",
+      description:
+        "Work alongside a partner for engaging training that combines teamwork competition, and development.",
     },
     {
       header: "Fielding Lessons",
-      description: "Build quick feet, sharp instincts, and reliable hands for game-changing defense.",
+      description: "Focused pitching lessons to improve accuracy, speed, and control.",
     },
     {
       header: "Fielding Lessons",
-      description: "Build quick feet, sharp instincts, and reliable hands for game-changing defense.",
+      description: "Sharpen defensive skills with hands-on fielding drills and tips.",
     },
   ];
 
