@@ -2,7 +2,6 @@ import { ContactSection } from "../../shared/ContactSection/ContactSection";
 import { Footer } from "../../shared/Footer/Footer";
 import { About } from "./components/About/About";
 import { Hero } from "./components/Hero/Hero";
-import { Packages } from "./components/Packages/Packages";
 import { Packages2 } from "./components/Packages2/Packages2";
 import { Testimonials } from "./components/Testimonials/Testimonials";
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import type { ReactElement } from "react";
 import "./IconButton.scss";
 import { motion } from "framer-motion";
 import gsap from "gsap";

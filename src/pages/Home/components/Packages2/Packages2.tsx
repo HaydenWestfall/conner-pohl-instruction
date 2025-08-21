@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import "./Packages2.scss";
 import HittingImage from "../../../../assets/images/hitting.png";
