@@ -104,7 +104,7 @@ export const Testimonials = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.75, ease: "easeInOut" }}
                 style={{
                   flexGrow: 1,
                   objectFit: "cover",
@@ -115,12 +115,12 @@ export const Testimonials = () => {
               />
             </AnimatePresence>
             <div className="review-stats">
-              {reviews[activeIndex].stats}
+              84
               <div className="rating">
                 {[...Array(5)].map((_, i) => (
                   <StarIcon className="star-icon" key={i} />
                 ))}
-                <span>{reviews[activeIndex].rating}</span>
+                <span>4.9</span>
               </div>
             </div>
           </div>
@@ -128,10 +128,10 @@ export const Testimonials = () => {
             <motion.div
               key={activeIndex}
               className="review"
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 40 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.75, ease: "easeInOut" }}
             >
               <p>{reviews[activeIndex].description}</p>
               <div className="reviewer">
