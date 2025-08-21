@@ -13,106 +13,137 @@ gsap.registerPlugin(ScrollTrigger);
 export const Packages2 = () => {
   const packageImages = [HittingImage, PitchingImage, FiledingImage];
   const packageDescriptions = [
+    "Explore our range of training packages, designed to elevate skills through expert coaching and personalized programs.",
     "Hitting is one of the most challenging skills in baseball and across many sports. At Pohl Performance Baseball, we approach it with focus, adaptability, and attention to each athlete’s unique needs. Every player who walks through our doors receives personalized instruction aimed at making the game feel simpler, more understandable, and more achievable. Our goal is to create an environment that’s both informative and encouraging, helping athletes gain the knowledge, tools, and confidence they need to succeed at the plate.",
     "Pitching mechanics are the foundation of both performance and longevity on the mound. Good mechanics not only improve velocity and command but also reduce the risk of injury, allowing pitchers to compete consistently and confidently. At Pohl Performance Baseball, we focus on breaking down each movement — from the first step to the follow-through — ensuring that every pitcher develops an efficient, repeatable delivery that maximizes their potential.",
     "Great defense wins games. Our fielding lessons build quick feet, sharp instincts, and reliable hands so you’re ready for every play. We focus on the fundamentals and the finer details that turn good fielders into game-changers.",
   ];
 
+  // Combine images and descriptions into a single horizontally scrolling list
+  const items = [
+    {
+      type: "description",
+      title: "WHAT WE OFFER",
+      text: packageDescriptions[0],
+      chips: ["Mechanics", "Plate Approach", "Execution"],
+    },
+    {
+      type: "image",
+      src: packageImages[0],
+      alt: "Hitting lesson",
+    },
+    {
+      type: "image",
+      src: packageImages[1],
+      alt: "Pitching lesson",
+    },
+    {
+      type: "image",
+      src: packageImages[2],
+      alt: "Fielding lesson",
+    },
+    {
+      type: "image",
+      src: packageImages[0],
+      alt: "Hitting lesson",
+    },
+    {
+      type: "callToAction",
+      title: "GET STARTED TODAY",
+    },
+  ];
+
+  // Overlay content for each image
+  const overlayData = [
+    {
+      header: "Hitting Lessons",
+      description: "Personalized instruction to make hitting simpler, more understandable, and more achievable.",
+    },
+    {
+      header: "Pitching Lessons",
+      description: "Develop efficient, repeatable delivery and maximize your potential on the mound.",
+    },
+    {
+      header: "Fielding Lessons",
+      description: "Build quick feet, sharp instincts, and reliable hands for game-changing defense.",
+    },
+    {
+      header: "Fielding Lessons",
+      description: "Build quick feet, sharp instincts, and reliable hands for game-changing defense.",
+    },
+  ];
+
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const imagesRef = useRef<HTMLDivElement | null>(null);
-  const descRef = useRef<HTMLParagraphElement | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!wrapperRef.current || !imagesRef.current) return;
-
-    const images = imagesRef.current;
-    const numImages = packageImages.length;
-    const imageWidth = images.scrollWidth / numImages;
-
-    // Horizontal scroll setup
-    gsap.to(images, {
-      x: () => `-${images.scrollWidth - imageWidth}px`,
+    if (!wrapperRef.current || !scrollRef.current) return;
+    const scrollEl = scrollRef.current;
+    const totalWidth = scrollEl.scrollWidth - scrollEl.clientWidth;
+    gsap.to(scrollEl, {
+      x: () => `-${totalWidth}px`,
       ease: "none",
       scrollTrigger: {
         trigger: wrapperRef.current,
-        start: "top top",
-        end: () => `+=${images.scrollWidth - imageWidth}`,
+        start: "center center",
+        end: () => `+=${totalWidth}`,
         pin: true,
         scrub: true,
         anticipatePin: 1,
-        onUpdate: (self) => {
-          // Calculate which image is in view
-          const progress = self.progress;
-          const index = Math.round(progress * (numImages - 1));
-          if (index !== activeIndex) {
-            // Fade out old description
-            if (descRef.current) {
-              gsap.to(descRef.current, {
-                opacity: 0,
-                duration: 0.3,
-                onComplete: () => {
-                  setActiveIndex(index);
-                  gsap.to(descRef.current, { opacity: 1, duration: 0.3 });
-                },
-              });
-            } else {
-              setActiveIndex(index);
-            }
-          }
-        },
       },
     });
-
-    // Cleanup
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [packageImages.length, activeIndex]);
+  }, []);
 
   return (
     <div className="packages-wrapper" ref={wrapperRef}>
-      <CpiTag index="02" label="WHAT WE OFFER" className="dark" />
-      <div className="lesson-wrapper">
-        <div className="lesson-description">
-          <div className="header">
-            <h2>
-              {activeIndex === 0 ? "HITTING LESSONS" : activeIndex === 1 ? "PITCHING LESSONS" : "FIELDING LESSONS"}
-            </h2>
-            <p ref={descRef} className="description-text">
-              {packageDescriptions[activeIndex]}
-            </p>
-            <div className="chips">
-              {activeIndex === 0 && (
-                <>
-                  <div className="chip">Mechanics</div>
-                  <div className="chip">Plate Approach</div>
-                  <div className="chip">Execution</div>
-                </>
-              )}
-              {activeIndex === 1 && (
-                <>
-                  <div className="chip">Delivery</div>
-                  <div className="chip">Velocity</div>
-                  <div className="chip">Command</div>
-                </>
-              )}
-              {activeIndex === 2 && (
-                <>
-                  <div className="chip">Footwork</div>
-                  <div className="chip">Instincts</div>
-                  <div className="chip">Reliability</div>
-                </>
-              )}
-            </div>
-          </div>
-          <CpiButton label="Schedule a Session" onClick={() => window.alert("Test")} className="cpi-button dark" />
-        </div>
-        <div className="images" ref={imagesRef}>
-          {packageImages.map((image, index) => (
-            <img key={index} src={image} alt={`Player at bat ${index}`} />
-          ))}
-        </div>
+      <CpiTag index="02" label="PACKAGES" className="dark" />
+      <div className="horizontal-scroll-list" ref={scrollRef}>
+        {items.map((item, idx) => {
+          if (item.type === "description") {
+            return (
+              <div className="lesson-description" key={idx} style={{ minWidth: "25rem", flexShrink: 0 }}>
+                <div className="header">
+                  <h2>{item.title}</h2>
+                  <p className="description-text">{item.text}</p>
+                </div>
+                <CpiButton
+                  label="Schedule a Session"
+                  onClick={() => window.alert("Test")}
+                  className="cpi-button dark"
+                />
+              </div>
+            );
+          } else if (item.type === "image") {
+            // Map idx to overlayData (skip description block at idx 0)
+            const overlayIdx = idx - 1;
+            const overlay = overlayData[overlayIdx] || {};
+            return (
+              <div className="images" key={idx} style={{ position: "relative" }}>
+                <img src={item.src} alt={item.alt} />
+                <div className="image-overlay">
+                  <div className="overlay-content">
+                    <h3>{overlay.header}</h3>
+                    <p>{overlay.description}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          } else {
+            return (
+              <div className="callToAction" key={idx}>
+                <h2>{item.title}</h2>
+                <CpiButton
+                  label="Schedule a Session"
+                  onClick={() => window.alert("Test")}
+                  className="cpi-button dark"
+                />
+              </div>
+            );
+          }
+        })}
       </div>
     </div>
   );
