@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import "./Testimonials.scss";
 import StarIcon from "../../../../assets/icons/star.svg?react";
@@ -7,9 +7,22 @@ import Testimony2 from "../../../../assets/images/hitting.png";
 import Testimony3 from "../../../../assets/images/pitching.png";
 import { AnimatePresence, motion } from "framer-motion";
 
+interface Review {
+  id: number;
+  tagline: string;
+  image: any;
+  description: string;
+  initials: string;
+  name: string;
+  team: string;
+}
+
 // Example review data, replace images as needed
-const reviews = [
+let activeReviews: Review[] = [];
+
+const reviews: Review[] = [
   {
+    id: 0,
     tagline: "Mechanics Matter",
     image: Testimony1,
     description:
@@ -17,10 +30,9 @@ const reviews = [
     initials: "JA",
     name: "Johnny Appleseed",
     team: "Dayton Classics",
-    stats: 84,
-    rating: 4.9,
   },
   {
+    id: 1,
     tagline: "Tremendous Improvement",
     image: Testimony2,
     description:
@@ -28,10 +40,9 @@ const reviews = [
     initials: "MS",
     name: "Mary Smith",
     team: "Springfield Sluggers",
-    stats: 67,
-    rating: 4.8,
   },
   {
+    id: 2,
     tagline: "Built Confidence",
     image: Testimony3,
     description:
@@ -39,10 +50,9 @@ const reviews = [
     initials: "TR",
     name: "Tommy Rivers",
     team: "Centerville Stars",
-    stats: 52,
-    rating: 5.0,
   },
   {
+    id: 3,
     tagline: "Noticably Better",
     image: Testimony2,
     description:
@@ -50,39 +60,90 @@ const reviews = [
     initials: "LK",
     name: "Lisa King",
     team: "Oakwood Owls",
-    stats: 39,
-    rating: 4.7,
   },
+];
+
+const reviewsExtended: Review[] = [
+  ...reviews.map((r, i) => ({ ...r, id: i })),
+  ...reviews.map((r, i) => ({ ...r, id: i + reviews.length })),
 ];
 
 export const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const taglinesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        activeReviews = reviewsExtended;
+        setIsMobile(true);
+      } else {
+        activeReviews = reviews;
+        setIsMobile(false);
+      }
+      console.log(activeReviews);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % reviews.length);
+      const activeIndexSize = window.innerWidth < 768 ? 5 : 4;
+      setActiveIndex((prev) => (prev + 1) % activeIndexSize);
+      console.log(activeIndex);
+      console.log(activeIndexSize);
     }, 6000);
     return () => clearTimeout(timer);
   }, [activeIndex]);
+
+  // Animate horizontal scroll for taglines on mobile
+  useEffect(() => {
+    if (!isMobile || !taglinesRef.current) return;
+    const taglineWrapper = taglinesRef.current.querySelectorAll(".tagline-wrapper");
+    const activeTagline = taglineWrapper[activeIndex] as HTMLElement | undefined;
+    if (activeTagline && taglinesRef.current) {
+      const container = taglinesRef.current;
+      const left = activeTagline.offsetLeft;
+
+      const reviewTagline = document.getElementById("review-tagline");
+      reviewTagline!.style.left = -1 * left + "px";
+
+      // container.scrollTo({ left, behavior: "smooth" });
+    }
+  }, [activeIndex, isMobile]);
 
   return (
     <div className="testimonials-wrapper">
       <CpiTag index="03" label="TESTIMONIALS" />
       <div className="review-wrapper">
-        <div className="review-taglines">
-          {reviews.map((review, idx) => (
-            <div className="tagline-wrapper" key={review.tagline}>
-              <AnimatePresence>
-                {activeIndex === idx && (
-                  <motion.div
-                    className="indicator"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                  />
-                )}
-              </AnimatePresence>
+        <motion.div
+          id="review-tagline"
+          className="review-taglines"
+          ref={taglinesRef}
+          animate={isMobile ? { x: 0 } : undefined}
+        >
+          {activeReviews.map((review, idx) => (
+            <div
+              className={`tagline-wrapper${isMobile ? " mobile" : ""}`}
+              key={review.id}
+              style={isMobile ? { minWidth: "max-content" } : {}}
+            >
+              {!isMobile && (
+                <AnimatePresence>
+                  {activeIndex === idx && (
+                    <motion.div
+                      className="indicator"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.4 }}
+                    />
+                  )}
+                </AnimatePresence>
+              )}
               <span
                 className="tagline"
                 style={{
@@ -93,25 +154,18 @@ export const Testimonials = () => {
               </span>
             </div>
           ))}
-        </div>
+        </motion.div>
         <div className="review-content">
           <div className="review-images">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeIndex}
-                src={reviews[activeIndex].image}
-                alt={reviews[activeIndex].tagline}
+                src={activeReviews[activeIndex]?.image}
+                alt={activeReviews[activeIndex]?.tagline}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.75, ease: "easeInOut" }}
-                style={{
-                  flexGrow: 1,
-                  objectFit: "cover",
-                  aspectRatio: "1.05",
-                  borderRadius: "var(--border-radius-2)",
-                  height: "100%",
-                }}
               />
             </AnimatePresence>
             <div className="review-stats">
@@ -133,12 +187,12 @@ export const Testimonials = () => {
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.75, ease: "easeInOut" }}
             >
-              <p>{reviews[activeIndex].description}</p>
+              <p>{activeReviews[activeIndex]?.description}</p>
               <div className="reviewer">
-                <div className="initials">{reviews[activeIndex].initials}</div>
+                <div className="initials">{activeReviews[activeIndex]?.initials}</div>
                 <div className="info">
-                  <span className="name">{reviews[activeIndex].name}</span>
-                  <span className="team">{reviews[activeIndex].team}</span>
+                  <span className="name">{activeReviews[activeIndex]?.name}</span>
+                  <span className="team">{activeReviews[activeIndex]?.team}</span>
                 </div>
               </div>
             </motion.div>
