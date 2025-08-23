@@ -103,15 +103,26 @@ export const Testimonials = () => {
   useEffect(() => {
     if (!isMobile || !taglinesRef.current) return;
     const taglineWrapper = taglinesRef.current.querySelectorAll(".tagline-wrapper");
+    const reviewTagline = document.getElementById("review-tagline");
+
     const activeTagline = taglineWrapper[activeIndex] as HTMLElement | undefined;
-    if (activeTagline && taglinesRef.current) {
-      const container = taglinesRef.current;
-      const left = activeTagline.offsetLeft;
+    reviewTagline!.style.transition = "left 0.3s";
 
-      const reviewTagline = document.getElementById("review-tagline");
-      reviewTagline!.style.left = -1 * left + "px";
+    if (activeIndex === 4 && reviewTagline) {
+      const left = activeTagline!.offsetLeft;
+      reviewTagline.style.left = -1 * left + "px";
 
-      // container.scrollTo({ left, behavior: "smooth" });
+      setTimeout(() => {
+        reviewTagline.style.transition = "unset";
+        reviewTagline.style.left = "0px";
+        setActiveIndex(0);
+      }, 250);
+      return;
+    }
+
+    if (activeTagline && reviewTagline) {
+      const left = activeTagline!.offsetLeft;
+      reviewTagline.style.left = -1 * left + "px";
     }
   }, [activeIndex, isMobile]);
 
@@ -147,7 +158,7 @@ export const Testimonials = () => {
               <span
                 className="tagline"
                 style={{
-                  color: activeIndex === idx ? "#111" : "#a5a5a5",
+                  color: idx % reviews.length === activeIndex % reviews.length ? "#111" : "#a5a5a5",
                 }}
               >
                 {review.tagline}
@@ -159,9 +170,9 @@ export const Testimonials = () => {
           <div className="review-images">
             <AnimatePresence mode="wait">
               <motion.img
-                key={activeIndex}
-                src={activeReviews[activeIndex]?.image}
-                alt={activeReviews[activeIndex]?.tagline}
+                key={activeIndex % reviews.length}
+                src={activeReviews[activeIndex % reviews.length]?.image}
+                alt={activeReviews[activeIndex % reviews.length]?.tagline}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -180,19 +191,19 @@ export const Testimonials = () => {
           </div>
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeIndex}
+              key={activeIndex % reviews.length}
               className="review"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.75, ease: "easeInOut" }}
             >
-              <p>{activeReviews[activeIndex]?.description}</p>
+              <p>{activeReviews[activeIndex % reviews.length]?.description}</p>
               <div className="reviewer">
-                <div className="initials">{activeReviews[activeIndex]?.initials}</div>
+                <div className="initials">{activeReviews[activeIndex % reviews.length]?.initials}</div>
                 <div className="info">
-                  <span className="name">{activeReviews[activeIndex]?.name}</span>
-                  <span className="team">{activeReviews[activeIndex]?.team}</span>
+                  <span className="name">{activeReviews[activeIndex % reviews.length]?.name}</span>
+                  <span className="team">{activeReviews[activeIndex % reviews.length]?.team}</span>
                 </div>
               </div>
             </motion.div>
