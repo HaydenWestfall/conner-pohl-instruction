@@ -99,18 +99,19 @@
 
   .photo-wrapper {
     display: flex;
-    gap: 1rem;
-    max-width: 50rem;
+    gap: 3rem;
+    width: 100%;
     height: 22rem;
 
     .long-photo {
       flex-grow: 1;
       border-radius: var(--border-radius-1);
       object-fit: cover;
+      width: calc(70% - 1.5rem);
     }
 
     .short-photo {
-      width: calc();
+      width: calc(30% - 1.5rem);
       flex-shrink: 0;
       border-radius: var(--border-radius-1);
       object-fit: cover;
