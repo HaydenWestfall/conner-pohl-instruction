@@ -1,0 +1,119 @@
+.mission-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 2rem;
+  gap: 8rem;
+  width: 100%;
+
+  .mission-info-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8rem;
+
+    .mission-statement {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+
+      .statement {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h2 {
+          font-size: var(--text-size-extra-large-2);
+        }
+
+        p {
+          font-size: var(--text-size-small-2);
+        }
+      }
+
+      .misson-accent-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .icons {
+          display: flex;
+          gap: 0.25rem;
+
+          .icon-wrapper {
+            background-color: white;
+            border: 1px solid #e9e9e9;
+            height: 3rem;
+            width: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: var(--border-radius-rounded);
+
+            .accent-icons {
+              height: 1.5rem;
+              width: 1.5rem;
+            }
+          }
+        }
+
+        .text {
+          color: #8e8e8e;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .stats-wrapper {
+      background-color: white;
+      border-radius: var(--border-radius-1);
+      border: 1px solid #e1e1e1;
+      display: flex;
+      justify-content: space-between;
+      gap: 4rem;
+      padding: 4rem 4rem;
+
+      .stat-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .stat {
+          font-family: "Bebas Neue", sans-serif;
+          font-size: var(--text-size-extra-large);
+        }
+
+        .label {
+          font-family: "Libre Franklin", sans-serif;
+          font-family: 300;
+          font-size: var(--text-size-small-2);
+          white-space: nowrap;
+        }
+      }
+
+      .divider {
+        background-color: #f2f2f2;
+        width: 1px;
+      }
+    }
+  }
+
+  .photo-wrapper {
+    display: flex;
+    gap: 1rem;
+    max-width: 50rem;
+    height: 22rem;
+
+    .long-photo {
+      flex-grow: 1;
+      border-radius: var(--border-radius-1);
+      object-fit: cover;
+    }
+
+    .short-photo {
+      width: calc();
+      flex-shrink: 0;
+      border-radius: var(--border-radius-1);
+      object-fit: cover;
+    }
+  }
+}
