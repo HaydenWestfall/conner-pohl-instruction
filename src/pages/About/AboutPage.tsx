@@ -3,6 +3,7 @@ import { ContactSection } from "../../shared/ContactSection/ContactSection";
 import { Footer } from "../../shared/Footer/Footer";
 import { AboutHeader } from "./components/AboutHeader/AboutHeader";
 import { Mission } from "./components/Mission/Mission";
+import { Trainers } from "./components/Trainers/Trainers";
 
 export const AboutPage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -22,6 +23,7 @@ export const AboutPage = () => {
       <div className="route-wrapper">
         <AboutHeader />
         <Mission />
+        <Trainers />
         <ContactSection />
       </div>
       <Footer />
