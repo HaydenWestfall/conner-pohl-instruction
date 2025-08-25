@@ -1,5 +1,4 @@
 import { ActionHeader } from "../../shared/ActionHeader/ActionHeader";
-import { ContactSection } from "../../shared/ContactSection/ContactSection";
 import { Footer } from "../../shared/Footer/Footer";
 import { ContactForm } from "./components/ContactForm";
 

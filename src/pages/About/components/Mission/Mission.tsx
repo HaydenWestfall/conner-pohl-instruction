@@ -1,4 +1,3 @@
-import AboutHeroImage from "../../../../assets/images/about_header.png";
 import BatIcon from "../../../../assets/icons/bat.svg?react";
 import FieldIcon from "../../../../assets/icons/field.svg?react";
 import GloveIcon from "../../../../assets/icons/glove.svg?react";
