@@ -1,5 +1,5 @@
 import "./Navbar.scss";
-import Logo from "../../assets/images/logo.png";
+import Logo from "../../assets/images/logo_2.png";
 import { useEffect, useRef, useState } from "react";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
