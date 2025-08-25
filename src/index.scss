@@ -90,6 +90,10 @@ p {
     position: relative;
     width: 100%;
     height: calc(100vh - 1.8rem);
+
+    &.short {
+      height: 14rem;
+    }
   }
 
   .route-header-img {

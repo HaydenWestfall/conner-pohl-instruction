@@ -23,15 +23,6 @@ interface Review {
 }
 
 export const TestimoniesSection = () => {
-  const packageImages = [HittingImage, PitchingImage, FiledingImage];
-  const packageDescriptions = [
-    "We're proud to be a part of a passionate and supportive baseball community. Hear directly from players, parents, and coaches who’ve seen the impact of our training firsthand—their stories speak louder than stats.",
-    "Hitting is one of the most challenging skills in baseball and across many sports. At Pohl Performance Baseball, we approach it with focus, adaptability, and attention to each athlete’s unique needs. Every player who walks through our doors receives personalized instruction aimed at making the game feel simpler, more understandable, and more achievable. Our goal is to create an environment that’s both informative and encouraging, helping athletes gain the knowledge, tools, and confidence they need to succeed at the plate.",
-    "Pitching mechanics are the foundation of both performance and longevity on the mound. Good mechanics not only improve velocity and command but also reduce the risk of injury, allowing pitchers to compete consistently and confidently. At Pohl Performance Baseball, we focus on breaking down each movement — from the first step to the follow-through — ensuring that every pitcher develops an efficient, repeatable delivery that maximizes their potential.",
-    "Great defense wins games. Our fielding lessons build quick feet, sharp instincts, and reliable hands so you’re ready for every play. We focus on the fundamentals and the finer details that turn good fielders into game-changers.",
-  ];
-
-  // Overlay content for each image
   const reviews: Review[] = [
     {
       name: "Tom Brady",
@@ -80,7 +71,7 @@ export const TestimoniesSection = () => {
     {
       type: "description",
       title: "TESTIMONIALS",
-      text: packageDescriptions[0],
+      text: "We're proud to be a part of a passionate and supportive baseball community. Hear directly from players, parents, and coaches who’ve seen the impact of our training firsthand—their stories speak louder than stats.",
       chips: ["Mechanics", "Plate Approach", "Execution"],
     },
     {
@@ -106,28 +97,6 @@ export const TestimoniesSection = () => {
     {
       type: "callToAction",
       title: "HAPPY WITH YOUR EXPERIENCE",
-    },
-  ];
-
-  // Overlay content for each image
-  const overlayData = [
-    {
-      header: "SOLO SESSION",
-      description:
-        "Personalized, one-on-one coaching focused on refining skills and building confidence at your own pace.",
-    },
-    {
-      header: "DOUBLE SESSION",
-      description:
-        "Work alongside a partner for engaging training that combines teamwork competition, and development.",
-    },
-    {
-      header: "Fielding Lessons",
-      description: "Focused pitching lessons to improve accuracy, speed, and control.",
-    },
-    {
-      header: "Fielding Lessons",
-      description: "Sharpen defensive skills with hands-on fielding drills and tips.",
     },
   ];
 
@@ -167,21 +136,6 @@ export const TestimoniesSection = () => {
                   <p className="description-text">{item.text}</p>
                 </div>
                 <CpiButton label="Leave a Review" onClick={() => window.alert("Test")} className="cpi-button dark" />
-              </div>
-            );
-          } else if (item.type === "image") {
-            // Map idx to overlayData (skip description block at idx 0)
-            const overlayIdx = idx - 1;
-            const overlay = overlayData[overlayIdx] || {};
-            return (
-              <div className="images" key={idx} style={{ position: "relative" }}>
-                <img src={item.src} alt={item.alt} />
-                <div className="image-overlay">
-                  <div className="overlay-content">
-                    <h3>{overlay.header}</h3>
-                    <p>{overlay.description}</p>
-                  </div>
-                </div>
               </div>
             );
           } else if (item.type === "review") {

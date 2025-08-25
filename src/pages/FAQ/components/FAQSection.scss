@@ -1,0 +1,13 @@
+.faq-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 0;
+
+  .faw-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #dddddd;
+  }
+}
