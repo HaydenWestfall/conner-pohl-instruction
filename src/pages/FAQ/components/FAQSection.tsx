@@ -2,6 +2,8 @@ import CrossIcon from "../../../assets/icons/cross.svg?react";
 import ArrowIcon from "../../../assets/icons/arrow.svg?react";
 import { useState } from "react";
 import "./FAQSection.scss";
+import CpiLink from "../../../components/cpiLink/CpiLink";
+import CpiButton from "../../../components/cpiButton/CpiButton";
 
 const faqs = [
   {
@@ -67,6 +69,10 @@ export const FAQSection = () => {
             {idx < faqs.length - 1 && <div className="faq-divider" />}
           </div>
         ))}
+      </div>
+      <div className="contact-wrapper">
+        <h2>Still have questions?</h2>
+        <CpiButton label="Get in touch" onClick={() => window.alert("Test")} className="cpi-button light" />
       </div>
     </div>
   );

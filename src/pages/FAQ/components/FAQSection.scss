@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8rem 0;
+  padding: 8rem 0 1rem;
   gap: 0.5rem;
 
   h2 {
@@ -106,6 +106,25 @@
     height: 1px;
     background: #dfdfdf;
   }
+
+  .contact-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 6rem;
+    gap: 1rem;
+    background-color: #282727;
+    width: 100%;
+    padding: 4rem 0;
+    border-radius: var(--border-radius-0);
+
+    h2 {
+      margin: 0;
+      text-align: center;
+      line-height: 3rem;
+      color: white;
+    }
+  }
 }
 
 @keyframes fadeIn {
@@ -116,5 +135,113 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .faq-section-wrapper {
+    padding: 4rem 1rem 1rem;
+    align-items: flex-start;
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    .faq-wrapper {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      border: 1px solid #dddddd;
+      border-radius: var(--border-radius-0);
+      width: 50rem;
+      min-height: 20rem;
+      box-sizing: border-box;
+      padding: 0 2rem;
+
+      width: 100%;
+    }
+
+    .faq-item {
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-question-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      cursor: pointer;
+      padding: 1.5rem 0;
+
+      h3 {
+        font-weight: 500;
+      }
+    }
+
+    .faq-question {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #222;
+    }
+
+    .faq-toggle-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .faq-icon-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        background-color: #efefef;
+        transition: background 0.2s;
+
+        .icon {
+          width: 1rem;
+          height: 1rem;
+          transition: color 0.2s;
+        }
+
+        .cross {
+          color: white;
+        }
+
+        .arrow {
+          color: black;
+          transform: rotate(180deg);
+        }
+      }
+
+      &.open .faq-icon-circle {
+        background: black;
+      }
+    }
+
+    .faq-answer {
+      font-size: 1rem;
+      color: #444;
+      background: #f8f8f8;
+      border-radius: var(--border-radius-2);
+      padding: 1.5rem 1.5rem;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 0.2s;
+    }
+
+    .faq-divider {
+      width: 100%;
+      height: 1px;
+      background: #dfdfdf;
+    }
   }
 }

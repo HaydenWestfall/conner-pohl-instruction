@@ -11,6 +11,10 @@
     color: var(--primary-color);
     transform: rotate(45deg);
   }
+
+  &.dark {
+    color: white;
+  }
 }
 
 @media only screen and (max-width: 768px) {
