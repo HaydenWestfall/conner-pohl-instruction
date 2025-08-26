@@ -10,7 +10,7 @@ export const ContactSection = () => {
     <>
       <div className="contact-section-wrapper">
         <div className="image-wrapper">
-          <img src={HittingImage} alt="Player hitting ball" />
+          <img className="hitting-image" src={HittingImage} alt="Player hitting ball" />
           <div className="review-tag">
             <div className="review-images">
               <img src={Testimony1} alt="" />
