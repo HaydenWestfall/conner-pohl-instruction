@@ -18,19 +18,19 @@ export const ContactForm = () => {
         <form className="contact-form" action="">
           <div className="form-group">
             <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" autoComplete="name" />
+            <input type="text" id="name" name="name" autoComplete="name" placeholder="Enter your full name" />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" autoComplete="email" />
+            <input type="email" id="email" name="email" autoComplete="email" placeholder="Enter your email address" />
           </div>
           <div className="form-group">
             <label htmlFor="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" autoComplete="tel" />
+            <input type="tel" id="phone" name="phone" autoComplete="tel" placeholder="(XXX) XXX-XXXX" />
           </div>
           <div className="form-group">
             <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" rows={5} />
+            <textarea id="message" name="message" rows={5} placeholder="How can we help?" />
           </div>
           <CpiButton label="Send Message" onClick={() => window.alert("Test")} className="cpi-button dark" />
         </form>
