@@ -118,3 +118,77 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .mission-wrapper {
+    padding: 6rem 1rem;
+    gap: 4rem;
+
+    .mission-info-wrapper {
+      gap: 4rem;
+      flex-direction: column;
+
+      .mission-statement {
+        .statement {
+          h2 {
+            font-size: var(--text-size-extra-large);
+            line-height: unset;
+          }
+
+          p {
+          }
+        }
+
+        .misson-accent-wrapper {
+          .icons {
+            .icon-wrapper {
+              .accent-icons {
+              }
+
+              &:not(:first-child) {
+                margin-left: -1rem;
+              }
+            }
+          }
+
+          .text {
+          }
+        }
+      }
+
+      .stats-wrapper {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 2rem 0;
+        gap: 2rem;
+
+        .stat-wrapper {
+          .stat {
+          }
+
+          .label {
+          }
+        }
+
+        .divider {
+          width: 50%;
+          height: 1px;
+        }
+      }
+    }
+
+    .photo-wrapper {
+      width: 100%;
+      height: unset;
+
+      .long-photo {
+        width: 100%;
+      }
+
+      .short-photo {
+        display: none;
+      }
+    }
+  }
+}
