@@ -1,5 +1,5 @@
 import "./Navbar.scss";
-import Logo from "../../assets/images/logo_2.png";
+import Logo from "../../assets/icons/cpi_logo.svg?react";
 import { useEffect, useRef, useState } from "react";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
@@ -12,7 +12,7 @@ export const Navbar = () => {
   const menu = useRef<HTMLDivElement | null>(null);
   const menuBgWrapper = useRef<HTMLDivElement | null>(null);
   const menuWrapper = useRef<HTMLDivElement | null>(null);
-  const cpiWrapper = useRef<HTMLDivElement | null>(null);
+  const cpiWrapper = useRef<HTMLAnchorElement | null>(null);
   const cpiText = useRef<HTMLDivElement | null>(null);
   const heroRef = useRef<HTMLDivElement | null>(null);
   const socialsRef = useRef<HTMLDivElement | null>(null);
@@ -66,14 +66,14 @@ export const Navbar = () => {
 
   return (
     <>
-      <div ref={cpiWrapper} className="cpi-wrapper">
+      <a href="/" ref={cpiWrapper} className="cpi-wrapper">
         <div className="logo-wrapper">
-          <img src={Logo} alt="CPI logo" />
+          <Logo className="logo" />
         </div>
         <div className="cpi-text" ref={cpiText}>
           CONNER POHL INSTRUCTION
         </div>
-      </div>
+      </a>
 
       <div className="menu-button-wrapper">
         <IconButton bgColor="" overlayColor="var(--primary-color)" onClick={toggleMenu} disableMotion={isMobile}>

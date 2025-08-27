@@ -10,6 +10,8 @@
   align-items: center;
   width: fit-content;
   z-index: 5;
+  text-decoration: none;
+  color: black;
 
   .logo-wrapper {
     height: 2.25rem;
@@ -20,7 +22,7 @@
     align-items: center;
     justify-content: center;
 
-    img {
+    .logo {
       height: 2.25rem;
       width: 2.25rem;
     }

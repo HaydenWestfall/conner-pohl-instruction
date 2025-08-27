@@ -1,11 +1,11 @@
 import CpiButton from "../../components/cpiButton/CpiButton";
 import CpiLink from "../../components/cpiLink/CpiLink";
 import ArrowIcon from "../../assets/icons/arrow.svg?react";
-import CpiLogo from "../../assets/images/logo.png";
 import Facebook from "../../assets/icons/facebook.svg?react";
 import Instagram from "../../assets/icons/instagram.svg?react";
 import X from "../../assets/icons/x.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
+import Logo from "../../assets/icons/cpi_logo.svg?react";
 import "./Footer.scss";
 
 export const Footer = () => {
@@ -56,7 +56,7 @@ export const Footer = () => {
 
         <div className="terms-socials-wrapper">
           <div className="term-wrapper">
-            <img src={CpiLogo} alt="Cpi Logo" />
+            <Logo className="logo" />
             <div className="terms">
               <button>Privacy Policy</button>
               <span>|</span>
