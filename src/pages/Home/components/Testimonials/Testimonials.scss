@@ -182,10 +182,14 @@
         height: unset;
 
         .review-images {
+          gap: 1rem;
+          height: unset;
+
           img {
             flex-grow: 1;
             object-fit: cover;
             aspect-ratio: 1.05;
+            height: 12rem;
           }
 
           .review-stats {

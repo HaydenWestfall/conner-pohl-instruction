@@ -4,8 +4,8 @@ import { Footer } from "../../shared/Footer/Footer";
 import { About } from "./components/About/About";
 import { Hero } from "./components/Hero/Hero";
 import { Testimonials } from "./components/Testimonials/Testimonials";
-import { MobilePackages } from "./components/Packages/MobilePackages";
-import { Packages } from "./components/Packages2/Packages";
+import { MobilePackages } from "./components/MobilePackages/MobilePackages";
+import { Packages } from "./components/Packages/Packages";
 
 export const HomePage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);

@@ -180,7 +180,7 @@ export const Testimonials = () => {
               />
             </AnimatePresence>
             <div className="review-stats">
-              84
+              84+
               <div className="rating">
                 {[...Array(5)].map((_, i) => (
                   <StarIcon className="star-icon" key={i} />

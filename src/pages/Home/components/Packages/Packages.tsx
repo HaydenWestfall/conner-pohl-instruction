@@ -100,7 +100,7 @@ export const Packages = () => {
   }, []);
 
   return (
-    <div className="packages-wrapper" ref={wrapperRef}>
+    <div className="packages-desktop-wrapper" ref={wrapperRef}>
       <CpiTag index="02" label="PACKAGES" className="dark" />
       <div className="horizontal-scroll-list" ref={scrollRef}>
         {items.map((item, idx) => {
