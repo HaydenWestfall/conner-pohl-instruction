@@ -3,7 +3,7 @@ import CpiLink from "../../components/cpiLink/CpiLink";
 import ArrowIcon from "../../assets/icons/arrow.svg?react";
 import Facebook from "../../assets/icons/facebook.svg?react";
 import Instagram from "../../assets/icons/instagram.svg?react";
-import X from "../../assets/icons/x.svg?react";
+import TikTok from "../../assets/icons/tiktok.svg?react";
 import Youtube from "../../assets/icons/youtube.svg?react";
 import Logo from "../../assets/icons/cpi_logo.svg?react";
 import "./Footer.scss";
@@ -12,71 +12,80 @@ export const Footer = () => {
   return (
     <>
       <footer>
-        <div className="cta-info">
-          <div className="cta">
-            <span className="header">
-              Like what you see?
-              <br />
-              Start your journey today
-            </span>
-            <p>Book a session today and take the first step to playing the game you want.</p>
-            <CpiButton label="Book a session" onClick={() => window.alert("Test")} className="cpi-button dark" />
+        <div className="footer-body">
+          <div className="footer-header">
+            <div className="branding-wrapper">
+              <div className="branding">
+                <Logo className="logo" />
+                <span className="brand-name">CONNER POHL INSTRUCTION</span>
+              </div>
+              <span className="mission">
+                Conner Pohl Instruction is built on a deep competitive drive and a passion for bringing out the best in
+                every player.
+              </span>
+              <div className="socials-wrapper">
+                <a href="https://www.facebook.com/share/19PHSfQhfe/?mibextid=wwXIfr" target="_blank">
+                  <Facebook className="social-icon" />
+                </a>
+                <a
+                  href="https://www.instagram.com/connerpohlinstruction?igsh=MXZnZTVhc3B2bTR6cg%3D%3D&utm_source=qr"
+                  target="_blank"
+                >
+                  <Instagram className="social-icon" />
+                </a>
+                <a href="http://www.tiktok.com/@cpohlinstruction" target="_blank">
+                  <TikTok className="social-icon" />
+                </a>
+              </div>
+            </div>
+            <div className="sitemap">
+              <div className="links-wrapper">
+                <span className="header">Quick Links</span>
+                <a href="/" className="rolling-link">
+                  <span data-hover="Home">Home</span>
+                </a>
+                <a href="/about" className="rolling-link">
+                  <span data-hover="About">About</span>
+                </a>
+                <a href="/testimonies" className="rolling-link">
+                  <span data-hover="Testimonies">Testimonies</span>
+                </a>
+              </div>
+              <div className="links-wrapper">
+                <span className="header">Company</span>
+                <a href="/book" className="rolling-link">
+                  <span data-hover="Book Session">Book Session</span>
+                </a>
+                <a href="/contact" className="rolling-link">
+                  <span data-hover="Contact">Contact</span>
+                </a>
+                <a href="/faq" className="rolling-link">
+                  <span data-hover="FAQ">FAQ</span>
+                </a>
+              </div>
+              <div className="links-wrapper">
+                <span className="header">Resources</span>
+                <a href="/review" className="rolling-link">
+                  <span data-hover="Leave a Review">Leave a Review</span>
+                </a>
+                <a href="/cancellations" className="rolling-link">
+                  <span data-hover="Cancellation Policy">Cancellation Policy</span>
+                </a>
+              </div>
+            </div>
           </div>
-          <div className="info">
-            <span>1234 Baseball Rd Troy, OH</span>
-            <br />
-            <span>Conner.Pohl@cpi.com</span>
-            <br />
-            <span>(937) 417 - 1114</span>
+          <div className="divider"></div>
+          <div className="legal-wrapper">
+            <div className="copyright-wrapper">© &nbsp;2023 Conner Pohl Instruction. All rights reserved.</div>
+            <div className="terms-wrapper">
+              <a href="/terms">Terms of Service</a>
+              <a href="/privacy">Privacy Policy</a>
+            </div>
           </div>
         </div>
-
-        <div className="links-wrapper">
-          <div className="contact-links">
-            Still not convinced?
-            <CpiLink label="FAQ" route="/FAQ" />
-            <CpiLink label="Contact" route="/Contact" />
-          </div>
-          <div className="route-links-desktop">
-            <button>Home</button>
-            <button>About</button>
-            <button>Testimonials</button>
-            <button className="top-button">
-              <ArrowIcon id="arrow" />
-            </button>
-          </div>
-          <div className="route-links-mobile">
-            <CpiLink label="Home" route="/FAQ" />
-            <CpiLink label="About" route="/FAQ" />
-            <CpiLink label="Testimonials" route="/FAQ" />
-          </div>
-        </div>
-
-        <div className="divider"></div>
-
-        <div className="terms-socials-wrapper">
-          <div className="term-wrapper">
-            <Logo className="logo" />
-            <div className="terms">
-              <button>Privacy Policy</button>
-              <span>|</span>
-              <button>Terms & Conditions</button>
-            </div>
-          </div>
-          <div className="socials-wrapper">
-            <div className="social">
-              <Facebook className="social-icon" />
-            </div>
-            <div className="social">
-              <Instagram className="social-icon" />
-            </div>
-            <div className="social">
-              <X className="social-icon" />
-            </div>
-            <div className="social">
-              <Youtube className="social-icon" />
-            </div>
-          </div>
+        <div className="branding-accent">
+          CONNER POHL INSTRUCTION
+          <div className="overlay"></div>
         </div>
       </footer>
     </>

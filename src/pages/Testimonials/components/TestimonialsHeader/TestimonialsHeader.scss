@@ -30,65 +30,17 @@
     object-position: 70% 50%;
   }
 
-  .hero-content {
+  #testimonials-header {
     align-items: center;
     padding: 7rem 0 5rem 0;
 
-    .review-wrapper {
-      align-items: center;
-      width: 100%;
-
-      .review-images {
-        img {
-          height: 2.5rem;
-          width: 2.5rem;
-        }
-      }
-
-      .review {
-        max-width: 75%;
-        text-align: center;
-
-        .testimony {
-          font-size: var(--text-size-regular);
-          line-height: 1.25rem;
-        }
-
-        .customer {
-          font-size: var(--text-size-tiny);
-        }
-      }
-    }
-
     .hero-header {
-      gap: 1.5rem;
+      left: 1rem;
+      bottom: 1rem;
 
       h1 {
-        text-align: center;
-      }
-
-      .call-to-action {
-        display: flex;
-        gap: 0.5rem;
-        justify-content: center;
-
-        #book-now {
-          display: unset;
-        }
-
-        #contact {
-          display: unset;
-        }
-
-        #schedule-session {
-          display: none;
-        }
-
-        button {
-          position: relative;
-          left: 0;
-          bottom: 0;
-        }
+        font-size: 5rem;
+        line-height: 5.25rem;
       }
     }
 

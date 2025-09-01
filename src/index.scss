@@ -47,6 +47,11 @@ body {
   background-color: white;
   line-height: 1.5;
   overflow-x: hidden;
+  max-height: 100vh;
+}
+
+main {
+  background-color: var(--surface-0);
 }
 
 h1 {
@@ -111,7 +116,6 @@ p {
   overflow: hidden;
   text-align: left;
   cursor: pointer;
-  float: left;
 
   span {
     position: relative;
