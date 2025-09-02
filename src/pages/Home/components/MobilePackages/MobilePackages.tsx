@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import ArrowIcon from "../../../../assets/icons/arrow.svg?react";
 import "./MobilePackages.scss";
-import HittingImage from "../../../../assets/images/hitting.png";
 import PitchingImage from "../../../../assets/images/pitching.png";
 import FiledingImage from "../../../../assets/images/stealing.png";
 import CpiButton from "../../../../components/cpiButton/CpiButton";

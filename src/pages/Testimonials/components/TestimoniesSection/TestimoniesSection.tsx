@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import "./TestimoniesSection.scss";
 import CpiButton from "../../../../components/cpiButton/CpiButton";
 import Testimony1 from "../../../../assets/images/testimony_1.png";
 import Testimony2 from "../../../../assets/images/testimony_2.png";
@@ -7,6 +6,7 @@ import Testimony3 from "../../../../assets/images/testimony_3.png";
 import QuoteIcon from "../../../../assets/icons/quote.svg?react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "./TestimoniesSection.scss";
 
 gsap.registerPlugin(ScrollTrigger);
 

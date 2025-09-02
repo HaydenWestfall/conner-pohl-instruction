@@ -2,7 +2,6 @@ import CrossIcon from "../../../assets/icons/cross.svg?react";
 import ArrowIcon from "../../../assets/icons/arrow.svg?react";
 import { useState } from "react";
 import "./FAQSection.scss";
-import CpiLink from "../../../components/cpiLink/CpiLink";
 import CpiButton from "../../../components/cpiButton/CpiButton";
 
 const faqs = [

@@ -20,7 +20,6 @@ interface Review {
 }
 
 export const TestimoniesSectionMobile = () => {
-  const AUTO_SCROLL_INTERVAL = 20000;
   const reviews: Review[] = [
     {
       name: "Tom Brady",

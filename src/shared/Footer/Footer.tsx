@@ -1,10 +1,6 @@
-import CpiButton from "../../components/cpiButton/CpiButton";
-import CpiLink from "../../components/cpiLink/CpiLink";
-import ArrowIcon from "../../assets/icons/arrow.svg?react";
 import Facebook from "../../assets/icons/facebook.svg?react";
 import Instagram from "../../assets/icons/instagram.svg?react";
 import TikTok from "../../assets/icons/tiktok.svg?react";
-import Youtube from "../../assets/icons/youtube.svg?react";
 import Logo from "../../assets/icons/cpi_logo.svg?react";
 import "./Footer.scss";
 
