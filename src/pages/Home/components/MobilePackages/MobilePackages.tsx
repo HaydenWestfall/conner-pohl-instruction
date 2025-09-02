@@ -26,7 +26,7 @@ export const MobilePackages = () => {
       image: FiledingImage,
     },
     {
-      header: "DUO FIELDING LESSONS",
+      header: "DUO PITCHING LESSONS",
       description: "Sharpen defensive skills with hands-on fielding drills and tips.",
       image: PitchingImage,
     },
