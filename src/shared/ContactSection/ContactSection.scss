@@ -12,7 +12,6 @@
       position: absolute;
       top: 1.5rem;
       left: 1.5rem;
-      height: 3.25rem;
       padding: 0.25rem 0.75rem 0.25rem 0.25rem;
       border-radius: var(--border-radius-rounded);
       border: 1px solid white;
@@ -29,6 +28,8 @@
 
         img {
           border-radius: var(--border-radius-rounded);
+          height: 2.5rem;
+          width: 2.5rem;
 
           &:not(:first-child) {
             margin-left: -1rem;
@@ -36,12 +37,18 @@
         }
       }
 
-      .review-count {
-        font-size: 1.6rem;
-      }
+      .review-count-wrapper {
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
 
-      .review-text {
-        font-size: 0.8rem;
+        .review-count {
+          font-size: 1.4rem;
+        }
+
+        .review-text {
+          font-size: 0.8rem;
+        }
       }
     }
 
@@ -49,14 +56,14 @@
       height: 100%;
       width: 100%;
       object-fit: cover;
-      border-radius: var(--border-radius-2);
+      border-radius: var(--border-radius-0);
     }
   }
 
   .schedule-wrapper {
     position: relative;
     background-color: #2f2f2f;
-    border-radius: var(--border-radius-2);
+    border-radius: var(--border-radius-0);
     padding: 1.5rem 1.5rem 8rem 1.5rem;
     display: flex;
     align-items: flex-end;
@@ -64,8 +71,8 @@
 
     .tag {
       position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
+      top: 1rem;
+      left: 1rem;
       border-radius: var(--border-radius-rounded);
       background-color: #3a3939;
       border: 1px solid #7c7c7c;
@@ -78,19 +85,47 @@
     .schedule-info-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 3rem;
 
       h3 {
-        font-size: 2.1rem;
-        line-height: 2.6rem;
+        font-size: 3rem;
+        line-height: 3.75rem;
         font-weight: 600;
         color: white;
       }
 
+      .action-wrapper {
+        display: flex;
+
+        .action {
+          width: 45%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 7.5rem;
+
+          span {
+            color: #9e9e9e;
+          }
+
+          &.small {
+            width: 35%;
+          }
+        }
+
+        .divider {
+          height: 2px;
+          width: 100%;
+          background-color: #a4a4a4;
+          margin-top: 0.75rem;
+        }
+      }
+
       p {
-        color: #bfbfbf;
+        color: white;
         font-size: var(--text-size-small);
         line-height: 1.4rem;
+        margin: 0;
       }
     }
   }
@@ -109,7 +144,6 @@
       .review-tag {
         top: 1rem;
         left: 1rem;
-        height: 2.75rem;
         gap: 0.7rem;
 
         .review-images {
@@ -143,10 +177,44 @@
       }
 
       .schedule-info-wrapper {
+        gap: 3rem;
+
         h3 {
+          font-size: 2rem;
+          line-height: 2.5rem;
+        }
+
+        .action-wrapper {
+          flex-direction: column-reverse;
+          gap: 2rem;
+
+          .action {
+            width: 100%;
+            height: unset;
+            gap: 2rem;
+
+            #start-journey-text {
+              display: none;
+            }
+
+            &.small {
+              width: 100%;
+            }
+          }
+
+          .divider {
+            height: 2px;
+            width: 100%;
+            background-color: #a4a4a4;
+            margin-top: 0.75rem;
+          }
         }
 
         p {
+          color: white;
+          font-size: var(--text-size-small);
+          line-height: 1.4rem;
+          margin: 0;
         }
       }
     }

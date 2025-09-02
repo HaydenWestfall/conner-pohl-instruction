@@ -17,24 +17,30 @@ export const ContactSection = () => {
               <img src={Testimony2} alt="" />
               <img src={Testimony3} alt="" />
             </div>
-            <span className="review-count">85+</span>
-            <span className="review-text">Reviews</span>
+            <span className="review-count-wrapper">
+              <span className="review-count">85+</span>
+              <span className="review-text">Reviews</span>
+            </span>
           </div>
         </div>
         <div className="schedule-wrapper">
           <div className="tag">Reserve your spot</div>
           <div className="schedule-info-wrapper">
             <h3>
-              Ready to improve your game?
+              Ready to improve?
               <br />
-              Book your first session today
+              Book a session today!
             </h3>
-            <p>
-              Whether you're just starting out or chasing serious goals, every great swing starts with the right
-              foundation. At Swing Co., we’ll break it down, build it up, and make sure you’re having fun along the way.
-              Let’s get after it.
-            </p>
-            <CpiButton label="Schedule a session" onClick={() => window.alert("Test")} className="cpi-button light" />
+            <div className="action-wrapper">
+              <div className="action">
+                <span id="start-journey-text">Start Your Journey</span>
+                <CpiButton label="Book a Session" onClick={() => window.alert("Test")} className="cpi-button light" />
+              </div>
+              <div className="action small">
+                <div className="divider"></div>
+                <p>Pick a date, choose a time, and become a better the player you want to be.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
