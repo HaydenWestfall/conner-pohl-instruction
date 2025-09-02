@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import "./Packages.scss";
 import HittingImage from "../../../../assets/images/hitting.png";
@@ -18,6 +18,13 @@ export const Packages = () => {
     "Pitching mechanics are the foundation of both performance and longevity on the mound. Good mechanics not only improve velocity and command but also reduce the risk of injury, allowing pitchers to compete consistently and confidently. At Pohl Performance Baseball, we focus on breaking down each movement — from the first step to the follow-through — ensuring that every pitcher develops an efficient, repeatable delivery that maximizes their potential.",
     "Great defense wins games. Our fielding lessons build quick feet, sharp instincts, and reliable hands so you’re ready for every play. We focus on the fundamentals and the finer details that turn good fielders into game-changers.",
   ];
+
+  // State for expanded overlays
+  const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
+
+  const handleOverlayClick = (idx: number) => {
+    setExpandedIdx(expandedIdx === idx ? null : idx);
+  };
 
   // Combine images and descriptions into a single horizontally scrolling list
   const items = [
@@ -48,6 +55,11 @@ export const Packages = () => {
       alt: "Hitting lesson",
     },
     {
+      type: "image",
+      src: packageImages[0],
+      alt: "Hitting lesson",
+    },
+    {
       type: "callToAction",
       title: "GET STARTED TODAY",
     },
@@ -56,21 +68,26 @@ export const Packages = () => {
   // Overlay content for each image
   const overlayData = [
     {
-      header: "SOLO SESSION",
+      header: "1 ON 1 HITTING LESSON",
       description:
-        "Personalized, one-on-one coaching focused on refining skills and building confidence at your own pace.",
+        "Hitting a baseball consistently is one of the most challenging skills in sports. Every athlete has unique strengths and areas they need to improve, which is why no two swings are exactly the same. Our approach is about simplifying this complex skill, breaking it down in a way that makes sense for each individual player. The goal is not just to make quick fixes, but to educate and equip athletes with the tools to understand their own swing—so they can adjust, improve, and succeed long term.",
     },
     {
-      header: "DOUBLE SESSION",
+      header: "DUO HITTING LESSON",
       description:
         "Work alongside a partner for engaging training that combines teamwork competition, and development.",
     },
     {
-      header: "Fielding Lessons",
+      header: "1 ON 1 PITCHING LESSON",
       description: "Focused pitching lessons to improve accuracy, speed, and control.",
     },
     {
-      header: "Fielding Lessons",
+      header: "DUO PITCHING LESSONS",
+      description:
+        "Work alongside a partner for engaging training that combines teamwork competition, and development.",
+    },
+    {
+      header: "FIELDING LESSONS",
       description: "Sharpen defensive skills with hands-on fielding drills and tips.",
     },
   ];
@@ -122,13 +139,19 @@ export const Packages = () => {
             // Map idx to overlayData (skip description block at idx 0)
             const overlayIdx = idx - 1;
             const overlay = overlayData[overlayIdx] || {};
+            const expanded = expandedIdx === idx;
             return (
-              <div className="images" key={idx} style={{ position: "relative" }}>
+              <div
+                className="images"
+                key={idx}
+                style={{ position: "relative" }}
+                onClick={() => handleOverlayClick(idx)}
+              >
                 <img src={item.src} alt={item.alt} />
-                <div className="image-overlay">
+                <div className={`image-overlay${expanded ? " expanded" : ""}`}>
                   <div className="overlay-content">
                     <h3>{overlay.header}</h3>
-                    <p>{overlay.description}</p>
+                    <p className={expanded ? "expanded" : "collapsed"}>{overlay.description}</p>
                   </div>
                 </div>
               </div>
