@@ -35,13 +35,17 @@
       gap: 1rem;
 
       p {
-        line-height: 1.6rem;
+        line-height: 1.2rem;
+        font-size: var(--text-size-tiny);
+        margin: 0;
+        text-align: justify;
       }
 
       .trainer-index-wrapper {
         display: flex;
         align-items: center;
         gap: 0.25rem;
+        margin-top: 0.5rem;
       }
     }
   }

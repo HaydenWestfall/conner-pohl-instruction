@@ -1,4 +1,4 @@
-import HeroImage from "../../../../assets/images/hero_header.png";
+import HeroImage2 from "../../../../assets/images/hero-test.png";
 import Testimony1 from "../../../../assets/images/testimony_1.png";
 import Testimony2 from "../../../../assets/images/testimony_2.png";
 import Testimony3 from "../../../../assets/images/testimony_3.png";
@@ -10,7 +10,7 @@ export const Hero = () => {
   return (
     <>
       <div className="hero-wrapper">
-        <img className="route-header-img" src={HeroImage}></img>
+        <img className="route-header-img" src={HeroImage2}></img>
         <div className="hero-content">
           <div className="review-wrapper">
             <div className="review-images">
@@ -43,7 +43,7 @@ export const Hero = () => {
                 <CpiButton
                   label="Schedule a Session"
                   onClick={() => window.alert("Test")}
-                  className="cpi-button dark"
+                  className="cpi-button light"
                 />
               </div>
             </div>

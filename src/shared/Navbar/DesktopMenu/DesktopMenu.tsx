@@ -20,18 +20,19 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menuWrapper, heroRef, socials
         </div>
 
         <div className="socials-links" ref={socialsRef}>
-          <div className="social">
+          <a href="https://www.facebook.com/share/19PHSfQhfe/?mibextid=wwXIfr" target="_blank" className="social">
             Facebook <Arrow className="arrow" />
-          </div>
-          <div className="social">
+          </a>
+          <a
+            href="https://www.instagram.com/connerpohlinstruction?igsh=MXZnZTVhc3B2bTR6cg%3D%3D&utm_source=qr"
+            target="_blank"
+            className="social"
+          >
             Instagram <Arrow className="arrow" />
-          </div>
-          <div className="social">
+          </a>
+          <a href="http://www.tiktok.com/@cpohlinstruction" target="_blank" className="social">
             Twitter <Arrow className="arrow" />
-          </div>
-          <div className="social">
-            YouTube <Arrow className="arrow" />
-          </div>
+          </a>
         </div>
       </div>
 
