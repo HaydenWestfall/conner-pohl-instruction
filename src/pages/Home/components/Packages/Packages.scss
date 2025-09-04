@@ -1,3 +1,7 @@
+.test {
+  max-width: 85rem;
+}
+
 .packages-desktop-wrapper {
   position: relative;
   display: flex;
@@ -5,9 +9,10 @@
   gap: 2rem;
   background-color: white;
   border-radius: var(--border-radius-0);
-  padding: 4rem 3rem;
+  padding: 6rem 3rem;
   overflow: hidden;
   z-index: 10;
+  justify-content: center;
 
   .horizontal-scroll-list {
     display: flex;

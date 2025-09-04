@@ -5,6 +5,8 @@
   justify-content: center;
   gap: 3rem;
   padding: 12rem 3rem 3rem;
+  width: 100%;
+  max-width: 85rem;
 
   .review-wrapper {
     display: flex;
@@ -149,7 +151,7 @@
 @media only screen and (max-width: 768px) {
   .testimonials-wrapper {
     gap: 2.5rem;
-    padding: 8rem 1rem;
+    padding: 8rem 1rem 2rem;
 
     .review-wrapper {
       flex-direction: column;

@@ -64,7 +64,7 @@ export const Footer = () => {
                 <a href="/review" className="rolling-link">
                   <span data-hover="Leave a Review">Leave a Review</span>
                 </a>
-                <a href="/cancellations" className="rolling-link">
+                <a href="/cancellationPolicy" className="rolling-link">
                   <span data-hover="Cancellation Policy">Cancellation Policy</span>
                 </a>
               </div>

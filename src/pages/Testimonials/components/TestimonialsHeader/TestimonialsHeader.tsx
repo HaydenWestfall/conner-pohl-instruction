@@ -8,11 +8,7 @@ export const TestimonialsHeader = () => {
       <div id="testimonials-header" className="hero-wrapper">
         <img className="route-header-img" src={TestimonialsHeroImage}></img>
         <div className="hero-header">
-          <h1>
-            TALK IS CHEAP . . .
-            <br />
-            UNLESS ITS THIS GOOD
-          </h1>
+          <h1>Game-changing talk from game-changing players</h1>
         </div>
         <div className="scroll-accent">
           Scroll down

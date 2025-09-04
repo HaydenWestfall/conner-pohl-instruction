@@ -4,6 +4,8 @@ import { AboutPage } from "../pages/About/AboutPage";
 import { TestimonialsPage } from "../pages/Testimonials/TestimonialsPage";
 import { FAQPage } from "../pages/FAQ/FAQPage";
 import { ContactPage } from "../pages/Contact/ContactPage";
+import { LegalSection } from "../pages/Legal/components/LegalSection";
+import { LegalPage } from "../pages/Legal/LegalPage";
 
 export const AllRoutes = () => {
   return (
@@ -14,6 +16,7 @@ export const AllRoutes = () => {
         <Route path="/testimonies" element={<TestimonialsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/faq" element={<FAQPage />} />
+        <Route path="/cancellationPolicy" element={<LegalPage />} />
       </Routes>
     </>
   );

@@ -38,7 +38,7 @@ export const ContactSection = () => {
               </div>
               <div className="action small">
                 <div className="divider"></div>
-                <p>Pick a date, choose a time, and become a better the player you want to be.</p>
+                <p>Pick a date, choose a time, and become the player you want to be.</p>
               </div>
             </div>
           </div>

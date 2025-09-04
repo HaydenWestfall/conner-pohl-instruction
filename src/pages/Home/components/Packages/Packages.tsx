@@ -117,58 +117,60 @@ export const Packages = () => {
   }, []);
 
   return (
-    <div className="packages-desktop-wrapper" ref={wrapperRef}>
-      <CpiTag index="02" label="PACKAGES" className="dark" />
-      <div className="horizontal-scroll-list" ref={scrollRef}>
-        {items.map((item, idx) => {
-          if (item.type === "description") {
-            return (
-              <div className="lesson-description" key={idx} style={{ minWidth: "25rem", flexShrink: 0 }}>
-                <div className="header">
-                  <h2>{item.title}</h2>
-                  <p className="description-text">{item.text}</p>
+    <div className="test">
+      <div className="packages-desktop-wrapper" ref={wrapperRef}>
+        {/* <CpiTag index="02" label="PACKAGES" className="dark" /> */}
+        <div className="horizontal-scroll-list" ref={scrollRef}>
+          {items.map((item, idx) => {
+            if (item.type === "description") {
+              return (
+                <div className="lesson-description" key={idx} style={{ minWidth: "25rem", flexShrink: 0 }}>
+                  <div className="header">
+                    <h2>{item.title}</h2>
+                    <p className="description-text">{item.text}</p>
+                  </div>
+                  <CpiButton
+                    label="Schedule a Session"
+                    onClick={() => window.alert("Test")}
+                    className="cpi-button dark"
+                  />
                 </div>
-                <CpiButton
-                  label="Schedule a Session"
-                  onClick={() => window.alert("Test")}
-                  className="cpi-button dark"
-                />
-              </div>
-            );
-          } else if (item.type === "image") {
-            // Map idx to overlayData (skip description block at idx 0)
-            const overlayIdx = idx - 1;
-            const overlay = overlayData[overlayIdx] || {};
-            const expanded = expandedIdx === idx;
-            return (
-              <div
-                className="images"
-                key={idx}
-                style={{ position: "relative" }}
-                onClick={() => handleOverlayClick(idx)}
-              >
-                <img src={item.src} alt={item.alt} />
-                <div className={`image-overlay${expanded ? " expanded" : ""}`}>
-                  <div className="overlay-content">
-                    <h3>{overlay.header}</h3>
-                    <p className={expanded ? "expanded" : "collapsed"}>{overlay.description}</p>
+              );
+            } else if (item.type === "image") {
+              // Map idx to overlayData (skip description block at idx 0)
+              const overlayIdx = idx - 1;
+              const overlay = overlayData[overlayIdx] || {};
+              const expanded = expandedIdx === idx;
+              return (
+                <div
+                  className="images"
+                  key={idx}
+                  style={{ position: "relative" }}
+                  onClick={() => handleOverlayClick(idx)}
+                >
+                  <img src={item.src} alt={item.alt} />
+                  <div className={`image-overlay${expanded ? " expanded" : ""}`}>
+                    <div className="overlay-content">
+                      <h3>{overlay.header}</h3>
+                      <p className={expanded ? "expanded" : "collapsed"}>{overlay.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          } else {
-            return (
-              <div className="callToAction" key={idx}>
-                <h2>{item.title}</h2>
-                <CpiButton
-                  label="Schedule a Session"
-                  onClick={() => window.alert("Test")}
-                  className="cpi-button dark"
-                />
-              </div>
-            );
-          }
-        })}
+              );
+            } else {
+              return (
+                <div className="callToAction" key={idx}>
+                  <h2>{item.title}</h2>
+                  <CpiButton
+                    label="Schedule a Session"
+                    onClick={() => window.alert("Test")}
+                    className="cpi-button dark"
+                  />
+                </div>
+              );
+            }
+          })}
+        </div>
       </div>
     </div>
   );
