@@ -150,7 +150,12 @@ p {
 }
 
 .max-width-wrapper {
-  max-width: 85rem;
+  max-width: 100%;
+}
+@media only screen and (min-width: 120rem) {
+  .max-width-wrapper {
+    max-width: 85rem;
+  }
 }
 
 @media only screen and (max-width: 768px) {
