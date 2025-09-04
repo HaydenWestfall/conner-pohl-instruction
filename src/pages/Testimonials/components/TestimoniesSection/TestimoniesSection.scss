@@ -1,7 +1,13 @@
 .testimonies-section-wrapper {
   position: relative;
-  padding: 10rem 3rem;
+  padding: 4rem 3rem !important;
   overflow: hidden;
+  width: 100%;
+  border-radius: var(--border-radius-0);
+  background-color: #b9b9b9;
+  border: 1px solid #e0e0e0;
+  background-color: #f1f1f1;
+  box-shadow: inset rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   .horizontal-scroll-list {
     display: flex;
@@ -142,4 +148,8 @@
       }
     }
   }
+}
+
+.overflow-wrapper {
+  padding: 8rem 0 4rem;
 }

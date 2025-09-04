@@ -9,6 +9,8 @@
   overflow: hidden;
   height: 40rem;
   z-index: 10;
+  width: 100%;
+  max-width: 85rem;
 
   .trainer-info-wrapper {
     display: flex;

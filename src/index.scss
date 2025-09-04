@@ -149,6 +149,10 @@ p {
   }
 }
 
+.max-width-wrapper {
+  max-width: 85rem;
+}
+
 @media only screen and (max-width: 768px) {
   h1 {
     font-size: var(--text-size-extra-large-2);

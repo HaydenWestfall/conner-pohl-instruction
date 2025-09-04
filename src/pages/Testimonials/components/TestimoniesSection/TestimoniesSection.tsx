@@ -121,45 +121,47 @@ export const TestimoniesSection = () => {
   }, []);
 
   return (
-    <div className="testimonies-section-wrapper" ref={wrapperRef}>
-      <div className="horizontal-scroll-list" ref={scrollRef}>
-        {items.map((item, idx) => {
-          if (item.type === "description") {
-            return (
-              <div className="lesson-description" key={idx} style={{ minWidth: "25rem", flexShrink: 0 }}>
-                <div className="header">
-                  <h2>{item.title}</h2>
-                  <p className="description-text">{item.text}</p>
-                </div>
-                <CpiButton label="Leave a Review" onClick={() => window.alert("Test")} className="cpi-button dark" />
-              </div>
-            );
-          } else if (item.type === "review") {
-            // Map idx to overlayData (skip description block at idx 0)
-            return (
-              <div className="review-wrapper" key={idx}>
-                <div className="review-header">
-                  <div className="reviewer">{item.review!.name}</div>
-                  <img src={item.review!.image} alt="" />
-                </div>
-                <div className="review-footer">
-                  <div className="review">
-                    <QuoteIcon />
-                    <p>{item.review!.review}</p>
+    <div className="max-width-wrapper overflow-wrapper">
+      <div className="testimonies-section-wrapper" ref={wrapperRef}>
+        <div className="horizontal-scroll-list" ref={scrollRef}>
+          {items.map((item, idx) => {
+            if (item.type === "description") {
+              return (
+                <div className="lesson-description" key={idx} style={{ minWidth: "25rem", flexShrink: 0 }}>
+                  <div className="header">
+                    <h2>{item.title}</h2>
+                    <p className="description-text">{item.text}</p>
                   </div>
-                  <span>{item.review!.context}</span>
+                  <CpiButton label="Leave a Review" onClick={() => window.alert("Test")} className="cpi-button dark" />
                 </div>
-              </div>
-            );
-          } else {
-            return (
-              <div className="callToAction" key={idx}>
-                <h2>{item.title}</h2>
-                <CpiButton label="Leave a Review" onClick={() => window.alert("Test")} className="cpi-button dark" />
-              </div>
-            );
-          }
-        })}
+              );
+            } else if (item.type === "review") {
+              // Map idx to overlayData (skip description block at idx 0)
+              return (
+                <div className="review-wrapper" key={idx}>
+                  <div className="review-header">
+                    <div className="reviewer">{item.review!.name}</div>
+                    <img src={item.review!.image} alt="" />
+                  </div>
+                  <div className="review-footer">
+                    <div className="review">
+                      <QuoteIcon />
+                      <p>{item.review!.review}</p>
+                    </div>
+                    <span>{item.review!.context}</span>
+                  </div>
+                </div>
+              );
+            } else {
+              return (
+                <div className="callToAction" key={idx}>
+                  <h2>{item.title}</h2>
+                  <CpiButton label="Leave a Review" onClick={() => window.alert("Test")} className="cpi-button dark" />
+                </div>
+              );
+            }
+          })}
+        </div>
       </div>
     </div>
   );

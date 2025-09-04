@@ -117,7 +117,7 @@ export const Packages = () => {
   }, []);
 
   return (
-    <div className="test">
+    <div className="max-width-wrapper">
       <div className="packages-desktop-wrapper" ref={wrapperRef}>
         {/* <CpiTag index="02" label="PACKAGES" className="dark" /> */}
         <div className="horizontal-scroll-list" ref={scrollRef}>
