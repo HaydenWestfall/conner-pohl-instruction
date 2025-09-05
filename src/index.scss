@@ -103,7 +103,7 @@ p {
     height: calc(100vh - 1.8rem);
 
     &.short {
-      height: 12rem;
+      height: fit-content;
     }
   }
 

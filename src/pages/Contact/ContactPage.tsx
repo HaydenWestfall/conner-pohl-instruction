@@ -8,7 +8,7 @@ export const ContactPage = () => {
   return (
     <main>
       <div className="route-wrapper">
-        <ActionHeader />
+        <ActionHeader children={<h1>YOUR JOURNEY BEGINS TODAY</h1>} />
         <ContactForm />
       </div>
       <Footer />

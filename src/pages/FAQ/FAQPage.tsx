@@ -8,7 +8,7 @@ export const FAQPage = () => {
   return (
     <main>
       <div className="route-wrapper">
-        <ActionHeader />
+        <ActionHeader children={<h1>YOUR JOURNEY BEGINS TODAY</h1>} />
         <FAQSection />
       </div>
       <Footer />

@@ -1,16 +1,45 @@
 #action-header {
   .hero-header {
-    position: absolute;
+    position: relative;
     left: 2.65rem;
     bottom: 1rem;
     width: fit-content;
     display: flex;
     flex-direction: column;
+    padding-top: 9rem;
 
     h1 {
       font-size: 2.5rem;
       line-height: 3rem;
     }
+  }
+}
+
+.legal-header {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+
+  .chip {
+    width: fit-content;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--border-radius-rounded);
+    background-color: rgba(255, 255, 255, 0.229);
+    backdrop-filter: blur(8px); /* blur only the background behind it */
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
+    font-size: 0.6rem;
+    color: white;
+  }
+
+  h1 {
+    font-size: 5rem !important;
+    line-height: 5.5rem !important;
+    margin-bottom: 0.75rem;
+  }
+
+  .breadcrumb {
+    font-size: 0.9rem;
+    color: white;
   }
 }
 
