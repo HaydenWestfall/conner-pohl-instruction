@@ -75,7 +75,7 @@ export const Footer = () => {
             <div className="copyright-wrapper">© &nbsp;2023 Conner Pohl Instruction. All rights reserved.</div>
             <div className="terms-wrapper">
               <a href="/terms">Terms of Service</a>
-              <a href="/privacy">Privacy Policy</a>
+              <a href="/privacyPolicy">Privacy Policy</a>
             </div>
           </div>
         </div>

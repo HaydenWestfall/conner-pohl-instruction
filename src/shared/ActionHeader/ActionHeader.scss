@@ -1,12 +1,16 @@
 #action-header {
   .hero-header {
     position: relative;
-    left: 2.65rem;
-    bottom: 1rem;
     width: fit-content;
     display: flex;
     flex-direction: column;
     padding-top: 9rem;
+    backdrop-filter: blur(20px); /* blur only the background behind it */
+    -webkit-backdrop-filter: blur(20px); /* Safari support */
+    width: 100%;
+    border-radius: var(--border-radius-0);
+    overflow: hidden;
+    padding: 9rem 0 0rem calc(2.65rem - 0.9rem);
 
     h1 {
       font-size: 2.5rem;
@@ -22,23 +26,23 @@
 
   .chip {
     width: fit-content;
-    padding: 0.25rem 0.7rem;
+    padding: 0.25rem 0.6rem;
     border-radius: var(--border-radius-rounded);
     background-color: rgba(255, 255, 255, 0.229);
     backdrop-filter: blur(8px); /* blur only the background behind it */
     -webkit-backdrop-filter: blur(8px); /* Safari support */
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     color: white;
   }
 
   h1 {
-    font-size: 5rem !important;
-    line-height: 5.5rem !important;
-    margin-bottom: 0.75rem;
+    font-size: 3.5rem !important;
+    line-height: 4.5rem !important;
+    margin-bottom: 1rem;
   }
 
   .breadcrumb {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: white;
   }
 }
@@ -46,10 +50,32 @@
 @media only screen and (max-width: 768px) {
   #action-header {
     .hero-header {
-      left: 1rem;
+      border-radius: unset;
+      padding-left: 1rem;
 
       h1 {
       }
+    }
+  }
+
+  .legal-header {
+    padding-bottom: 1rem;
+
+    .chip {
+      padding: 0.25rem 0.6rem;
+      background-color: rgba(255, 255, 255, 0.351);
+      font-size: 0.6rem;
+    }
+
+    h1 {
+      font-size: 2.75rem !important;
+      line-height: 4rem !important;
+      margin-bottom: 1rem;
+    }
+
+    .breadcrumb {
+      font-size: 0.85rem;
+      color: white;
     }
   }
 }
