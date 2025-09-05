@@ -1,7 +1,6 @@
-import "./LegalSection.scss";
-import Logo from "../../../assets/icons/cpi_logo.svg?react";
+import "./CancellationPolicySection.scss";
 
-export const LegalSection = () => {
+export const CancellationPolicySection = () => {
   return (
     <div className="legal-section-wrapper" role="region" aria-label="Cancellation and Refund Policy">
       <section>

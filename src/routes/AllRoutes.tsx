@@ -4,7 +4,7 @@ import { AboutPage } from "../pages/About/AboutPage";
 import { TestimonialsPage } from "../pages/Testimonials/TestimonialsPage";
 import { FAQPage } from "../pages/FAQ/FAQPage";
 import { ContactPage } from "../pages/Contact/ContactPage";
-import { LegalSection } from "../pages/Legal/components/LegalSection";
+import { LegalSection } from "../pages/Legal/components/CancellationPolicy/CancellationPolicySection";
 import { LegalPage } from "../pages/Legal/LegalPage";
 
 export const AllRoutes = () => {
@@ -17,6 +17,8 @@ export const AllRoutes = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/cancellationPolicy" element={<LegalPage />} />
+        <Route path="/privacyPolicy" element={<LegalPage />} />
+        <Route path="/terms" element={<LegalPage />} />
       </Routes>
     </>
   );
