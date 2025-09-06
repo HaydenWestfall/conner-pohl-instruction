@@ -86,7 +86,7 @@ export const ContactForm = () => {
     setStatus({ type: "loading", message: "Sending..." });
 
     try {
-      const res = await fetch("http://localhost:5050/api/contact", {
+      const res = await fetch("https://conner-pohl-instruction-backend.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

@@ -6,8 +6,6 @@ import { Hero } from "./components/Hero/Hero";
 import { Testimonials } from "./components/Testimonials/Testimonials";
 import { MobilePackages } from "./components/MobilePackages/MobilePackages";
 import { Packages } from "./components/Packages/Packages";
-import Navbar from "../../shared/navbar/Navbar";
-
 export const HomePage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   //   useTitle("AlgoReads | Your one stop shop for computer science learning");
