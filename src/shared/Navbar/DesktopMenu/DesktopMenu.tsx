@@ -31,7 +31,7 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menuWrapper, heroRef, socials
             Instagram <Arrow className="arrow" />
           </a>
           <a href="http://www.tiktok.com/@cpohlinstruction" target="_blank" className="social">
-            Twitter <Arrow className="arrow" />
+            TikTok <Arrow className="arrow" />
           </a>
         </div>
       </div>

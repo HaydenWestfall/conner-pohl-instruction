@@ -7,60 +7,12 @@ import QuoteIcon from "../../../../assets/icons/quote.svg?react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./TestimoniesSection.scss";
+import { TESTIMONIALS, type Testimony } from "../../../../models/Testimony";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Review {
-  name: string;
-  initials: string;
-  image: string;
-  review: string;
-  context: string;
-}
-
 export const TestimoniesSection = () => {
-  const reviews: Review[] = [
-    {
-      name: "Tom Brady",
-      initials: "HW",
-      image: Testimony1,
-      review:
-        "“We’ve tried a few coaches over the years, but Swing Co. is different. Conner has a way of connecting with kids and breaking things down so they really get it. Our son’s swing has improved tremendously, and more importantly—he’s excited to go to practice again. Highly recommend!”",
-      context: "6th Grader | Looking to improve swing",
-    },
-    {
-      name: "Rob Gronkowski",
-      initials: "RG",
-      image: Testimony2,
-      review:
-        "“We’ve tried a few coaches over the years, but Swing Co. is different. Conner has a way of connecting with kids and breaking things down so they really get it. Our son’s swing has improved tremendously, and more importantly—he’s excited to go to practice again. Highly recommend!”",
-      context: "6th Grader | Looking to improve swing",
-    },
-    {
-      name: "Drake Maye",
-      initials: "DM",
-      image: Testimony3,
-      review:
-        "“We’ve tried a few coaches over the years, but Swing Co. is different. Conner has a way of connecting with kids and breaking things down so they really get it. Our son’s swing has improved tremendously, and more importantly—he’s excited to go to practice again. Highly recommend!”",
-      context: "6th Grader | Looking to improve swing",
-    },
-    {
-      name: "Antonio Gibson",
-      initials: "AG",
-      image: Testimony1,
-      review:
-        "“We’ve tried a few coaches over the years, but Swing Co. is different. Conner has a way of connecting with kids and breaking things down so they really get it. Our son’s swing has improved tremendously, and more importantly—he’s excited to go to practice again. Highly recommend!”",
-      context: "6th Grader | Looking to improve swing",
-    },
-    {
-      name: "Stegon Diggs",
-      initials: "SD",
-      image: Testimony2,
-      review:
-        "“We’ve tried a few coaches over the years, but Swing Co. is different. Conner has a way of connecting with kids and breaking things down so they really get it. Our son’s swing has improved tremendously, and more importantly—he’s excited to go to practice again. Highly recommend!”",
-      context: "6th Grader | Looking to improve swing",
-    },
-  ];
+  const reviews: Testimony[] = TESTIMONIALS;
 
   // Combine images and descriptions into a single horizontally scrolling list
   const items = [

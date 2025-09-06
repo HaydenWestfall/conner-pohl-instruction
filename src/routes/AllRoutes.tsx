@@ -4,7 +4,6 @@ import { AboutPage } from "../pages/About/AboutPage";
 import { TestimonialsPage } from "../pages/Testimonials/TestimonialsPage";
 import { FAQPage } from "../pages/FAQ/FAQPage";
 import { ContactPage } from "../pages/Contact/ContactPage";
-import { LegalSection } from "../pages/Legal/components/CancellationPolicy/CancellationPolicySection";
 import { LegalPage } from "../pages/Legal/LegalPage";
 
 export const AllRoutes = () => {

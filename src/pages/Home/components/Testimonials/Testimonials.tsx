@@ -2,68 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import "./Testimonials.scss";
 import StarIcon from "../../../../assets/icons/star.svg?react";
-import Testimony1 from "../../../../assets/images/stealing.png";
-import Testimony2 from "../../../../assets/images/hitting.png";
-import Testimony3 from "../../../../assets/images/pitching.png";
 import { AnimatePresence, motion } from "framer-motion";
-
-interface Review {
-  id: number;
-  tagline: string;
-  image: any;
-  description: string;
-  initials: string;
-  name: string;
-  team: string;
-}
+import { TESTIMONIALS, type Testimony } from "../../../../models/Testimony";
 
 // Example review data, replace images as needed
-let activeReviews: Review[] = [];
+let activeReviews: Testimony[] = [];
 
-const reviews: Review[] = [
-  {
-    id: 0,
-    tagline: "Mechanics Matter",
-    image: Testimony1,
-    description:
-      "“We’ve tried a few coaches over the years, but Swing Co. is different. Conner has a way of connecting with kids and breaking things down so they really get it. Our son’s swing has improved tremendously, and more importantly—he’s excited to go to practice again. Highly recommend!”",
-    initials: "JA",
-    name: "Johnny Appleseed",
-    team: "Dayton Classics",
-  },
-  {
-    id: 1,
-    tagline: "Tremendous Improvement",
-    image: Testimony2,
-    description:
-      "“Conner’s instruction helped my daughter go from struggling at the plate to leading her team in hits. He’s patient, knowledgeable, and truly cares about his athletes.”",
-    initials: "MS",
-    name: "Mary Smith",
-    team: "Springfield Sluggers",
-  },
-  {
-    id: 2,
-    tagline: "Built Confidence",
-    image: Testimony3,
-    description:
-      "“Our son used to dread practice, but now he looks forward to every session. Conner makes learning fun and effective!”",
-    initials: "TR",
-    name: "Tommy Rivers",
-    team: "Centerville Stars",
-  },
-  {
-    id: 3,
-    tagline: "Noticably Better",
-    image: Testimony2,
-    description:
-      "“Conner’s group lessons helped our team bond and improve together. The difference on the field is night and day.”",
-    initials: "LK",
-    name: "Lisa King",
-    team: "Oakwood Owls",
-  },
-];
+const reviews: Testimony[] = TESTIMONIALS;
 
-const reviewsExtended: Review[] = [
+const reviewsExtended: Testimony[] = [
   ...reviews.map((r, i) => ({ ...r, id: i })),
   ...reviews.map((r, i) => ({ ...r, id: i + reviews.length })),
 ];
@@ -171,7 +118,7 @@ export const Testimonials = () => {
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeIndex % reviews.length}
-                src={activeReviews[activeIndex % reviews.length]?.image}
+                src={activeReviews[activeIndex % reviews.length]?.playerImage}
                 alt={activeReviews[activeIndex % reviews.length]?.tagline}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -198,7 +145,7 @@ export const Testimonials = () => {
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.75, ease: "easeInOut" }}
             >
-              <p>{activeReviews[activeIndex % reviews.length]?.description}</p>
+              <p>{activeReviews[activeIndex % reviews.length]?.review}</p>
               <div className="reviewer">
                 <div className="initials">{activeReviews[activeIndex % reviews.length]?.initials}</div>
                 <div className="info">
