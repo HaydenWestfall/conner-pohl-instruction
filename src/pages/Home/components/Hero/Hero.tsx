@@ -5,6 +5,7 @@ import Testimony3 from "../../../../assets/images/testimony_3.png";
 import "./Hero.scss";
 import ScrollIcon from "../../../../assets/icons/mouse.svg?react";
 import CpiButton from "../../../../components/cpiButton/CpiButton";
+import CpiLink from "../../../../components/cpiButton/CpiLink";
 
 export const Hero = () => {
   return (
@@ -34,17 +35,13 @@ export const Hero = () => {
             </h1>
             <div className="call-to-action">
               <div id="book-now">
-                <CpiButton label="Book now" onClick={() => window.alert("Test")} className="cpi-button dark" />
+                <CpiLink label="Book now" href="/book" className="cpi-button dark" />
               </div>
               <div id="contact">
-                <CpiButton label="Contact" onClick={() => window.alert("Test")} className="cpi-button light" />
+                <CpiLink label="Contact" href="/contact" className="cpi-button light" />
               </div>
               <div id="schedule-session">
-                <CpiButton
-                  label="Schedule a Session"
-                  onClick={() => window.alert("Test")}
-                  className="cpi-button light"
-                />
+                <CpiLink label="Schedule a Session" href="/book" className="cpi-button light" />
               </div>
             </div>
           </div>

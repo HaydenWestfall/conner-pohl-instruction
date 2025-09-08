@@ -12,7 +12,6 @@ export const HomePage = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      console.log("tracking");
       setIsMobile(window.innerWidth < 1280);
     };
     window.addEventListener("resize", handleResize);

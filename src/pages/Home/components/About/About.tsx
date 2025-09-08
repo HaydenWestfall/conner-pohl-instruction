@@ -2,6 +2,7 @@ import "./About.scss";
 import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import CpiButton from "../../../../components/cpiButton/CpiButton";
 import BaseballAccent from "../../../../assets/icons/baseball_accent.svg?react";
+import CpiLink from "../../../../components/cpiButton/CpiLink";
 
 export const About = () => {
   return (
@@ -15,7 +16,7 @@ export const About = () => {
               <br />
               One Player at a Time
             </h2>
-            <CpiButton label="Learn More" onClick={() => window.alert("Test")} className="cpi-button dark" />
+            <CpiLink label="Learn More" href="/about" className="cpi-button dark" />
           </div>
 
           <div className="footer">

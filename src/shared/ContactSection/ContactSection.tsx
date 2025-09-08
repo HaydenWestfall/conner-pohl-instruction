@@ -4,6 +4,7 @@ import "./ContactSection.scss";
 import Testimony1 from "../../assets/images/testimony_1.png";
 import Testimony2 from "../../assets/images/testimony_2.png";
 import Testimony3 from "../../assets/images/testimony_3.png";
+import CpiLink from "../../components/cpiButton/CpiLink";
 
 export const ContactSection = () => {
   return (
@@ -34,7 +35,7 @@ export const ContactSection = () => {
             <div className="action-wrapper">
               <div className="action">
                 <span id="start-journey-text">Start Your Journey</span>
-                <CpiButton label="Book a Session" onClick={() => window.alert("Test")} className="cpi-button light" />
+                <CpiLink label="Book a Session" href="/book" className="cpi-button light" />
               </div>
               <div className="action small">
                 <div className="divider"></div>

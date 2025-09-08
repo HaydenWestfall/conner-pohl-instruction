@@ -6,6 +6,7 @@ import FiledingImage from "../../../../assets/images/stealing.png";
 import CpiButton from "../../../../components/cpiButton/CpiButton";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import CpiLink from "../../../../components/cpiButton/CpiLink";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,11 +129,7 @@ export const Packages = () => {
                     <h2>{item.title}</h2>
                     <p className="description-text">{item.text}</p>
                   </div>
-                  <CpiButton
-                    label="Schedule a Session"
-                    onClick={() => window.alert("Test")}
-                    className="cpi-button dark"
-                  />
+                  <CpiLink label="Schedule a Session" href="/book" className="cpi-button dark" />
                 </div>
               );
             } else if (item.type === "image") {
@@ -160,11 +157,7 @@ export const Packages = () => {
               return (
                 <div className="callToAction" key={idx}>
                   <h2>{item.title}</h2>
-                  <CpiButton
-                    label="Schedule a Session"
-                    onClick={() => window.alert("Test")}
-                    className="cpi-button dark"
-                  />
+                  <CpiLink label="Schedule a Session" href="/book" className="cpi-button dark" />
                 </div>
               );
             }

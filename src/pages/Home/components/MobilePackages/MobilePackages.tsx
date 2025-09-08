@@ -5,6 +5,7 @@ import "./MobilePackages.scss";
 import PitchingImage from "../../../../assets/images/pitching.png";
 import FiledingImage from "../../../../assets/images/stealing.png";
 import CpiButton from "../../../../components/cpiButton/CpiButton";
+import CpiLink from "../../../../components/cpiButton/CpiLink";
 
 export const MobilePackages = () => {
   const packages = [
@@ -100,7 +101,7 @@ export const MobilePackages = () => {
             <ArrowIcon id="next-package" />
           </button>
         </div>
-        <CpiButton label="Book Now" onClick={() => window.alert("Test")} className="cpi-button dark" />
+        <CpiLink label="Book Now" href="/book" className="cpi-button dark" />
       </div>
     </div>
   );

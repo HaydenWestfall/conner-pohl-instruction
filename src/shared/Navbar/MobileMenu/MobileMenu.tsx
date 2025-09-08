@@ -2,6 +2,7 @@ import type { RefObject } from "react";
 import Arrow from "../../../assets/icons/arrow.svg?react";
 import CpiButton from "../../../components/cpiButton/CpiButton";
 import "./MobileMenu.scss";
+import CpiLink from "../../../components/cpiButton/CpiLink";
 
 type MobileMenuProps = {
   menuWrapper: RefObject<HTMLDivElement | null>;
@@ -51,7 +52,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuWrapper, heroRef, socialsRe
           <a href="/faq" className={window.location.pathname === "/faq" ? "active" : ""}>
             FAQ
           </a>
-          <CpiButton label="Book a session" onClick={() => window.alert("Test")} className="cpi-button light" />
+          <CpiLink label="Book a session" href="/book" className="cpi-button light" />
         </div>
       </div>
     </div>
