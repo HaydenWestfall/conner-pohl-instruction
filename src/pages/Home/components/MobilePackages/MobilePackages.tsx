@@ -4,7 +4,6 @@ import ArrowIcon from "../../../../assets/icons/arrow.svg?react";
 import "./MobilePackages.scss";
 import PitchingImage from "../../../../assets/images/pitching.png";
 import FiledingImage from "../../../../assets/images/stealing.png";
-import CpiButton from "../../../../components/cpiButton/CpiButton";
 import CpiLink from "../../../../components/cpiButton/CpiLink";
 
 export const MobilePackages = () => {

@@ -1,6 +1,5 @@
 import "./About.scss";
 import { CpiTag } from "../../../../components/cpiTag/CpiTag";
-import CpiButton from "../../../../components/cpiButton/CpiButton";
 import BaseballAccent from "../../../../assets/icons/baseball_accent.svg?react";
 import CpiLink from "../../../../components/cpiButton/CpiLink";
 

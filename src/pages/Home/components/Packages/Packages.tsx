@@ -3,7 +3,6 @@ import "./Packages.scss";
 import HittingImage from "../../../../assets/images/hitting.png";
 import PitchingImage from "../../../../assets/images/pitching.png";
 import FiledingImage from "../../../../assets/images/stealing.png";
-import CpiButton from "../../../../components/cpiButton/CpiButton";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CpiLink from "../../../../components/cpiButton/CpiLink";

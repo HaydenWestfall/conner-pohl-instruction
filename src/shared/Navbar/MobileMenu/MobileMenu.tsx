@@ -1,6 +1,5 @@
 import type { RefObject } from "react";
 import Arrow from "../../../assets/icons/arrow.svg?react";
-import CpiButton from "../../../components/cpiButton/CpiButton";
 import "./MobileMenu.scss";
 import CpiLink from "../../../components/cpiButton/CpiLink";
 
