@@ -8,6 +8,10 @@ export const Booking = () => {
   return (
     <div className="booking-wrapper">
       <img src={HeroImage2} alt="" />
+      <a href="https://app.acuityscheduling.com/schedule.php?owner=36839203" className="test-link">
+        {" "}
+        This is a test
+      </a>
       <div className="overlay"></div>
       <div className="iframe-wrapper" style={{ position: "relative", minHeight: 200 }}>
         <div className="booking-spinner">

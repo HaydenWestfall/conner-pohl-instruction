@@ -6,12 +6,7 @@ export const BookPage = () => {
   return (
     <main>
       <Booking />
-
-      {/* <div className="route-wrapper">
-        <ActionHeader children={<h1>YOUR JOURNEY BEGINS TODAY</h1>} />
-        <Booking />
-      </div>
-      <Footer /> */}
+      <Footer />
     </main>
   );
 };
