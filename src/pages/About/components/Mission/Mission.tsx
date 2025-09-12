@@ -38,12 +38,12 @@ export const Mission = () => {
           </div>
           <div className="stats-wrapper">
             <div className="stat-wrapper">
-              <span className="stat">200+</span>
+              <span className="stat">250+</span>
               <span className="label">Players Trained</span>
             </div>
             <div className="divider"></div>
             <div className="stat-wrapper ">
-              <span className="stat">5+</span>
+              <span className="stat">7+</span>
               <span className="label">Years Training</span>
             </div>
           </div>

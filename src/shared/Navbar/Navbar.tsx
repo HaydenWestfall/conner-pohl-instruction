@@ -1,13 +1,15 @@
 import "./Navbar.scss";
 import Logo from "../../assets/icons/cpi_logo.svg?react";
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
 import gsap from "gsap";
 import { IconButton } from "../../components/IconButton/IconButton";
 
-export const Navbar = () => {
+const Navbar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const location = useLocation();
   const menuButton = useRef<HTMLDivElement | null>(null);
   const menu = useRef<HTMLDivElement | null>(null);
   const menuBgWrapper = useRef<HTMLDivElement | null>(null);
@@ -75,16 +77,18 @@ export const Navbar = () => {
         </div>
       </a>
 
-      <div className="menu-button-wrapper">
-        <IconButton bgColor="" overlayColor="var(--primary-color)" onClick={toggleMenu} disableMotion={isMobile}>
-          <div ref={menuButton} className="more-btn" aria-controls="primary-navigation" aria-expanded="false">
-            <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="30px" height="30px">
-              <rect className="line top" width="100" x="0" y="35" rx="5" fill="black"></rect>
-              <rect className="line bottom" width="100" x="0" y="60" rx="5" fill="black"></rect>
-            </svg>
-          </div>
-        </IconButton>
-      </div>
+      {location.pathname !== "/book" && (
+        <div className="menu-button-wrapper">
+          <IconButton bgColor="" overlayColor="var(--primary-color)" onClick={toggleMenu} disableMotion={isMobile}>
+            <div ref={menuButton} className="more-btn" aria-controls="primary-navigation" aria-expanded="false">
+              <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="30px" height="30px">
+                <rect className="line top" width="100" x="0" y="35" rx="5" fill="black"></rect>
+                <rect className="line bottom" width="100" x="0" y="60" rx="5" fill="black"></rect>
+              </svg>
+            </div>
+          </IconButton>
+        </div>
+      )}
 
       <div id="menu-background-wrapper" ref={menuBgWrapper}>
         <div id="menu-background" ref={menu}></div>

@@ -34,13 +34,23 @@ export const Hero = () => {
             </h1>
             <div className="call-to-action">
               <div id="book-now">
-                <CpiLink label="Book now" href="/book" className="cpi-button dark" />
+                <CpiLink
+                  label="Book now"
+                  href="https://connerpohlinstruction-booking.as.me/"
+                  className="cpi-button dark"
+                  newTab={true}
+                />
               </div>
               <div id="contact">
                 <CpiLink label="Contact" href="/contact" className="cpi-button light" />
               </div>
               <div id="schedule-session">
-                <CpiLink label="Schedule a Session" href="/book" className="cpi-button light" />
+                <CpiLink
+                  label="Schedule a Session"
+                  href="https://connerpohlinstruction-booking.as.me/"
+                  className="cpi-button light"
+                  newTab={true}
+                />
               </div>
             </div>
           </div>
