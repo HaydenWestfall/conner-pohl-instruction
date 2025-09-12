@@ -6,19 +6,20 @@ import gsap from "gsap";
 import "./App.scss";
 import { ToastContainer } from "react-toastify";
 import { useLocation } from "react-router-dom";
+import { ReactLenis, useLenis } from "lenis/react";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  const location = useLocation();
-  const hideNavbar = location.pathname === "/book";
+  useLenis(() => {});
+
   return (
-    <>
+    <ReactLenis root>
       <Navbar />
       <AllRoutes />
       <ToastContainer position="top-right" autoClose={3000} />
-    </>
+    </ReactLenis>
   );
 }
 
