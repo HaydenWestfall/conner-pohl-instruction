@@ -5,11 +5,14 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./App.scss";
 import { ToastContainer } from "react-toastify";
+import { useLocation } from "react-router-dom";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const location = useLocation();
+  const hideNavbar = location.pathname === "/book";
   return (
     <>
       <Navbar />
