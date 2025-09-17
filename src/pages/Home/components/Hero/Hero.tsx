@@ -37,7 +37,7 @@ export const Hero = () => {
                 <CpiLink
                   label="Book now"
                   href="https://connerpohlinstruction-booking.as.me/"
-                  className="cpi-button dark"
+                  className="cpi-button light"
                   newTab={true}
                 />
               </div>

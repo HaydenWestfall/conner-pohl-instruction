@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import "./Packages.scss";
-import HittingImage from "../../../../assets/images/hitting.png";
-import PitchingImage from "../../../../assets/images/pitching.png";
-import FiledingImage from "../../../../assets/images/stealing.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CpiLink from "../../../../components/cpiButton/CpiLink";
+import HittingImage1 from "../../../../assets/images/hitting1.jpg";
+import HittingImage3 from "../../../../assets/images/hitting3.jpg";
+import PitchingImage2 from "../../../../assets/images/pitching2.jpg";
+import PitchingImage3 from "../../../../assets/images/pitching3.jpg";
+import FieldingImage from "../../../../assets/images/fielding.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Packages = () => {
-  const packageImages = [HittingImage, PitchingImage, FiledingImage];
+  const packageImages = [HittingImage1, HittingImage3, PitchingImage3, PitchingImage2, FieldingImage];
   const packageDescriptions = [
     "Explore our range of training packages, designed to elevate skills through expert coaching and personalized programs.",
     "Hitting is one of the most challenging skills in baseball and across many sports. At Pohl Performance Baseball, we approach it with focus, adaptability, and attention to each athlete’s unique needs. Every player who walks through our doors receives personalized instruction aimed at making the game feel simpler, more understandable, and more achievable. Our goal is to create an environment that’s both informative and encouraging, helping athletes gain the knowledge, tools, and confidence they need to succeed at the plate.",
@@ -50,12 +52,12 @@ export const Packages = () => {
     },
     {
       type: "image",
-      src: packageImages[0],
+      src: packageImages[3],
       alt: "Hitting lesson",
     },
     {
       type: "image",
-      src: packageImages[0],
+      src: packageImages[4],
       alt: "Hitting lesson",
     },
     {
@@ -68,26 +70,38 @@ export const Packages = () => {
   const overlayData = [
     {
       header: "1 ON 1 HITTING LESSON",
+      descriptionSnippet:
+        "Work one-on-one with an experienced instructor to refine your swing from the ground up. These sessions focus on proper . . .",
       description:
-        "Hitting a baseball consistently is one of the most challenging skills in sports. Every athlete has unique strengths and areas they need to improve, which is why no two swings are exactly the same. Our approach is about simplifying this complex skill, breaking it down in a way that makes sense for each individual player. The goal is not just to make quick fixes, but to educate and equip athletes with the tools to understand their own swing—so they can adjust, improve, and succeed long term.",
+        "Work one-on-one with an experienced instructor to refine your swing from the ground up. These sessions focus on proper stance, mechanics, timing, and approach at the plate, using tailored drills and immediate feedback to improve contact, power, and confidence.",
     },
     {
       header: "DUO HITTING LESSON",
+      descriptionSnippet:
+        "Train alongside a teammate or friend in a small-group setting while receiving professional hitting instruction . . .",
       description:
-        "Work alongside a partner for engaging training that combines teamwork competition, and development.",
+        "Train alongside a teammate or friend in a small-group setting while receiving professional hitting instruction. These sessions cover the same mechanics and drills as the 1-on-1 option but incorporate competitive exercises, shared feedback, and live reps to keep players engaged and learning from one another.",
     },
     {
       header: "1 ON 1 PITCHING LESSON",
-      description: "Focused pitching lessons to improve accuracy, speed, and control.",
+      descriptionSnippet:
+        "Get individualized attention to develop and fine-tune your pitching skills. Players work on mechanics, accuracy . . .",
+      description:
+        "Get individualized attention to develop and fine-tune your pitching skills. Players work on mechanics, accuracy, velocity, and mental approach while learning drills and strategies to become more effective and confident on the mound.",
     },
     {
       header: "DUO PITCHING LESSONS",
+      descriptionSnippet:
+        "Pair up with another player for an energetic, collaborative pitching session. Athletes receive expert coaching on . . .",
       description:
-        "Work alongside a partner for engaging training that combines teamwork competition, and development.",
+        "Pair up with another player for an energetic, collaborative pitching session. Athletes receive expert coaching on mechanics, pitch selection, and game strategy, while practicing side by side for added motivation, feedback, and live scenario work.",
     },
     {
       header: "FIELDING LESSONS",
-      description: "Sharpen defensive skills with hands-on fielding drills and tips.",
+      descriptionSnippet:
+        "Build a solid defensive foundation with focused instruction on glove work, footwork, throwing accuracy, and . . .",
+      description:
+        "Build a solid defensive foundation with focused instruction on glove work, footwork, throwing accuracy, and positioning. Players will run through game-like drills and situational practice designed to improve reaction time, confidence, and overall defensive performance on the field.",
     },
   ];
 
@@ -95,22 +109,29 @@ export const Packages = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!wrapperRef.current || !scrollRef.current) return;
-    const scrollEl = scrollRef.current;
-    const totalWidth = scrollEl.scrollWidth - scrollEl.clientWidth;
-    gsap.to(scrollEl, {
-      x: () => `-${totalWidth}px`,
-      ease: "none",
-      scrollTrigger: {
-        trigger: wrapperRef.current,
-        start: "center center",
-        end: () => `+=${totalWidth}`,
-        pin: true,
-        scrub: true,
-        anticipatePin: 1,
-      },
-    });
+    let ctx: gsap.Context | null = null;
+    function setupScroll() {
+      if (!wrapperRef.current || !scrollRef.current) return;
+      const scrollEl = scrollRef.current;
+      const totalWidth = scrollEl.scrollWidth - scrollEl.clientWidth;
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      gsap.to(scrollEl, {
+        x: () => `-${totalWidth}px`,
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: "center center",
+          end: () => `+=${totalWidth}`,
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+        },
+      });
+    }
+    setupScroll();
+    window.addEventListener("resize", setupScroll);
     return () => {
+      window.removeEventListener("resize", setupScroll);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
@@ -147,7 +168,7 @@ export const Packages = () => {
                   <div className={`image-overlay${expanded ? " expanded" : ""}`}>
                     <div className="overlay-content">
                       <h3>{overlay.header}</h3>
-                      <p className={expanded ? "expanded" : "collapsed"}>{overlay.description}</p>
+                      {expanded ? <p>{overlay.description}</p> : <p>{overlay.descriptionSnippet}</p>}
                     </div>
                   </div>
                 </div>

@@ -63,57 +63,45 @@
 
       .image-overlay {
         position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 40%;
-        pointer-events: none;
-        border-radius: 0 0 var(--border-radius-1) var(--border-radius-1);
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 70%, rgba(0, 0, 0, 0) 100%);
+        left: 1rem;
+        bottom: 1rem;
+        width: calc(100% - 2rem);
+        height: fit-content;
+        border-radius: var(--border-radius-1);
+        background: #0000007d;
+        backdrop-filter: blur(14px);
+        border: 1px solid #9c9c9c;
         display: flex;
         align-items: flex-end;
         transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      .image-overlay.expanded {
-        height: 100%;
-        border-radius: var(--border-radius-1);
-        align-items: flex-end;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 90%, rgba(0, 0, 0, 0) 100%);
-      }
+        cursor: pointer;
+        overflow: hidden;
 
-      .overlay-content {
-        width: 100%;
-        padding: 2rem 2rem 1.5rem 2rem;
-        color: #fff;
-        z-index: 2;
-        h3 {
-          font-size: 1.5rem;
-          font-weight: 700;
-          margin-bottom: 0.5rem;
-          font-family: "Bebas Neue", sans-serif;
+        .overlay-content {
+          width: 100%;
+          padding: 1.25rem 1.5rem 1.5rem 1.5rem;
+          color: #fff;
+          z-index: 2;
+
+          h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: "Bebas Neue", sans-serif;
+          }
+          p {
+            font-size: 0.85rem;
+            font-weight: 400;
+            line-height: 1.4rem;
+            margin: 0;
+            transition: max-height 0.3s, opacity 0.3s;
+          }
         }
-        p {
-          font-size: 0.8rem;
-          font-weight: 400;
-          line-height: 1.2rem;
-          margin: 0;
-          transition: max-height 0.3s, opacity 0.3s;
-        }
-        .collapsed {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-height: 2.6em;
-          opacity: 0.95;
-          cursor: pointer;
-        }
-        .expanded {
-          display: block;
-          max-height: 20em;
-          opacity: 1;
-          cursor: pointer;
+
+        &.expanded {
+          height: fit-content;
+          border-radius: var(--border-radius-1);
+          align-items: flex-end;
         }
       }
     }

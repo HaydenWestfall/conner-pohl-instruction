@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-top: 12%;
   padding-left: 2rem;
   padding-bottom: 2rem;
@@ -14,6 +14,7 @@
     flex-direction: column;
     gap: 1.25rem;
     width: fit-content;
+    display: none;
 
     .review-images {
       display: flex;

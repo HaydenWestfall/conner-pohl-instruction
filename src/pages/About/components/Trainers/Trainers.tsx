@@ -1,14 +1,11 @@
 import Selected from "../../../../assets/icons/selected-indicator.svg?react";
 import UnSelected from "../../../../assets/icons/unselected-indicator.svg?react";
 import ArrowIcon from "../../../../assets/icons/arrow.svg?react";
-import Trainer1Primary from "../../../../assets/images/trainer1_primary.png";
-import Trainer1Secondary from "../../../../assets/images/trainer1_secondary.png";
-import Trainer2Primary from "../../../../assets/images/trainer2_primary.png";
-import Trainer2Secondary from "../../../../assets/images/trainer2_secondary.png";
-import Trainer3Primary from "../../../../assets/images/trainer1_primary.png";
-import Trainer3Secondary from "../../../../assets/images/trainer1_secondary.png";
-import Trainer4Primary from "../../../../assets/images/trainer2_primary.png";
-import Trainer4Secondary from "../../../../assets/images/trainer2_secondary.png";
+import Trainer1Primary from "../../../../assets/images/conner_pohl.jpeg";
+import Trainer2Primary from "../../../../assets/images/ryan_moellete.jpeg";
+import Trainer3Primary from "../../../../assets/images/ryan_townsend.jpeg";
+import Trainer4Primary from "../../../../assets/images/jordan_long.jpeg";
+import TrainerSecondary from "../../../../assets/images/trainer2_secondary.png";
 import "./Trainers.scss";
 import { useState } from "react";
 
@@ -29,7 +26,7 @@ export const Trainers = () => {
         "Conner is passionate about helping athletes improve their skills, maximize performance, and develop a lifelong love for baseball. At CPI Baseball, he creates a supportive and informative training environment for every player.",
       ],
       primaryImage: Trainer1Primary,
-      secondaryImage: Trainer1Secondary,
+      secondaryImage: TrainerSecondary,
     },
     {
       name: "Ryan Moellete",
@@ -38,7 +35,7 @@ export const Trainers = () => {
         "Ryan was recruited by Purdue Fort Wayne and went on to continue his baseball career at Lincoln Trail College. Now a dedicated instructor at CPI Baseball, Ryan brings his athleticism and experience to help players of all ages improve their hitting, fielding, and overall baseball skills. His focus is on developing fundamentals, enhancing performance, and helping each athlete reach their full potential.",
       ],
       primaryImage: Trainer2Primary,
-      secondaryImage: Trainer2Secondary,
+      secondaryImage: TrainerSecondary,
     },
     {
       name: "Ryan Townsend",
@@ -48,7 +45,7 @@ export const Trainers = () => {
         "He also spent one season as the junior varsity coach at Vandalia-Butler before becoming the head varsity baseball coach at Sidney High School, where he is now entering his third season.",
       ],
       primaryImage: Trainer3Primary,
-      secondaryImage: Trainer3Secondary,
+      secondaryImage: TrainerSecondary,
     },
     {
       name: "Jordan Long",
@@ -57,7 +54,7 @@ export const Trainers = () => {
         "Jordan brings a strong dedication to coaching and has spent years helping young athletes develop their skills, improve their performance, and reach their goals. He now provides personalized instruction at CPI Baseball, focusing on hitting, fielding, and infield fundamentals.",
       ],
       primaryImage: Trainer4Primary,
-      secondaryImage: Trainer4Secondary,
+      secondaryImage: TrainerSecondary,
     },
   ];
 

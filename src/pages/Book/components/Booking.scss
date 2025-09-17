@@ -6,22 +6,6 @@
   align-items: center;
   justify-content: center;
 
-  .test-link {
-    position: relative;
-    z-index: 200;
-    color: white;
-    text-decoration: none;
-    padding: 12px 24px;
-    border: 2px solid white;
-    border-radius: var(--border-radius-1);
-    transition: background 0.3s ease;
-
-    &:hover {
-      background: white;
-      color: black;
-    }
-  }
-
   img {
     position: absolute;
     top: 0;
