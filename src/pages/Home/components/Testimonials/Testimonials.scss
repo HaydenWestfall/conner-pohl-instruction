@@ -181,16 +181,16 @@
         height: fit-content;
         width: 100%;
         height: unset;
+        margin: unset;
 
         .review-images {
           gap: 1rem;
-          height: unset;
+          height: 56vw;
 
           img {
             flex-grow: 1;
             object-fit: cover;
             aspect-ratio: 1.05;
-            height: 12rem;
           }
 
           .review-stats {
@@ -198,18 +198,20 @@
             height: 7rem;
             aspect-ratio: 1.2;
             font-size: var(--text-size-large-3);
+            height: 25vw;
+            font-size: 7.5vw;
 
             .rating {
               display: flex;
               align-items: center;
 
               .star-icon {
-                height: 1rem;
-                width: 1rem;
+                height: 3.5vw;
+                width: 3.5vw;
               }
 
               span {
-                font-size: var(--text-size-tiny-2);
+                font-size: 2.5vw;
               }
             }
           }
@@ -218,24 +220,26 @@
 
       .review {
         p {
-          font-size: var(--text-size-small-2);
-          line-height: 1.1rem;
+          font-size: 4vw;
+          line-height: 6.5vw;
+          margin-top: 2.5rem;
+          margin-bottom: 2rem;
         }
 
         .reviewer {
           .initials {
-            font-size: 0.95rem;
-            font-weight: 600;
-            height: 2.5rem;
-            width: 2.5rem;
+            height: 11vw;
+            width: 11vw;
+            font-size: 3.25vw;
           }
 
           .info {
             .name {
+              font-size: 3vw;
             }
 
             .team {
-              font-size: var(--text-size-tiny);
+              font-size: 2.6vw;
             }
           }
         }

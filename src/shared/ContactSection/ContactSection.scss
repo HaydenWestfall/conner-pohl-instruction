@@ -2,7 +2,8 @@
   display: flex;
   gap: 1rem;
   padding: 4rem 2rem;
-  height: 44rem;
+  height: clamp(0px, 55vw, 44rem);
+  min-height: 35rem;
   width: 100%;
   max-width: 85rem;
 
@@ -12,8 +13,8 @@
 
     .review-tag {
       position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
+      top: clamp(0px, 1.5vw, 1.5rem);
+      left: clamp(0px, 1.5vw, 1.5rem);
       padding: 0.25rem 0.75rem 0.25rem 0.25rem;
       border-radius: var(--border-radius-rounded);
       border: 1px solid white;
@@ -30,8 +31,8 @@
 
         img {
           border-radius: var(--border-radius-rounded);
-          height: 2.5rem;
-          width: 2.5rem;
+          height: clamp(0px, 3.1vw, 2.5rem);
+          width: clamp(0px, 3.1vw, 2.5rem);
 
           &:not(:first-child) {
             margin-left: -1rem;
@@ -45,11 +46,11 @@
         align-items: center;
 
         .review-count {
-          font-size: 1.4rem;
+          font-size: clamp(0px, 1.75vw, 1.4rem);
         }
 
         .review-text {
-          font-size: 0.8rem;
+          font-size: clamp(0px, 0.95vw, 0.8rem);
         }
       }
     }
@@ -66,7 +67,7 @@
     position: relative;
     background-color: #2f2f2f;
     border-radius: var(--border-radius-0);
-    padding: 1.5rem 1.5rem 8rem 1.5rem;
+    padding: 1.5rem 1.5rem clamp(0px, 9vw, 8rem) 1.5rem;
     display: flex;
     align-items: flex-end;
     width: calc(50% - 0.5rem);
@@ -90,8 +91,8 @@
       gap: 3rem;
 
       h3 {
-        font-size: 3rem;
-        line-height: 3.75rem;
+        font-size: clamp(0px, 3.6vw, 3rem);
+        line-height: clamp(0px, 4.5vw, 3.75rem);
         font-weight: 600;
         color: white;
       }
@@ -104,14 +105,15 @@
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          height: 7.5rem;
+          height: clamp(0px, 9vw, 7.5rem);
 
           span {
             color: #9e9e9e;
+            font-size: clamp(0px, 1.5vw, 20px);
           }
 
           &.small {
-            min-width: 12rem;
+            min-width: 0;
             width: 35%;
           }
         }
@@ -126,8 +128,8 @@
 
       p {
         color: white;
-        font-size: var(--text-size-small);
-        line-height: 1.4rem;
+        font-size: clamp(0px, 1.05vw, 0.9rem);
+        line-height: clamp(0px, 1.65vw, 1.4rem);
         margin: 0;
       }
     }
@@ -151,18 +153,23 @@
 
         .review-images {
           img {
+            height: 11vw;
+            width: 11vw;
+
             &:not(:first-child) {
-              margin-left: -0.5rem;
+              margin-left: -1.25rem;
             }
           }
         }
 
-        .review-count {
-          font-size: 1.2rem;
-        }
+        .review-count-wrapper {
+          .review-count {
+            font-size: 6vw;
+          }
 
-        .review-text {
-          font-size: 0.8rem;
+          .review-text {
+            font-size: 2.8vw;
+          }
         }
       }
 
@@ -174,7 +181,7 @@
     .schedule-wrapper {
       width: 100%;
       padding: 1rem 1rem 2rem 1rem;
-      height: 30rem;
+      height: 34rem;
 
       .tag {
       }
@@ -184,7 +191,8 @@
 
         h3 {
           font-size: 2rem;
-          line-height: 2.5rem;
+          font-size: 7.5vw;
+          line-height: 10vw;
         }
 
         .action-wrapper {
@@ -217,6 +225,9 @@
           color: white;
           font-size: var(--text-size-small);
           line-height: 1.4rem;
+          font-size: 3.75vw;
+          line-height: 5.5vw;
+          max-width: 75%;
           margin: 0;
         }
       }

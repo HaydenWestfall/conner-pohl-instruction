@@ -23,7 +23,7 @@ export const HomePage = () => {
       <div className="route-wrapper">
         <Hero />
         <About />
-        {/* {isMobile ? <MobilePackages /> : <Packages />} */}
+        {isMobile ? <MobilePackages /> : <Packages />}
         <Testimonials />
         <ContactSection />
       </div>
