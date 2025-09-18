@@ -35,7 +35,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-size: clamp(16px, 1vw + 0.5rem, 20px);
+  font-size: clamp(6px, 1vw + 0.5rem, 20px);
 }
 
 html,
@@ -152,9 +152,24 @@ p {
 .max-width-wrapper {
   max-width: 100%;
 }
+
 @media only screen and (min-width: 120rem) {
   .max-width-wrapper {
     max-width: 85rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .route-wrapper {
+    padding: 0rem;
+
+    .hero-wrapper {
+      height: calc(97vh - 0rem);
+    }
+
+    .route-header-img {
+      border-radius: 0;
+    }
   }
 }
 

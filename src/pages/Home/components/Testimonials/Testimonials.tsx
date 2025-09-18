@@ -140,9 +140,9 @@ export const Testimonials = () => {
             <motion.div
               key={activeIndex % reviews.length}
               className="review"
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
+              exit={{ opacity: 0, y: 0 }}
               transition={{ duration: 0.75, ease: "easeInOut" }}
             >
               <p>{activeReviews[activeIndex % reviews.length]?.review}</p>

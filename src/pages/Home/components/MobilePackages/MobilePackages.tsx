@@ -55,6 +55,7 @@ export const MobilePackages = () => {
 
   const [currentIdx, setCurrentIdx] = useState(0);
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [scrollPadding, setScrollPadding] = useState(0);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -70,6 +71,26 @@ export const MobilePackages = () => {
       }
     }
   }, [currentIdx]);
+
+  // Dynamically set padding-right so last card can scroll to 1rem from left
+  useEffect(() => {
+    function updatePadding() {
+      if (!scrollRef.current) return;
+      const cards = scrollRef.current.querySelectorAll(".package-card");
+      if (cards.length === 0) return;
+      const lastCard = cards[cards.length - 1] as HTMLElement;
+      const scrollList = scrollRef.current;
+      const viewportWidth = window.innerWidth;
+      const cardWidth = lastCard.offsetWidth;
+      // 1rem in px
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const padding = viewportWidth - cardWidth - rem;
+      setScrollPadding(padding > 0 ? padding : rem);
+    }
+    updatePadding();
+    window.addEventListener("resize", updatePadding);
+    return () => window.removeEventListener("resize", updatePadding);
+  }, []);
 
   const handlePrev = () => {
     if (currentIdx === 0) return;
@@ -95,7 +116,7 @@ export const MobilePackages = () => {
         </p>
       </div>
 
-      <div className="horizontal-scroll-list" ref={scrollRef}>
+      <div className="horizontal-scroll-list" ref={scrollRef} style={{ paddingRight: `${scrollPadding}px` }}>
         {packages.map((pkg, idx) => (
           <div className="package-card" key={idx} onClick={() => setExpandedIdx(expandedIdx === idx ? null : idx)}>
             <img src={pkg.image} alt={pkg.header} />
