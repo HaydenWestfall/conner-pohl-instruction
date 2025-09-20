@@ -3,6 +3,7 @@ import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import ArrowIcon from "../../../../assets/icons/arrow.svg?react";
 import "./MobilePackages.scss";
 import CpiLink from "../../../../components/cpiButton/CpiLink";
+const BOOKING_URL = import.meta.env.VITE_BOOKING_URL;
 import HittingImage1 from "../../../../assets/images/hitting1.webp";
 import HittingImage3 from "../../../../assets/images/hitting3.webp";
 import PitchingImage2 from "../../../../assets/images/pitching2.webp";
@@ -139,7 +140,7 @@ export const MobilePackages = () => {
             <ArrowIcon id="next-package" />
           </button>
         </div>
-        <CpiLink label="Book Now" href="/book" className="cpi-button dark" />
+        <CpiLink label="Book Now" href={BOOKING_URL} className="cpi-button dark" />
       </div>
     </div>
   );

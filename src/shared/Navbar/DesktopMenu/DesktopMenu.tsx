@@ -58,7 +58,10 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menuWrapper, heroRef, socials
           <a href="/contact" className={"rolling-link " + (window.location.pathname === "/contact" ? "active" : "")}>
             <span data-hover="Contact">Contact</span>
           </a>
-          <a href="/book" className={"rolling-link " + (window.location.pathname === "/book" ? "active" : "")}>
+          <a
+            href={import.meta.env.VITE_BOOKING_URL}
+            className={"rolling-link " + (window.location.pathname === "/book" ? "active" : "")}
+          >
             <span data-hover="Book a Session">Book a Session</span>
           </a>
         </div>

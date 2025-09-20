@@ -49,7 +49,7 @@ export const Footer = () => {
               </div>
               <div className="links-wrapper">
                 <span className="header">Company</span>
-                <a href="/book" className="rolling-link">
+                <a href={import.meta.env.VITE_BOOKING_URL} className="rolling-link">
                   <span data-hover="Book Session">Book Session</span>
                 </a>
                 <a href="/contact" className="rolling-link">

@@ -148,7 +148,11 @@ export const Packages = () => {
                     <h2>{item.title}</h2>
                     <p className="description-text">{item.text}</p>
                   </div>
-                  <CpiLink label="Schedule a Session" href="/book" className="cpi-button dark" />
+                  <CpiLink
+                    label="Schedule a Session"
+                    href={import.meta.env.VITE_BOOKING_URL}
+                    className="cpi-button dark"
+                  />
                 </div>
               );
             } else if (item.type === "image") {
@@ -176,7 +180,11 @@ export const Packages = () => {
               return (
                 <div className="callToAction" key={idx}>
                   <h2>{item.title}</h2>
-                  <CpiLink label="Schedule a Session" href="/book" className="cpi-button dark" />
+                  <CpiLink
+                    label="Schedule a Session"
+                    href={import.meta.env.VITE_BOOKING_URL}
+                    className="cpi-button dark"
+                  />
                 </div>
               );
             }

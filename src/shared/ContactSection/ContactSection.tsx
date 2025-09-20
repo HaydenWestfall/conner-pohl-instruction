@@ -34,7 +34,7 @@ export const ContactSection = () => {
             <div className="action-wrapper">
               <div className="action">
                 <span id="start-journey-text">Start Your Journey</span>
-                <CpiLink label="Book a Session" href="/book" className="cpi-button light" />
+                <CpiLink label="Book a Session" href={import.meta.env.VITE_BOOKING_URL} className="cpi-button light" />
               </div>
               <div className="action small">
                 <div className="divider"></div>

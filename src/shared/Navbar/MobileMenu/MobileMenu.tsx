@@ -51,7 +51,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuWrapper, heroRef, socialsRe
           <a href="/faq" className={window.location.pathname === "/faq" ? "active" : ""}>
             FAQ
           </a>
-          <CpiLink label="Book a session" href="/book" className="cpi-button light" />
+          <CpiLink label="Book a session" href={import.meta.env.VITE_BOOKING_URL} className="cpi-button light" />
         </div>
       </div>
     </div>

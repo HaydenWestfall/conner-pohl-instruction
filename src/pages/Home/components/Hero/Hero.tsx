@@ -36,7 +36,7 @@ export const Hero = () => {
               <div id="book-now">
                 <CpiLink
                   label="Book now"
-                  href="https://connerpohlinstruction-booking.as.me/"
+                  href={import.meta.env.VITE_BOOKING_URL}
                   className="cpi-button light"
                   newTab={true}
                 />
@@ -47,7 +47,7 @@ export const Hero = () => {
               <div id="schedule-session">
                 <CpiLink
                   label="Schedule a Session"
-                  href="https://connerpohlinstruction-booking.as.me/"
+                  href={import.meta.env.VITE_BOOKING_URL}
                   className="cpi-button light"
                   newTab={true}
                 />
