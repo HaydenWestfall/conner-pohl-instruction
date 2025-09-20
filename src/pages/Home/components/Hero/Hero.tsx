@@ -1,7 +1,7 @@
-import HeroImage2 from "../../../../assets/images/hero-test.png";
-import Testimony1 from "../../../../assets/images/testimony_1.png";
-import Testimony2 from "../../../../assets/images/testimony_2.png";
-import Testimony3 from "../../../../assets/images/testimony_3.png";
+import HeroImage2 from "../../../../assets/images/hero_header.webp";
+import Testimony1 from "../../../../assets/images/customer_1.webp";
+import Testimony2 from "../../../../assets/images/customer_2.webp";
+import Testimony3 from "../../../../assets/images/customer_3.webp";
 import "./Hero.scss";
 import ScrollIcon from "../../../../assets/icons/mouse.svg?react";
 import CpiLink from "../../../../components/cpiButton/CpiLink";

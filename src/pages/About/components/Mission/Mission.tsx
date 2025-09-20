@@ -1,8 +1,8 @@
 import BatIcon from "../../../../assets/icons/bat.svg?react";
 import FieldIcon from "../../../../assets/icons/field.svg?react";
 import GloveIcon from "../../../../assets/icons/glove.svg?react";
-import HittingImage from "../../../../assets/images/contact_hitting.png";
-import HittingImage2 from "../../../../assets/images/kid_1.png";
+import HittingImage from "../../../../assets/images/contact_hitting.webp";
+import HittingImage2 from "../../../../assets/images/kid_1.webp";
 import "./Mission.scss";
 
 export const Mission = () => {

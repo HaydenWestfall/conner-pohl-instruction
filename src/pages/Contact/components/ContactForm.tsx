@@ -1,8 +1,8 @@
 import { useState } from "react";
-import HittingImage from "../../../assets/images/hitting.png";
+import HittingImage from "../../../assets/images/hitting1.webp";
 import CpiButton from "../../../components/cpiButton/CpiButton";
-import "./ContactForm.scss";
 import { toast } from "react-toastify";
+import "./ContactForm.scss";
 
 export const ContactForm = () => {
   const [form, setForm] = useState({

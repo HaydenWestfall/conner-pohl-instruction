@@ -1,11 +1,11 @@
 import Selected from "../../../../assets/icons/selected-indicator.svg?react";
 import UnSelected from "../../../../assets/icons/unselected-indicator.svg?react";
 import ArrowIcon from "../../../../assets/icons/arrow.svg?react";
-import Trainer1Primary from "../../../../assets/images/conner_pohl.jpeg";
-import Trainer2Primary from "../../../../assets/images/ryan_moellete.jpeg";
-import Trainer3Primary from "../../../../assets/images/ryan_townsend.jpeg";
-import Trainer4Primary from "../../../../assets/images/jordan_long.jpeg";
-import TrainerSecondary from "../../../../assets/images/trainer2_secondary.png";
+import Trainer1Primary from "../../../../assets/images/conner_pohl.webp";
+import Trainer2Primary from "../../../../assets/images/ryan_moellete.webp";
+import Trainer3Primary from "../../../../assets/images/ryan_townsend.webp";
+import Trainer4Primary from "../../../../assets/images/jordan_long.webp";
+import TrainerSecondary from "../../../../assets/images/trainer2_secondary.webp";
 import "./Trainers.scss";
 import { useState } from "react";
 

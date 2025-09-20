@@ -1,4 +1,4 @@
-import TestimonialsHeroImage from "../../../../assets/images/testimonials_header.png";
+import TestimonialsHeroImage from "../../../../assets/images/testimonials_header.webp";
 import ScrollIcon from "../../../../assets/icons/mouse.svg?react";
 import "./TestimonialsHeader.scss";
 

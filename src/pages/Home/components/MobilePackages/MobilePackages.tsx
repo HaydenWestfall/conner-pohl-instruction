@@ -3,11 +3,11 @@ import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import ArrowIcon from "../../../../assets/icons/arrow.svg?react";
 import "./MobilePackages.scss";
 import CpiLink from "../../../../components/cpiButton/CpiLink";
-import HittingImage1 from "../../../../assets/images/hitting1.jpg";
-import HittingImage3 from "../../../../assets/images/hitting3.jpg";
-import PitchingImage2 from "../../../../assets/images/pitching2.jpg";
-import PitchingImage3 from "../../../../assets/images/pitching3.jpg";
-import FieldingImage from "../../../../assets/images/fielding.jpg";
+import HittingImage1 from "../../../../assets/images/hitting1.webp";
+import HittingImage3 from "../../../../assets/images/hitting3.webp";
+import PitchingImage2 from "../../../../assets/images/pitching2.webp";
+import PitchingImage3 from "../../../../assets/images/pitching3.webp";
+import FieldingImage from "../../../../assets/images/fielding.webp";
 
 export const MobilePackages = () => {
   const packages = [
@@ -79,7 +79,6 @@ export const MobilePackages = () => {
       const cards = scrollRef.current.querySelectorAll(".package-card");
       if (cards.length === 0) return;
       const lastCard = cards[cards.length - 1] as HTMLElement;
-      const scrollList = scrollRef.current;
       const viewportWidth = window.innerWidth;
       const cardWidth = lastCard.offsetWidth;
       // 1rem in px

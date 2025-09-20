@@ -1,4 +1,4 @@
-import ActionHeroImage from "../../assets/images/contact_header.png";
+import ActionHeroImage from "../../assets/images/contact_header.webp";
 import "./ActionHeader.scss";
 
 type MagneticProps = {

@@ -1,10 +1,7 @@
 import "./Booking.scss";
-import HeroImage2 from "../../../assets/images/hero-test.png";
-import { useNavigate } from "react-router-dom";
+import HeroImage2 from "../../../assets/images/hero_header.webp";
 
 export const Booking = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="booking-wrapper">
       <img src={HeroImage2} alt="" />

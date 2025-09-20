@@ -3,11 +3,11 @@ import "./Packages.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CpiLink from "../../../../components/cpiButton/CpiLink";
-import HittingImage1 from "../../../../assets/images/hitting1.jpg";
-import HittingImage3 from "../../../../assets/images/hitting3.jpg";
-import PitchingImage2 from "../../../../assets/images/pitching2.jpg";
-import PitchingImage3 from "../../../../assets/images/pitching3.jpg";
-import FieldingImage from "../../../../assets/images/fielding.jpg";
+import HittingImage1 from "../../../../assets/images/hitting1.webp";
+import HittingImage3 from "../../../../assets/images/hitting3.webp";
+import PitchingImage2 from "../../../../assets/images/pitching2.webp";
+import PitchingImage3 from "../../../../assets/images/pitching3.webp";
+import FieldingImage from "../../../../assets/images/fielding.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -109,7 +109,6 @@ export const Packages = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    let ctx: gsap.Context | null = null;
     function setupScroll() {
       if (!wrapperRef.current || !scrollRef.current) return;
       const scrollEl = scrollRef.current;

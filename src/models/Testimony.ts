@@ -1,9 +1,10 @@
-import Testimony1 from "../assets/images/testimony_1.png";
-import Testimony2 from "../assets/images/testimony_2.png";
-import Testimony3 from "../assets/images/testimony_3.png";
-import playerImage1 from "../assets/images/stealing.png";
-import playerImage2 from "../assets/images/hitting.png";
-import playerImage3 from "../assets/images/pitching.png";
+import Testimony1 from "../assets/images/customer_1.webp";
+import Testimony2 from "../assets/images/customer_2.webp";
+import Testimony3 from "../assets/images/customer_3.webp";
+import playerImage1 from "../assets/images/testimony_1.webp";
+import playerImage2 from "../assets/images/testimony_2.webp";
+import playerImage3 from "../assets/images/testimony_3.webp";
+import playerImage4 from "../assets/images/testimony_4.webp";
 
 export interface Testimony {
   id: number;
@@ -60,7 +61,7 @@ export const TESTIMONIALS: Testimony[] = [
     name: "Antonio Gibson",
     initials: "AG",
     image: Testimony1,
-    playerImage: playerImage1,
+    playerImage: playerImage4,
     review:
       "“We’ve tried a few coaches over the years, but Swing Co. is different. Conner has a way of connecting with kids and breaking things down so they really get it. Our son’s swing has improved tremendously, and more importantly—he’s excited to go to practice again. Highly recommend!”",
     context: "6th Grader | Looking to improve swing",

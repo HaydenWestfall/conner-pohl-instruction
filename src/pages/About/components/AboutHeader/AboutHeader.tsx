@@ -1,4 +1,4 @@
-import AboutHeroImage from "../../../../assets/images/about_header.png";
+import AboutHeroImage from "../../../../assets/images/about_header.webp";
 import ScrollIcon from "../../../../assets/icons/mouse.svg?react";
 import "./AboutHeader.scss";
 

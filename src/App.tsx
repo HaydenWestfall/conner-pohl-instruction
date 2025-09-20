@@ -5,7 +5,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./App.scss";
 import { ToastContainer } from "react-toastify";
-import { useLocation } from "react-router-dom";
 import { ReactLenis, useLenis } from "lenis/react";
 
 gsap.registerPlugin(useGSAP);

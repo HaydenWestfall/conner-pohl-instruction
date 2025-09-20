@@ -8,7 +8,7 @@ import { TESTIMONIALS, type Testimony } from "../../../../models/Testimony";
 // Example review data, replace images as needed
 let activeReviews: Testimony[] = [];
 
-const reviews: Testimony[] = TESTIMONIALS;
+const reviews: Testimony[] = TESTIMONIALS.slice(0, 4);
 
 const reviewsExtended: Testimony[] = [
   ...reviews.map((r, i) => ({ ...r, id: i })),
