@@ -5,7 +5,6 @@
   border-radius: var(--border-radius-rounded);
   border: 1px solid var(--surface-0-border);
   background-color: var(--surface-1);
-  border: none;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -34,5 +33,11 @@
 
   &.dark {
     background-color: var(--surface-0);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cpiTag {
+    display: none;
   }
 }

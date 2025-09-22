@@ -150,7 +150,7 @@
 @media only screen and (max-width: 768px) {
   .testimonials-wrapper {
     gap: 2.5rem;
-    padding: 8rem 1rem 2rem;
+    padding: 12rem 1rem 8rem;
 
     .review-wrapper {
       flex-direction: column;
@@ -224,6 +224,7 @@
           line-height: 6.5vw;
           margin-top: 2.5rem;
           margin-bottom: 2rem;
+          height: 40vw;
         }
 
         .reviewer {

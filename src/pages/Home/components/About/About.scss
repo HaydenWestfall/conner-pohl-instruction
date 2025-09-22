@@ -53,7 +53,7 @@
 
       p {
         max-width: 28rem;
-        font-weight: 300;
+        font-weight: 400;
         margin: 0;
       }
     }
@@ -72,19 +72,23 @@
 @media only screen and (max-width: 768px) {
   .about-section {
     height: unset;
-    gap: 3rem;
+    gap: 5rem;
     padding: 10rem 1rem;
 
     .about-wrapper {
       height: fit-content;
       justify-content: flex-start;
-      gap: 6vw;
+      gap: 15vw;
       padding: 0rem;
 
       .about-header {
         h2 {
-          font-size: 6.5vw;
-          line-height: 7.1vw;
+          font-size: 10vw;
+          line-height: 11vw;
+        }
+
+        br {
+          display: none;
         }
 
         a {
@@ -95,16 +99,19 @@
       .footer {
         flex-direction: column;
         align-items: flex-start;
-        gap: 6vw;
+        gap: 15vw;
 
         .stat-section {
+          gap: 3rem;
           .stat-wrapper {
+            gap: 0.75rem;
             .stat {
-              font-size: 6vw;
-              list-style-type: 8vw;
+              font-size: 12vw;
+              line-height: 13vw;
             }
 
             .label {
+              font-size: 3vw;
             }
           }
         }

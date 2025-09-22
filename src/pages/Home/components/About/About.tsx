@@ -11,7 +11,7 @@ export const About = () => {
         <div className="about-wrapper">
           <div className="about-header">
             <h2>
-              Turning Potential Into Performance —
+              Turning Potential Into Performance —&nbsp;
               <br />
               One Player at a Time
             </h2>

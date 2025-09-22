@@ -106,8 +106,6 @@ export const MobilePackages = () => {
 
   return (
     <div className="packages-mobile-wrapper">
-      <CpiTag index="02" label="PACKAGES" className="dark tag" />
-
       <div className="header">
         <h2>WHAT WE OFFER</h2>
         <p className="description-text">

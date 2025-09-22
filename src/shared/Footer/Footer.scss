@@ -154,12 +154,12 @@ footer {
 @media only screen and (max-width: 768px) {
   footer {
     padding-top: 0;
-    border-radius: 2rem 2rem 0 0;
+    border-radius: 4rem 4rem 0 0;
 
     .footer-body {
       margin: 0;
       width: 100%;
-      padding: 2rem;
+      padding: 5rem 2rem;
       border-radius: 2rem 2rem 0 0;
       border: none;
 
@@ -174,32 +174,34 @@ footer {
           .branding {
             display: flex;
             align-items: center;
+            gap: 1vw;
 
             .logo {
-              width: 2rem;
-              height: 2rem;
+              width: 4rem;
+              height: 4rem;
               margin-right: 0.5rem;
             }
 
             .brand-name {
-              font-size: 1.3rem;
+              font-size: 6.5vw;
               margin-top: 0.25rem;
             }
           }
 
           .mission {
-            font-size: 0.85rem;
+            font-size: 3.6vw;
             color: #848484;
             width: 100%;
           }
 
           .socials-wrapper {
             display: flex;
-            gap: 0.75rem;
+            gap: 1.5rem;
+            margin: 1rem 0;
 
             .social-icon {
-              width: 1.85rem;
-              height: 1.85rem;
+              width: 2.5rem;
+              height: 2.5rem;
               color: black;
             }
           }
@@ -208,21 +210,28 @@ footer {
         .sitemap {
           padding-top: 0;
           flex-direction: column;
-          gap: 3rem;
+          gap: 4rem;
 
           .links-wrapper {
-            gap: 0.65rem;
+            gap: 1rem;
+            width: unset;
 
             .header {
               font-weight: 600;
-              font-size: 1rem;
+              font-size: 5vw;
             }
 
             a {
-              font-size: 1rem;
+              span {
+                font-size: 4.5vw;
+              }
             }
           }
         }
+      }
+
+      .divider {
+        margin: 2rem 0;
       }
 
       .legal-wrapper {

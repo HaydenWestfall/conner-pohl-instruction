@@ -8,7 +8,10 @@ import { TESTIMONIALS, type Testimony } from "../../../../models/Testimony";
 // Example review data, replace images as needed
 let activeReviews: Testimony[] = [];
 
-const reviews: Testimony[] = TESTIMONIALS.slice(0, 4);
+const reviews: Testimony[] = JSON.parse(JSON.stringify(TESTIMONIALS.slice(0, 4))).map((review: Testimony) => ({
+  ...review,
+  review: review.review.length > 280 ? review.review.slice(0, 280).trimEnd() + "..." : review.review,
+}));
 
 const reviewsExtended: Testimony[] = [
   ...reviews.map((r, i) => ({ ...r, id: i })),
@@ -42,7 +45,7 @@ export const Testimonials = () => {
       setActiveIndex((prev) => (prev + 1) % activeIndexSize);
       console.log(activeIndex);
       console.log(activeIndexSize);
-    }, 6000);
+    }, 10000);
     return () => clearTimeout(timer);
   }, [activeIndex]);
 

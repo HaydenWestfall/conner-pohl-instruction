@@ -100,7 +100,7 @@
 
   .hero-content {
     align-items: center;
-    padding: 7rem 0 5rem 0;
+    padding: 7rem 0 12rem 0;
 
     .review-wrapper {
       align-items: center;
@@ -133,11 +133,13 @@
 
       h1 {
         text-align: center;
+        font-size: 16vw;
+        line-height: 15vw;
       }
 
       .call-to-action {
         display: flex;
-        gap: 0.5rem;
+        gap: 1rem;
         justify-content: center;
 
         #book-now {
