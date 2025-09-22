@@ -111,7 +111,7 @@
 
     .trainer-info-wrapper {
       height: fit-content;
-      gap: 37rem;
+      gap: 42rem;
       width: 100%;
 
       .trainer-name {
@@ -120,11 +120,12 @@
         gap: 0.5rem;
 
         span {
-          font-size: 0.8rem;
+          font-size: 4vw;
         }
 
         h2 {
-          font-size: 2.5rem;
+          font-size: 10vw;
+          line-height: 11vw;
         }
       }
 
@@ -132,10 +133,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        gap: 3rem;
 
         p {
-          line-height: 1.6rem;
+          font-size: 4vw;
+          line-height: 7vw;
         }
 
         .trainer-index-wrapper {
@@ -150,14 +152,14 @@
       position: absolute;
       width: calc(100% - 2rem);
       left: 1rem;
-      top: 9rem;
+      top: 13rem;
       height: 35rem;
     }
 
     .trainer-actions {
       z-index: 15;
       position: absolute;
-      top: 26.5rem;
+      top: 30.5rem;
       transform: translateY(-50%);
       width: calc(100% - 4rem);
       left: 2rem;
