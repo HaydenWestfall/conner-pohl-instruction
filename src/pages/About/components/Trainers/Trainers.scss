@@ -169,17 +169,27 @@
         justify-content: space-between;
 
         button {
-          border: 2px solid white;
-          background-color: transparent;
+          border: none;
+          background-color: black;
+          height: 12vw;
+          width: 12vw;
 
           #prev-trainer {
             transform: rotate(-90deg);
             color: white;
+            height: 5vw;
+            width: 5vw;
           }
 
           #next-trainer {
             transform: rotate(90deg);
             color: white;
+            height: 5vw;
+            width: 5vw;
+          }
+
+          &:hover {
+            background-color: #3c3c3c;
           }
         }
       }

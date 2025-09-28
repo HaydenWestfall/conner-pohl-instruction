@@ -192,6 +192,10 @@ p {
 
   body.safari-ios .route-wrapper .hero-wrapper {
     height: calc(110vh - 0rem);
+
+    &.short {
+      height: fit-content;
+    }
   }
 
   .route-wrapper {

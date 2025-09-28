@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { CpiTag } from "../../../../components/cpiTag/CpiTag";
 import ArrowIcon from "../../../../assets/icons/arrow.svg?react";
 import "./MobilePackages.scss";
 import CpiLink from "../../../../components/cpiButton/CpiLink";

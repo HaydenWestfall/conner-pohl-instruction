@@ -117,10 +117,34 @@ textarea.invalid {
 
       h2 {
         margin: 0;
+        font-size: clamp(0px, 6vw, 2.5rem);
       }
 
       p {
         max-width: unset;
+        font-size: clamp(0px, 3.25vw, 3rem);
+        line-height: 5vw;
+      }
+
+      .contact-form {
+        .form-group {
+          label {
+            font-size: clamp(0px, 3.25vw, 3rem);
+            padding-left: 1.5rem;
+          }
+
+          input,
+          textarea {
+            font-size: clamp(0px, 3.75vw, 3rem);
+            padding-left: 1.5rem;
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+            border-radius: var(--border-radius-2);
+          }
+
+          textarea {
+          }
+        }
       }
     }
   }

@@ -83,10 +83,12 @@ export const ContactForm = () => {
       return;
     }
 
+    console.log("Form is valid, submitting...");
     setStatus({ type: "loading", message: "Sending..." });
 
     try {
-      const res = await fetch("https://conner-pohl-instruction-backend.onrender.com/api/contact", {
+      console.log("Submitting form: ", form);
+      const res = await fetch("https://cpi-contact-api.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -110,7 +112,7 @@ export const ContactForm = () => {
   // Button should be disabled if any field is empty, any field is invalid, or form is already submitted (success)
   const isFormEmpty = !form.name || !form.email || !form.phone || !form.message;
   const isFormInvalid = !validateEmail(form.email) || !validatePhone(form.phone) || isFormEmpty;
-  const disableSubmit = isFormInvalid || status.type === "success";
+  const disableSubmit = isFormInvalid || status.type === "success" || status.type === "loading";
 
   return (
     <div className="contact-form-section-wrapper">
@@ -123,6 +125,8 @@ export const ContactForm = () => {
           We’re here to help you understand the process, the programs, and what’s best for your player. You should
           expect a response within 24 hours.
         </p>
+        <p>{status.type}</p>
+        <p>{status.message}</p>
         <div className="divider"></div>
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-group">
