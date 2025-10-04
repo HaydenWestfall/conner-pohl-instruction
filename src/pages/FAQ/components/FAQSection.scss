@@ -93,6 +93,26 @@
     padding: 1.5rem 1.5rem;
     margin-bottom: 1.5rem;
     animation: fadeIn 0.2s;
+
+    .answer-wrapper {
+      display: flex;
+      gap: 1rem;
+
+      p {
+        margin: 0;
+      }
+
+      .has-map {
+        flex-direction: row;
+      }
+
+      img {
+        height: 12rem;
+        width: 12rem;
+        border-radius: var(--border-radius-2);
+        flex-shrink: 0;
+      }
+    }
   }
 
   .faq-divider {

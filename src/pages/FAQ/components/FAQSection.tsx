@@ -3,10 +3,14 @@ import ArrowIcon from "../../../assets/icons/arrow.svg?react";
 import { useState } from "react";
 import "./FAQSection.scss";
 import CpiButton from "../../../components/cpiButton/CpiButton";
+import CpiLocation from "../../../assets/images/cpi_location.png";
+
+const GOOGLE_MAPS_URL = import.meta.env.VITE_GOOGLE_MAPS_URL;
 
 interface FAQ {
   question: string;
   answer: string[];
+  hasMap?: boolean;
 }
 
 const faqs: FAQ[] = [
@@ -21,6 +25,7 @@ const faqs: FAQ[] = [
     answer: [
       "Lessons are located at 2326 OH-718, Troy, OH 45373. The barn itself does not have its own mailing address, as it is part of the Splash and Smash Swim Club parcel.",
     ],
+    hasMap: true,
   },
   {
     question: "What should my child bring to their first lesson?",
@@ -80,7 +85,14 @@ export const FAQSection = () => {
             {openIdx === idx && (
               <div className="faq-answer">
                 {faq.answer.map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
+                  <div key={i} className={faq.hasMap ? "answer-wrapper has-map" : "answer-wrapper"}>
+                    {faq.hasMap && (
+                      <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener">
+                        <img src={CpiLocation} alt="Find us on Google Maps" />
+                      </a>
+                    )}
+                    <p>{paragraph}</p>
+                  </div>
                 ))}
               </div>
             )}

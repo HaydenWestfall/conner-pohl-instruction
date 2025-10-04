@@ -1,8 +1,11 @@
 import Facebook from "../../assets/icons/facebook.svg?react";
 import Instagram from "../../assets/icons/instagram.svg?react";
 import TikTok from "../../assets/icons/tiktok.svg?react";
+import Location from "../../assets/icons/location.svg?react";
 import Logo from "../../assets/icons/cpi_logo.svg?react";
 import "./Footer.scss";
+
+const GOOGLE_MAPS_URL = import.meta.env.VITE_GOOGLE_MAPS_URL;
 
 export const Footer = () => {
   return (
@@ -19,19 +22,27 @@ export const Footer = () => {
                 Conner Pohl Instruction is built on a deep competitive drive and a passion for bringing out the best in
                 every player.
               </span>
-              <div className="socials-wrapper">
-                <a href="https://www.facebook.com/share/19PHSfQhfe/?mibextid=wwXIfr" target="_blank">
-                  <Facebook className="social-icon" />
-                </a>
-                <a
-                  href="https://www.instagram.com/connerpohlinstruction?igsh=MXZnZTVhc3B2bTR6cg%3D%3D&utm_source=qr"
-                  target="_blank"
-                >
-                  <Instagram className="social-icon" />
-                </a>
-                <a href="http://www.tiktok.com/@cpohlinstruction" target="_blank">
-                  <TikTok className="social-icon" />
-                </a>
+              <div className="socials-location-wrapper">
+                <div className="socials-wrapper">
+                  <a href="https://www.facebook.com/share/19PHSfQhfe/?mibextid=wwXIfr" target="_blank">
+                    <Facebook className="social-icon" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/connerpohlinstruction?igsh=MXZnZTVhc3B2bTR6cg%3D%3D&utm_source=qr"
+                    target="_blank"
+                  >
+                    <Instagram className="social-icon" />
+                  </a>
+                  <a href="http://www.tiktok.com/@cpohlinstruction" target="_blank">
+                    <TikTok className="social-icon" />
+                  </a>
+                </div>
+                <div className="locations-wrapper">
+                  <Location className="location-icon" />
+                  <a href={GOOGLE_MAPS_URL} target="_blank">
+                    2326 OH-718, Troy, OH 45373
+                  </a>
+                </div>
               </div>
             </div>
             <div className="sitemap">
