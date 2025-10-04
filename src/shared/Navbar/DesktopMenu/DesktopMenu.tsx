@@ -3,6 +3,10 @@ import Arrow from "../../../assets/icons/arrow.svg?react";
 import CpiButton from "../../../components/cpiButton/CpiButton";
 import "./DesktopMenu.scss";
 
+const FACEBOOK_URL = import.meta.env.VITE_FACEBOOK_URL;
+const INSTAGRAM_URL = import.meta.env.VITE_INSTAGRAM_URL;
+const TIKTOK_URL = import.meta.env.VITE_TIKTOK_URL;
+
 type DesktopMenuProps = {
   menuWrapper: RefObject<HTMLDivElement | null>;
   heroRef: RefObject<HTMLDivElement | null>;
@@ -20,17 +24,13 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({ menuWrapper, heroRef, socials
         </div>
 
         <div className="socials-links" ref={socialsRef}>
-          <a href="https://www.facebook.com/share/19PHSfQhfe/?mibextid=wwXIfr" target="_blank" className="social">
+          <a href={FACEBOOK_URL} target="_blank" className="social">
             Facebook <Arrow className="arrow" />
           </a>
-          <a
-            href="https://www.instagram.com/connerpohlinstruction?igsh=MXZnZTVhc3B2bTR6cg%3D%3D&utm_source=qr"
-            target="_blank"
-            className="social"
-          >
+          <a href={INSTAGRAM_URL} target="_blank" className="social">
             Instagram <Arrow className="arrow" />
           </a>
-          <a href="http://www.tiktok.com/@cpohlinstruction" target="_blank" className="social">
+          <a href={TIKTOK_URL} target="_blank" className="social">
             TikTok <Arrow className="arrow" />
           </a>
         </div>

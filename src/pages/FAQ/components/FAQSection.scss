@@ -98,11 +98,16 @@
       display: flex;
       gap: 1rem;
 
+      .map-link {
+        font-size: var(--text-size-small);
+        line-height: 1.4rem;
+      }
+
       p {
         margin: 0;
       }
 
-      .has-map {
+      &.has-map {
         flex-direction: row;
       }
 
@@ -207,13 +212,34 @@
     }
 
     .faq-answer {
-      padding: 0rem 2rem;
       margin-bottom: 1.5rem;
+      padding: 1.5rem 1.5rem;
 
-      p {
-        font-size: clamp(0px, 3.5vw, 2.5rem);
-        line-height: 1.5;
-        color: #303030;
+      .answer-wrapper {
+        display: flex;
+        gap: 1rem;
+
+        .map-link {
+          font-size: clamp(0px, 3.5vw, 2.5rem);
+          line-height: 1.5;
+        }
+
+        p {
+          font-size: clamp(0px, 3.5vw, 2.5rem);
+          line-height: 1.5;
+          color: #303030;
+        }
+
+        &.has-map {
+          flex-direction: column;
+        }
+
+        img {
+          height: 12rem;
+          width: 12rem;
+          border-radius: var(--border-radius-2);
+          flex-shrink: 0;
+        }
       }
     }
   }

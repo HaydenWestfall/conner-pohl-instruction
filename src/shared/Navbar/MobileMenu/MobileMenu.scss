@@ -6,27 +6,26 @@
   height: 100vh;
   width: 100vw;
   z-index: 12;
-  padding: 5.5rem 1rem 1rem 1rem;
+  padding: clamp(0px, 3.25rem, 34px) clamp(0px, 2rem, 20px) clamp(0px, 2rem, 20px) clamp(0px, 2rem, 20px);
   justify-content: center;
 
   .mobile-content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: clamp(0px, 4.5rem, 50px);
     width: 100%;
-    max-width: 25rem;
+    max-width: 33rem;
 
     .logo-overlay {
-      position: absolute;
-      top: 2.95rem;
-      left: 2.95rem;
-      height: 1.75rem;
+      color: white;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.5rem;
     }
 
     .hero {
       font-size: var(--text-size-large-2);
-      font-family: "Bebas Neue";
       color: var(--text-light);
+      font-style: italic;
     }
 
     .body {
@@ -35,15 +34,16 @@
       .socials-links {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 1.25rem;
         width: 45%;
 
         .social {
           display: flex;
           align-items: center;
           gap: 0.15rem;
-          font-size: var(--text-size-regular);
+          font-size: var(--text-size-large);
           color: var(--text-selectable);
+          text-decoration: none;
 
           .arrow {
             height: 1.25rem;
@@ -57,10 +57,10 @@
       .route-links {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 2.5rem;
 
         a {
-          font-size: var(--text-size-large-4);
+          font-size: clamp(0rem, 8vw, 3rem);
           text-decoration: none;
           color: var(--text-selectable);
           font-weight: 500;

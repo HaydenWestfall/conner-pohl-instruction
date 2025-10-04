@@ -6,6 +6,9 @@ import Logo from "../../assets/icons/cpi_logo.svg?react";
 import "./Footer.scss";
 
 const GOOGLE_MAPS_URL = import.meta.env.VITE_GOOGLE_MAPS_URL;
+const FACEBOOK_URL = import.meta.env.VITE_FACEBOOK_URL;
+const INSTAGRAM_URL = import.meta.env.VITE_INSTAGRAM_URL;
+const TIKTOK_URL = import.meta.env.VITE_TIKTOK_URL;
 
 export const Footer = () => {
   return (
@@ -24,16 +27,13 @@ export const Footer = () => {
               </span>
               <div className="socials-location-wrapper">
                 <div className="socials-wrapper">
-                  <a href="https://www.facebook.com/share/19PHSfQhfe/?mibextid=wwXIfr" target="_blank">
+                  <a href={FACEBOOK_URL} target="_blank">
                     <Facebook className="social-icon" />
                   </a>
-                  <a
-                    href="https://www.instagram.com/connerpohlinstruction?igsh=MXZnZTVhc3B2bTR6cg%3D%3D&utm_source=qr"
-                    target="_blank"
-                  >
+                  <a href={INSTAGRAM_URL} target="_blank">
                     <Instagram className="social-icon" />
                   </a>
-                  <a href="http://www.tiktok.com/@cpohlinstruction" target="_blank">
+                  <a href={TIKTOK_URL} target="_blank">
                     <TikTok className="social-icon" />
                   </a>
                 </div>

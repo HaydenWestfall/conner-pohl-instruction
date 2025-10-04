@@ -16,6 +16,7 @@ const Navbar = () => {
   const menuWrapper = useRef<HTMLDivElement | null>(null);
   const cpiWrapper = useRef<HTMLAnchorElement | null>(null);
   const cpiText = useRef<HTMLDivElement | null>(null);
+  const titleRef = useRef<HTMLDivElement | null>(null);
   const heroRef = useRef<HTMLDivElement | null>(null);
   const socialsRef = useRef<HTMLDivElement | null>(null);
   const routesRef = useRef<HTMLDivElement | null>(null);
@@ -38,7 +39,13 @@ const Navbar = () => {
 
       // Animate in
       gsap.to(menu.current, { height: "500vw", width: "500vw", duration: 0.75 });
-      gsap.set([heroRef.current, socialsRef.current, routesRef.current], { opacity: 0 });
+
+      if (isMobile) {
+        gsap.set([titleRef.current, heroRef.current, socialsRef.current, routesRef.current], { opacity: 0 });
+        gsap.to(titleRef?.current, { opacity: 1, duration: 1, delay: 0 });
+      } else {
+        gsap.set([heroRef.current, socialsRef.current, routesRef.current], { opacity: 0 });
+      }
       gsap.set([socialsRef.current, routesRef.current], { y: 20 });
       gsap.to(heroRef.current, { opacity: 1, duration: 1, delay: 0 });
       gsap.to(socialsRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
@@ -49,6 +56,10 @@ const Navbar = () => {
 
       // Animate out
       gsap.to(menu.current, { height: "0", width: "0", duration: 0.5 });
+
+      if (isMobile) {
+        gsap.to(titleRef.current, { opacity: 0, duration: 0.2 });
+      }
       gsap.to(heroRef.current, { opacity: 0, duration: 0.2 });
       gsap.to(socialsRef.current, { opacity: 0, y: 20, duration: 0.2 });
       gsap.to(routesRef.current, { opacity: 0, y: 20, duration: 0.2 });
@@ -95,7 +106,13 @@ const Navbar = () => {
       </div>
 
       {isMobile ? (
-        <MobileMenu menuWrapper={menuWrapper} heroRef={heroRef} socialsRef={socialsRef} routesRef={routesRef} />
+        <MobileMenu
+          menuWrapper={menuWrapper}
+          titleRef={titleRef}
+          heroRef={heroRef}
+          socialsRef={socialsRef}
+          routesRef={routesRef}
+        />
       ) : (
         <DesktopMenu menuWrapper={menuWrapper} heroRef={heroRef} socialsRef={socialsRef} routesRef={routesRef} />
       )}

@@ -91,7 +91,19 @@ export const FAQSection = () => {
                         <img src={CpiLocation} alt="Find us on Google Maps" />
                       </a>
                     )}
-                    <p>{paragraph}</p>
+                    <p>
+                      {paragraph.includes("2326 OH-718, Troy, OH 45373") ? (
+                        <>
+                          {paragraph.split("2326 OH-718, Troy, OH 45373")[0]}
+                          <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener" className="map-link">
+                            2326 OH-718, Troy, OH 45373
+                          </a>
+                          {paragraph.split("2326 OH-718, Troy, OH 45373")[1]}
+                        </>
+                      ) : (
+                        paragraph
+                      )}
+                    </p>
                   </div>
                 ))}
               </div>

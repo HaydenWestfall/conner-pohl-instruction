@@ -5,15 +5,23 @@ import CpiLink from "../../../components/cpiButton/CpiLink";
 
 type MobileMenuProps = {
   menuWrapper: RefObject<HTMLDivElement | null>;
+  titleRef: RefObject<HTMLDivElement | null>;
   heroRef: RefObject<HTMLSpanElement | null>;
   socialsRef: RefObject<HTMLDivElement | null>;
   routesRef: RefObject<HTMLDivElement | null>;
 };
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ menuWrapper, heroRef, socialsRef, routesRef }) => (
+const GOOGLE_MAPS_URL = import.meta.env.VITE_GOOGLE_MAPS_URL;
+const FACEBOOK_URL = import.meta.env.VITE_FACEBOOK_URL;
+const INSTAGRAM_URL = import.meta.env.VITE_INSTAGRAM_URL;
+const TIKTOK_URL = import.meta.env.VITE_TIKTOK_URL;
+
+const MobileMenu: React.FC<MobileMenuProps> = ({ menuWrapper, titleRef, heroRef, socialsRef, routesRef }) => (
   <div className="mobile-menu-wrapper" ref={menuWrapper}>
     <div className="mobile-content-wrapper">
-      {/* <img className="logo-overlay" src={Logo} alt="CPI logo" /> */}
+      <div className="logo-overlay" ref={titleRef}>
+        Conner Pohl Instruction
+      </div>
 
       <span className="hero" ref={heroRef}>
         YOUR JOURNEY BEGINS TODAY
@@ -21,18 +29,17 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuWrapper, heroRef, socialsRe
 
       <div className="body">
         <div className="socials-links" ref={socialsRef}>
-          <a href="https://www.facebook.com/share/19PHSfQhfe/?mibextid=wwXIfr" target="_blank" className="social">
+          <a href={FACEBOOK_URL} target="_blank" className="social">
             Facebook <Arrow className="arrow" />
           </a>
-          <a
-            href="https://www.instagram.com/connerpohlinstruction?igsh=MXZnZTVhc3B2bTR6cg%3D%3D&utm_source=qr"
-            target="_blank"
-            className="social"
-          >
+          <a href={INSTAGRAM_URL} target="_blank" className="social">
             Instagram <Arrow className="arrow" />
           </a>
-          <a href="http://www.tiktok.com/@cpohlinstruction" target="_blank" className="social">
+          <a href={TIKTOK_URL} target="_blank" className="social">
             TikTok <Arrow className="arrow" />
+          </a>
+          <a href={GOOGLE_MAPS_URL} target="_blank" className="social">
+            Directions <Arrow className="arrow" />
           </a>
         </div>
         <div className="route-links" ref={routesRef}>
