@@ -1,4 +1,7 @@
 footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
   border-radius: 3rem 3rem 0 0;
   padding-top: 4.5rem;
@@ -15,6 +18,7 @@ footer {
     border: 1px solid #e9e9e9;
     margin: 0 4rem 2rem 4rem;
     width: calc(100% - 8rem);
+    max-width: 100rem;
 
     .footer-header {
       display: flex;
@@ -152,8 +156,8 @@ footer {
   .branding-accent {
     width: 100%;
     text-align: center;
-    font-size: 10.5vw;
-    line-height: 12vw;
+    font-size: clamp(0px, 10.5vw, 12rem);
+    line-height: clamp(0px, 12vw, 12.5rem);
     color: #f2f2f2;
     text-transform: uppercase;
     position: relative;
