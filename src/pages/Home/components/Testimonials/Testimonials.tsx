@@ -5,9 +5,6 @@ import StarIcon from "../../../../assets/icons/star.svg?react";
 import { AnimatePresence, motion } from "framer-motion";
 import { TESTIMONIALS, type Testimony } from "../../../../models/Testimony";
 
-// Example review data, replace images as needed
-let activeReviews: Testimony[] = [];
-
 const reviews: Testimony[] = JSON.parse(JSON.stringify(TESTIMONIALS.slice(0, 4))).map((review: Testimony) => ({
   ...review,
   review: review.review.length > 280 ? review.review.slice(0, 280).trimEnd() + "..." : review.review,
@@ -20,19 +17,19 @@ const reviewsExtended: Testimony[] = [
 
 export const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [activeReviews, setActiveReviews] = useState<Testimony[]>(window.innerWidth < 768 ? reviewsExtended : reviews);
   const taglinesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        activeReviews = reviewsExtended;
+        setActiveReviews(reviewsExtended);
         setIsMobile(true);
       } else {
-        activeReviews = reviews;
+        setActiveReviews(reviews);
         setIsMobile(false);
       }
-      console.log(activeReviews);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -41,13 +38,10 @@ export const Testimonials = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const activeIndexSize = window.innerWidth < 768 ? 5 : 4;
-      setActiveIndex((prev) => (prev + 1) % activeIndexSize);
-      console.log(activeIndex);
-      console.log(activeIndexSize);
+      setActiveIndex((prev) => (prev + 1) % activeReviews.length);
     }, 10000);
     return () => clearTimeout(timer);
-  }, [activeIndex]);
+  }, [activeIndex, activeReviews.length]);
 
   // Animate horizontal scroll for taglines on mobile
   useEffect(() => {
@@ -58,7 +52,7 @@ export const Testimonials = () => {
     const activeTagline = taglineWrapper[activeIndex] as HTMLElement | undefined;
     reviewTagline!.style.transition = "left 0.3s";
 
-    if (activeIndex === 4 && reviewTagline) {
+    if (activeIndex === reviews.length && reviewTagline) {
       const left = activeTagline!.offsetLeft;
       reviewTagline.style.left = -1 * left + "px";
 

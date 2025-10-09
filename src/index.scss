@@ -128,19 +128,17 @@ p {
     display: inline-block;
     -webkit-transition: -webkit-transform 0.4s;
     transition: transform 0.4s;
-    font-size: attr(font-size);
-    line-height: attr(line-height);
   }
 
   span::before {
     position: absolute;
     top: 100%;
     left: 0;
-    font-size: attr(font-size);
-    line-height: attr(line-height);
     content: attr(data-hover);
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    font-size: inherit;
+    line-height: inherit;
   }
 
   &:hover span {
