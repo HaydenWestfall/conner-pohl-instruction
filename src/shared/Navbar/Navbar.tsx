@@ -8,7 +8,7 @@ import gsap from "gsap";
 import { IconButton } from "../../components/IconButton/IconButton";
 
 const Navbar = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1075);
   const location = useLocation();
   const menuButton = useRef<HTMLDivElement | null>(null);
   const menu = useRef<HTMLDivElement | null>(null);
@@ -47,7 +47,7 @@ const Navbar = () => {
         gsap.set([heroRef.current, socialsRef.current, routesRef.current], { opacity: 0 });
       }
       gsap.set([socialsRef.current, routesRef.current], { y: 20 });
-      gsap.to(heroRef.current, { opacity: 1, duration: 1, delay: 0 });
+      gsap.to(heroRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
       gsap.to(socialsRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
       gsap.to(routesRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.3 });
     } else {
@@ -60,7 +60,7 @@ const Navbar = () => {
       if (isMobile) {
         gsap.to(titleRef.current, { opacity: 0, duration: 0.2 });
       }
-      gsap.to(heroRef.current, { opacity: 0, duration: 0.2 });
+      gsap.to(heroRef.current, { opacity: 0, y: 20, duration: 0.2 });
       gsap.to(socialsRef.current, { opacity: 0, y: 20, duration: 0.2 });
       gsap.to(routesRef.current, { opacity: 0, y: 20, duration: 0.2 });
       gsap.set(menuWrapper.current, { display: "none", delay: 0.2 });
@@ -71,7 +71,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => {
       console.log("tracking");
-      setIsMobile(window.innerWidth < 1280);
+      setIsMobile(window.innerWidth < 1075);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
