@@ -4,7 +4,7 @@ Allow: /
 # Block admin/private areas if any exist
 # Disallow: /admin/
 
-Sitemap: https://connerpohlinstruction.com//sitemap.xml
+Sitemap: https://connerpohlinstruction.com/sitemap.xml
 
 # Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1
