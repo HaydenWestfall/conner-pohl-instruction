@@ -4,6 +4,7 @@ import { Footer } from "../../shared/Footer/Footer";
 import { CancellationPolicySection } from "./components/CancellationPolicy/CancellationPolicySection";
 import { PrivacyPolicySection } from "./components/PrivacyPolicy/PrivacyPolicySection";
 import { TermsOfServiceSection } from "./components/TermsOfService/TermsOfServiceSection";
+import { useTitle } from "../../hooks/useTitle";
 
 export const LegalPage = () => {
   const location = useLocation();
@@ -17,6 +18,14 @@ export const LegalPage = () => {
     privacyPolicy: "Privacy Policy",
     terms: "Terms and Conditions",
   };
+
+  const routeKeyTitleMap: Record<LegalRouteKey, string> = {
+    cancellationPolicy: "Cancellation & Rescheduling Policy | CPI Baseball Training Terms",
+    privacyPolicy: "Privacy Policy | How CPI Baseball Protects Your Information",
+    terms: "Terms of Service | CPI Baseball Training Conditions & Agreements",
+  };
+
+  useTitle(routeKeyTitleMap[routeKey]);
 
   const dynamicHeader = (
     <div className="legal-header">

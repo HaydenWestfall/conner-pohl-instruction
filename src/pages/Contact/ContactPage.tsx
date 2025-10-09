@@ -1,9 +1,10 @@
 import { ActionHeader } from "../../shared/ActionHeader/ActionHeader";
 import { Footer } from "../../shared/Footer/Footer";
 import { ContactForm } from "./components/ContactForm";
+import { useTitle } from "../../hooks/useTitle";
 
 export const ContactPage = () => {
-  //   useTitle("AlgoReads | Your one stop shop for computer science learning");
+  useTitle("Contact CPI Baseball | Get In Touch About Training & Lessons in Troy, OH");
 
   return (
     <main>

@@ -4,10 +4,11 @@ import { Footer } from "../../shared/Footer/Footer";
 import { TestimonialsHeader } from "./components/TestimonialsHeader/TestimonialsHeader";
 import { TestimoniesSection } from "./components/TestimoniesSection/TestimoniesSection";
 import { TestimoniesSectionMobile } from "./components/TestimoniesSectionMobile/TestimoniesSectionMobile";
+import { useTitle } from "../../hooks/useTitle";
 
 export const TestimonialsPage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  //   useTitle("AlgoReads | Your one stop shop for computer science learning");
+  useTitle("Player & Parent Testimonials | Success Stories from CPI Baseball Training");
 
   useEffect(() => {
     const handleResize = () => {
