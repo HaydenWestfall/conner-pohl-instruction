@@ -29,14 +29,14 @@
         position: relative;
 
         .indicator {
-          width: 50px;
+          width: 45px;
           background-color: transparent;
           height: 3px;
           border-radius: 5px;
 
           position: absolute;
           top: 1.55rem;
-          right: 103%;
+          right: 105%;
           background-color: black;
         }
 
@@ -52,6 +52,7 @@
     .review-content {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       margin-top: 2rem;
 
       .review-images {

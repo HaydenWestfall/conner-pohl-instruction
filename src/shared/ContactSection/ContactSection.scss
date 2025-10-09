@@ -99,9 +99,10 @@
 
       .action-wrapper {
         display: flex;
+        gap: 3rem;
 
         .action {
-          width: 45%;
+          width: fit-content;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -131,6 +132,18 @@
         font-size: clamp(0px, 1.05vw, 0.9rem);
         line-height: clamp(0px, 1.65vw, 1.4rem);
         margin: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1175px) {
+  .contact-section-wrapper {
+    .schedule-wrapper {
+      .schedule-info-wrapper {
+        .action-wrapper {
+          gap: 2rem;
+        }
       }
     }
   }

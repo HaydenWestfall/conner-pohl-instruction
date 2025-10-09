@@ -36,7 +36,7 @@ export const ContactSection = () => {
                 <span id="start-journey-text">Start Your Journey</span>
                 <CpiLink label="Book a Session" href={import.meta.env.VITE_BOOKING_URL} className="cpi-button light" />
               </div>
-              <div className="action small">
+              <div id="pick-date-action" className="action small">
                 <div className="divider"></div>
                 <p>Pick a date, choose a time, and become the player you want to be.</p>
               </div>

@@ -65,7 +65,7 @@ export const MobilePackages = () => {
         const scrollList = scrollRef.current;
         const childLeft = child.offsetLeft;
         scrollList.scrollTo({
-          left: childLeft - 16,
+          left: childLeft - (window.innerWidth < 768 ? 16 : 48), // account for padding
           behavior: "smooth",
         });
       }

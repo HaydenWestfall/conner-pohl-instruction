@@ -91,12 +91,19 @@ type IconButtonProps = {
 
 export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overlayColor, onClick, disableMotion }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  if (
-    typeof window !== "undefined" &&
-    (window.innerWidth < 768 || (typeof disableMotion !== "undefined" && disableMotion))
-  ) {
-    // Mobile: no motion, no magnetic
+  useEffect(() => {
+    // Check if device supports touch
+    const checkTouchDevice = () => {
+      return "ontouchstart" in window || navigator.maxTouchPoints > 0 || (navigator as any).msMaxTouchPoints > 0;
+    };
+
+    setIsTouchDevice(checkTouchDevice());
+  }, []);
+
+  if (typeof window !== "undefined" && (isTouchDevice || (typeof disableMotion !== "undefined" && disableMotion))) {
+    // Touchscreen device: no motion, no magnetic
     return (
       <div className="icon-btn-wrapper">
         <button className="icon-btn" onClick={onClick}>
@@ -106,7 +113,13 @@ export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overl
     );
   }
 
-  return (
+  const button = (
+    <button className="icon-btn" onClick={onClick}>
+      {children}
+    </button>
+  );
+
+  const magneticButton = (
     <Magnetic>
       <motion.div
         style={{
@@ -128,12 +141,21 @@ export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overl
           }}
           className="icon-btn-overlay"
         />
-        <TextMagnet>
-          <button className="icon-btn" onClick={onClick}>
-            {children}
-          </button>
-        </TextMagnet>
+        <TextMagnet>{button}</TextMagnet>
       </motion.div>
     </Magnetic>
   );
+
+  const mobileButton = (
+    <div
+      style={{
+        backgroundColor: `${bgColor}`,
+      }}
+      className="icon-btn-wrapper"
+    >
+      {button}
+    </div>
+  );
+
+  return isTouchDevice ? mobileButton : magneticButton;
 };
