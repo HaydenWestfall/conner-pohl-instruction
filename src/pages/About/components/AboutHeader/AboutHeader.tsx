@@ -1,4 +1,5 @@
 import AboutHeroImage from "../../../../assets/images/about_header.webp";
+import AboutHeroImageMobile from "../../../../assets/images/about_haeder_mobile.webp";
 import ScrollIcon from "../../../../assets/icons/mouse.svg?react";
 import "./AboutHeader.scss";
 
@@ -6,7 +7,12 @@ export const AboutHeader = () => {
   return (
     <>
       <div id="about-header" className="hero-wrapper">
-        <img className="route-header-img" src={AboutHeroImage}></img>
+        <picture>
+          <source media="(max-width: 768px)" srcSet={AboutHeroImageMobile} />
+          <source media="(min-width: 769px)" srcSet={AboutHeroImage} />
+          <img className="route-header-img" src={AboutHeroImage} alt="CPI Baseball Training About" />
+        </picture>
+
         <div className="hero-header">
           <h1>
             BUILT ON PASSION

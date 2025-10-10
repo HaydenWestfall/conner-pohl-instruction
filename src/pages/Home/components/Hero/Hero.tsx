@@ -1,4 +1,5 @@
-import HeroImage2 from "../../../../assets/images/hero_header.webp";
+import HeroImage from "../../../../assets/images/hero_header.webp";
+import HeroImageMobile from "../../../../assets/images/hero_header_mobile.webp";
 import Testimony1 from "../../../../assets/images/customer_1.webp";
 import Testimony2 from "../../../../assets/images/customer_2.webp";
 import Testimony3 from "../../../../assets/images/customer_3.webp";
@@ -10,7 +11,11 @@ export const Hero = () => {
   return (
     <>
       <div className="hero-wrapper">
-        <img className="route-header-img" src={HeroImage2}></img>
+        <picture>
+          <source media="(max-width: 768px)" srcSet={HeroImageMobile} />
+          <source media="(min-width: 769px)" srcSet={HeroImage} />
+          <img className="route-header-img" src={HeroImage} alt="CPI Baseball Training Hero" />
+        </picture>
         <div className="hero-content">
           <div className="review-wrapper">
             <div className="review-images">

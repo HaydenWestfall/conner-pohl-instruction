@@ -6,6 +6,12 @@
     width: fit-content;
     display: flex;
     flex-direction: column;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
 
   .scroll-accent {
