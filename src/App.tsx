@@ -5,15 +5,12 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./App.scss";
 import { ToastContainer } from "react-toastify";
-import { ReactLenis, useLenis } from "lenis/react";
 import useSafariIos from "./hooks/SafariDetectionHook";
-import { div } from "framer-motion/client";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  useLenis(() => {});
   useSafariIos();
 
   return (
