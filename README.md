@@ -1,69 +1,149 @@
-# React + TypeScript + Vite
+# Conner Pohl Instruction Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Professional baseball instruction and training website for CPI Baseball, located in Troy, OH. This modern React application showcases baseball training services, testimonials, and provides an easy booking system for lessons.
 
-Currently, two official plugins are available:
+## 🏗️ Built With
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** - Modern UI library with latest features
+- **TypeScript** - Type safety and enhanced developer experience
+- **Vite** - Fast build tool and development server
+- **SCSS** - Enhanced CSS with variables and mixins
+- **Framer Motion** - Smooth animations and transitions
+- **GSAP** - Professional-grade animations
+- **React Router** - Client-side routing
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v18 or higher)
+- npm or yarn package manager
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
+
+```bash
+git clone https://github.com/HaydenWestfall/conner-pohl-instruction.git
+cd conner-pohl-instruction
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+3. Create environment variables:
+
+```bash
+cp .env.example .env
+```
+
+4. Fill in your environment variables in `.env`:
+
+```bash
+VITE_BOOKING_URL=your_booking_system_url
+VITE_GOOGLE_MAPS_URL=your_google_maps_location
+VITE_FACEBOOK_URL=your_facebook_page
+VITE_INSTAGRAM_URL=your_instagram_page
+VITE_TIKTOK_URL=your_tiktok_page
+```
+
+5. Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint for code quality checks
+
+## 🎯 Features
+
+- **Responsive Design** - Fully responsive across all devices
+- **Modern Animations** - Smooth scrolling and interactive elements
+- **SEO Optimized** - Meta tags, sitemap, and structured data
+- **Contact Forms** - Professional inquiry handling
+- **Testimonials** - Dynamic customer review showcase
+- **Service Packages** - Interactive lesson package displays
+- **Legal Pages** - Privacy policy, terms, and cancellation policy
+
+## 📁 Project Structure
+
+```
+src/
+├── components/     # Reusable UI components
+├── pages/         # Page-level components
+├── hooks/         # Custom React hooks
+├── models/        # TypeScript interfaces and types
+├── routes/        # Application routing
+├── shared/        # Shared components across pages
+├── assets/        # Images, icons, and static files
+└── utils/         # Utility functions
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+The application uses several environment variables for external integrations:
+
+- `VITE_BOOKING_URL` - External booking system URL
+- `VITE_GOOGLE_MAPS_URL` - Google Maps location link
+- `VITE_FACEBOOK_URL` - Facebook page URL
+- `VITE_INSTAGRAM_URL` - Instagram profile URL
+- `VITE_TIKTOK_URL` - TikTok profile URL
+
+### Build Configuration
+
+The project uses Vite with the following plugins:
+
+- React SWC for fast refresh
+- SVGR for SVG imports as React components
+- Bundle analyzer for build optimization
+
+## 🌐 Deployment
+
+1. Build the project:
+
+```bash
+npm run build
+```
+
+2. The `dist/` folder contains the production-ready files
+
+3. Deploy to your preferred hosting platform (Vercel, Netlify, etc.)
+
+## 📱 Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💼 About CPI Baseball
+
+Conner Pohl Instruction provides professional baseball training in Troy, OH, specializing in hitting, pitching, and fielding instruction for players of all skill levels. Led by experienced collegiate player Conner Pohl, our programs focus on skill development, confidence building, and competitive excellence.
+
+## 📞 Contact
+
+For questions about this website or CPI Baseball services, please visit our [contact page](https://cpibaseball.com/contact) or reach out through our social media channels.
