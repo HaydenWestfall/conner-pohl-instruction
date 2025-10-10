@@ -52,7 +52,7 @@ export const TestimoniesSectionMobile = () => {
         const childLeft = child.offsetLeft;
         // Scroll so child is 1rem from left
         scrollList.scrollTo({
-          left: childLeft - 16, // 1rem = 16px
+          left: childLeft - (window.innerWidth < 768 ? 16 : 48), // account for padding
           behavior: "smooth",
         });
       }
@@ -108,17 +108,17 @@ export const TestimoniesSectionMobile = () => {
         ))}
       </div>
 
-      <div className="trainer-actions">
+      <div className="testimony-actions">
         <div className="actions">
           <button onClick={handlePrev} aria-label="Previous Testimony" className={currentIdx === 0 ? "inactive" : ""}>
-            <ArrowIcon id="prev-trainer" />
+            <ArrowIcon id="prev-testimony" />
           </button>
           <button
             onClick={handleNext}
             aria-label="Next Testimony"
             className={currentIdx === items.length - 1 ? "inactive" : ""}
           >
-            <ArrowIcon id="next-trainer" />
+            <ArrowIcon id="next-testimony" />
           </button>
         </div>
         <CpiButton label="Leave a Review" onClick={() => window.alert("Test")} className="cpi-button dark" />

@@ -21,9 +21,8 @@ export const Trainers = () => {
     {
       name: "Conner Pohl",
       description: [
-        "Conner Pohl is the founder and owner of CPI Baseball, bringing years of playing and coaching experience to help athletes of all ages reach their full potential. A native of Arcanum, Ohio, Conner played collegiate baseball at Ohio State University, where he gained invaluable experience and a deep understanding of the game.",
-        "Even while in college, Conner began giving private lessons and has continued coaching at the high school and youth levels, including his time at Arcanum High School. He specializes in hitting instruction but provides guidance across all aspects of player development.",
-        "Conner is passionate about helping athletes improve their skills, maximize performance, and develop a lifelong love for baseball. At CPI Baseball, he creates a supportive and informative training environment for every player.",
+        "Conner Pohl is the founder of CPI Baseball, combining years of playing and coaching experience to help athletes reach their full potential. A native of Arcanum, Ohio, Conner played collegiate baseball at Ohio State University, where he built a deep understanding of the game.",
+        "He began giving private lessons in college and has since coached at both the youth and high school levels, including Arcanum High School. Specializing in hitting instruction, Conner focuses on developing complete players through a supportive, high-energy training environment.",
       ],
       primaryImage: Trainer1Primary,
       secondaryImage: TrainerSecondary,
@@ -40,9 +39,7 @@ export const Trainers = () => {
     {
       name: "Ryan Townsend",
       description: [
-        "Ryan Townsend is a right-handed pitcher and 2017 graduate of Vandalia-Butler High School. He went on to continue his playing career at Urbana University from 2017 to 2020 and later at Wilmington College in 2021.",
-        "From 2019 to 2022, Ryan coached in the Miami Valley Prospects organization, working with teams from 14U through 18U, and served as the Director of Player Development from 2021 to 2022.",
-        "He also spent one season as the junior varsity coach at Vandalia-Butler before becoming the head varsity baseball coach at Sidney High School, where he is now entering his third season.",
+        "Ryan Townsend is a right-handed pitcher and Vandalia-Butler High School (2017) graduate who continued his playing career at Urbana University and Wilmington College. From 2019–2022, he coached with the Miami Valley Prospects, serving as Director of Player Development, and also coached at Vandalia-Butler. Ryan is now entering his third season as head varsity coach at Sidney High School.",
       ],
       primaryImage: Trainer3Primary,
       secondaryImage: TrainerSecondary,
@@ -84,7 +81,17 @@ export const Trainers = () => {
           </div>
         </div>
       </div>
-      <img src={trainers[currentTrainer].primaryImage} alt="" className="trainer-primary" />
+      <div className="trainer-image-wrapper">
+        <img src={trainers[currentTrainer].primaryImage} alt="" className="trainer-primary" />
+        <div className="actions overlay">
+          <button onClick={handlePrev} aria-label="Previous Trainer">
+            <ArrowIcon id="prev-trainer" />
+          </button>
+          <button onClick={handleNext} aria-label="Next Trainer">
+            <ArrowIcon id="next-trainer" />
+          </button>
+        </div>
+      </div>
       <div className="trainer-actions">
         <div className="actions">
           <button onClick={handlePrev} aria-label="Previous Trainer">

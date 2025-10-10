@@ -13,7 +13,7 @@ export const TestimonialsPage = () => {
   useEffect(() => {
     const handleResize = () => {
       console.log("tracking");
-      setIsMobile(window.innerWidth < 1280);
+      setIsMobile(window.innerWidth < 1200);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
