@@ -1,6 +1,3 @@
-import Testimony1 from "../assets/images/customer_1.webp";
-import Testimony2 from "../assets/images/customer_2.webp";
-import Testimony3 from "../assets/images/customer_3.webp";
 import playerImage1 from "../assets/images/testimony_1.webp";
 import playerImage2 from "../assets/images/testimony_2.webp";
 import playerImage3 from "../assets/images/testimony_3.webp";
