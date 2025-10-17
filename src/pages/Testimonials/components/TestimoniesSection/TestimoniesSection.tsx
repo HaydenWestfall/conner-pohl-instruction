@@ -90,7 +90,7 @@ export const TestimoniesSection = () => {
                 <div className="review-wrapper" key={idx}>
                   <div className="review-header">
                     <div className="reviewer">{item.review!.name}</div>
-                    <img src={item.review!.image} alt="" />
+                    <div className="initials-circle">{item.review!.initials}</div>
                   </div>
                   <div className="review-footer">
                     <div className="review">
