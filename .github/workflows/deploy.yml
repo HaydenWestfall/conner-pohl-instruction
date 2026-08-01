@@ -1,0 +1,139 @@
+name: Build, Tag & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never let two deploys write to the server at the same time.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write # needed to push the release tag
+
+jobs:
+  deploy:
+    name: Deploy to Hostinger
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so we can see existing tags
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # .env is gitignored, so the runner has no VITE_* values. These end up
+      # inlined in the client bundle (i.e. public), so repo *variables* are the
+      # right home for them; secrets are accepted as a fallback.
+      - name: Write production env
+        env:
+          VITE_BOOKING_URL: ${{ vars.VITE_BOOKING_URL || secrets.VITE_BOOKING_URL }}
+          VITE_GOOGLE_MAPS_URL: ${{ vars.VITE_GOOGLE_MAPS_URL || secrets.VITE_GOOGLE_MAPS_URL }}
+          VITE_FACEBOOK_URL: ${{ vars.VITE_FACEBOOK_URL || secrets.VITE_FACEBOOK_URL }}
+          VITE_INSTAGRAM_URL: ${{ vars.VITE_INSTAGRAM_URL || secrets.VITE_INSTAGRAM_URL }}
+          VITE_TIKTOK_URL: ${{ vars.VITE_TIKTOK_URL || secrets.VITE_TIKTOK_URL }}
+          VITE_CONTACT_API_URL: ${{ vars.VITE_CONTACT_API_URL || secrets.VITE_CONTACT_API_URL }}
+        run: |
+          missing=()
+          : > .env.production
+          for key in VITE_BOOKING_URL VITE_GOOGLE_MAPS_URL VITE_FACEBOOK_URL \
+                     VITE_INSTAGRAM_URL VITE_TIKTOK_URL VITE_CONTACT_API_URL; do
+            value="${!key}"
+            if [ -z "$value" ]; then
+              missing+=("$key")
+            else
+              echo "$key=$value" >> .env.production
+            fi
+          done
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "::error::Missing repository variables/secrets: ${missing[*]}"
+            exit 1
+          fi
+          echo "Wrote .env.production ($(wc -l < .env.production) keys)."
+
+      - name: Build (production)
+        run: npm run build
+
+      # .htaccess lives at the repo root, outside Vite's publicDir, so it has
+      # to be copied in explicitly. Without it Apache 404s every deep link.
+      - name: Add .htaccess to build output
+        run: cp .htaccess dist/.htaccess
+
+      - name: Verify build output
+        run: |
+          test -f dist/index.html
+          test -f dist/.htaccess
+          test -d dist/assets
+          echo "Build contents:"
+          ls -la dist
+          echo "Total size: $(du -sh dist | cut -f1)"
+
+      - name: Upload bundle stats
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-stats
+          path: stats.html
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Deploy to Hostinger via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps # explicit TLS on port 21
+          # Hostinger only exposes a bare IP, which can't match its
+          # *.hstgr.io wildcard cert. Traffic is still encrypted; the
+          # server's identity just isn't verified against the cert.
+          security: loose
+          local-dir: ./dist/
+          # The FTP account is already chrooted to public_html, so the
+          # server root IS public_html. Anything else nests a folder.
+          server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
+          # Keep the sync-state file out of the way, and never wipe
+          # anything the build doesn't own.
+          state-name: .ftp-deploy-sync-state.json
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+
+      # Tag only after the deploy succeeds, so a tag always means
+      # "this commit is live".
+      - name: Create release tag
+        id: tag
+        run: |
+          VERSION="v$(node -p "require('./package.json').version")"
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "Tag $VERSION already exists - skipping tag creation."
+            echo "created=false" >> "$GITHUB_OUTPUT"
+          else
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag -a "$VERSION" -m "Release $VERSION"
+            git push origin "$VERSION"
+            echo "created=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Summary
+        run: |
+          echo "### Deployed ${{ steps.tag.outputs.version }} :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "Commit: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "New tag created: ${{ steps.tag.outputs.created }}" >> $GITHUB_STEP_SUMMARY

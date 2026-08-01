@@ -104,7 +104,7 @@ export const ContactForm = () => {
         setStatus({ type: "error", message: data.message || "Failed to send." });
         toast.error(data.message || "Failed to send.");
       }
-    } catch (err) {
+    } catch {
       setStatus({ type: "error", message: "Network error." });
     }
   };

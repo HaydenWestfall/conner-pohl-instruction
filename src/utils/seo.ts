@@ -1,4 +1,9 @@
-export const generateReviewSchema = (testimonials: any[]) => {
+interface TestimonialSchemaInput {
+  name: string;
+  review: string;
+}
+
+export const generateReviewSchema = (testimonials: TestimonialSchemaInput[]) => {
   const reviews = testimonials.map((testimonial) => ({
     "@type": "Review",
     author: {
