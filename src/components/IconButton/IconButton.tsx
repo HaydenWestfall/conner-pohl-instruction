@@ -96,7 +96,8 @@ export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overl
   useEffect(() => {
     // Check if device supports touch
     const checkTouchDevice = () => {
-      return "ontouchstart" in window || navigator.maxTouchPoints > 0 || (navigator as any).msMaxTouchPoints > 0;
+      const legacyTouchPoints = (navigator as Navigator & { msMaxTouchPoints?: number }).msMaxTouchPoints ?? 0;
+      return "ontouchstart" in window || navigator.maxTouchPoints > 0 || legacyTouchPoints > 0;
     };
 
     setIsTouchDevice(checkTouchDevice());
