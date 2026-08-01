@@ -48,21 +48,26 @@ VITE_GOOGLE_MAPS_URL=your_google_maps_location
 VITE_FACEBOOK_URL=your_facebook_page
 VITE_INSTAGRAM_URL=your_instagram_page
 VITE_TIKTOK_URL=your_tiktok_page
+VITE_CONTACT_API_URL=your_contact_api_endpoint
 ```
 
 5. Start the development server:
 
 ```bash
-npm run dev
+npm run start
 ```
 
 The application will be available at `http://localhost:5173`
 
 ## 📝 Available Scripts
 
-- `npm run dev` - Start development server with hot reload
+- `npm run start` - Start development server with development environment (uses .env.development)
+- `npm run dev` - Start development server with default environment (uses .env)
+- `npm run dev:prod` - Start development server with production environment
 - `npm run build` - Build for production
+- `npm run build:dev` - Build using development environment
 - `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint for code quality checks
 - `npm run lint` - Run ESLint for code quality checks
 
 ## 🎯 Features
@@ -91,6 +96,14 @@ src/
 
 ## 🔧 Configuration
 
+### Environment Files
+
+The application supports multiple environment configurations:
+
+- **`.env.development`** - Used by `npm run start` (development mode)
+- **`.env`** - Used by `npm run dev` (default mode)
+- **`.env.production`** - Used for production builds
+
 ### Environment Variables
 
 The application uses several environment variables for external integrations:
@@ -100,6 +113,7 @@ The application uses several environment variables for external integrations:
 - `VITE_FACEBOOK_URL` - Facebook page URL
 - `VITE_INSTAGRAM_URL` - Instagram profile URL
 - `VITE_TIKTOK_URL` - TikTok profile URL
+- `VITE_CONTACT_API_URL` - Contact form API endpoint
 
 ### Build Configuration
 

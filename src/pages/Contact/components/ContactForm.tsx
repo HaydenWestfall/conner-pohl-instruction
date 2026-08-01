@@ -88,7 +88,7 @@ export const ContactForm = () => {
 
     try {
       console.log("Submitting form: ", form);
-      const res = await fetch("https://cpi-contact-api.onrender.com/api/contact", {
+      const res = await fetch(import.meta.env.VITE_CONTACT_API_URL + "/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly VITE_FACEBOOK_URL: string;
   readonly VITE_INSTAGRAM_URL: string;
   readonly VITE_TIKTOK_URL: string;
+  readonly VITE_CONTACT_API_URL: string;
 }
 
 interface ImportMeta {
