@@ -1,61 +1,48 @@
 import { useLocation } from "react-router-dom";
+
 import { ActionHeader } from "../../shared/ActionHeader/ActionHeader";
 import { Footer } from "../../shared/Footer/Footer";
 import { CancellationPolicySection } from "./components/CancellationPolicy/CancellationPolicySection";
 import { PrivacyPolicySection } from "./components/PrivacyPolicy/PrivacyPolicySection";
 import { TermsOfServiceSection } from "./components/TermsOfService/TermsOfServiceSection";
-import { useTitle } from "../../hooks/useTitle";
+
+type LegalRouteKey = "cancellationPolicy" | "privacyPolicy" | "terms";
+
+const DEFAULT_ROUTE: LegalRouteKey = "cancellationPolicy";
+
+/**
+ * One page backs three routes; only the heading and the body section differ.
+ * Titles, descriptions, and canonicals for these routes live in
+ * `src/seo/routes.ts`.
+ */
+const LEGAL_SECTIONS: Record<LegalRouteKey, { heading: string; Section: React.ComponentType }> = {
+  cancellationPolicy: { heading: "Cancellation Policy", Section: CancellationPolicySection },
+  privacyPolicy: { heading: "Privacy Policy", Section: PrivacyPolicySection },
+  terms: { heading: "Terms and Conditions", Section: TermsOfServiceSection },
+};
+
+const EFFECTIVE_DATE = "Sept 2025";
+
+const isLegalRouteKey = (value: string): value is LegalRouteKey => value in LEGAL_SECTIONS;
 
 export const LegalPage = () => {
-  const location = useLocation();
-  // Extract the last part of the path, e.g. "/legal/privacyPolicy" => "privacyPolicy"
+  const { pathname } = useLocation();
 
-  type LegalRouteKey = "cancellationPolicy" | "privacyPolicy" | "terms";
-  const routeKey = (location.pathname.split("/").pop() as LegalRouteKey) || "cancellationPolicy";
-
-  const routeKeyHeaderMap: Record<LegalRouteKey, string> = {
-    cancellationPolicy: "Cancellation Policy",
-    privacyPolicy: "Privacy Policy",
-    terms: "Terms and Conditions",
-  };
-
-  const routeKeyTitleMap: Record<LegalRouteKey, string> = {
-    cancellationPolicy: "Cancellation & Rescheduling Policy | CPI Baseball Training Terms",
-    privacyPolicy: "Privacy Policy | How CPI Baseball Protects Your Information",
-    terms: "Terms of Service | CPI Baseball Training Conditions & Agreements",
-  };
-
-  useTitle(routeKeyTitleMap[routeKey]);
-
-  const dynamicHeader = (
-    <div className="legal-header">
-      <div className="chip">Effective Date: Sept 2025</div>
-      <h1>{routeKeyHeaderMap[routeKey]}</h1>
-      <span className="breadcrumb">Legal Information &nbsp;/ &nbsp;{routeKeyHeaderMap[routeKey]}</span>
-    </div>
-  );
-
-  const legalContent: Record<LegalRouteKey, { header: React.ReactNode; Section: React.ComponentType }> = {
-    cancellationPolicy: {
-      header: dynamicHeader,
-      Section: CancellationPolicySection,
-    },
-    privacyPolicy: {
-      header: dynamicHeader,
-      Section: PrivacyPolicySection,
-    },
-    terms: {
-      header: dynamicHeader,
-      Section: TermsOfServiceSection,
-    },
-  };
-
-  const { header, Section } = legalContent[routeKey] || legalContent.cancellationPolicy;
+  // e.g. "/privacyPolicy" -> "privacyPolicy"
+  const segment = pathname.split("/").pop() ?? "";
+  const routeKey = isLegalRouteKey(segment) ? segment : DEFAULT_ROUTE;
+  const { heading, Section } = LEGAL_SECTIONS[routeKey];
 
   return (
     <main>
       <div className="route-wrapper">
-        <ActionHeader children={header} />
+        <ActionHeader>
+          <div className="legal-header">
+            <div className="chip">Effective Date: {EFFECTIVE_DATE}</div>
+            <h1>{heading}</h1>
+            <span className="breadcrumb">Legal Information &nbsp;/ &nbsp;{heading}</span>
+          </div>
+        </ActionHeader>
         <Section />
       </div>
       <Footer />

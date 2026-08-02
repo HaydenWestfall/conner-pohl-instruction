@@ -1,100 +1,108 @@
-import "./Navbar.scss";
-import Logo from "../../assets/icons/cpi_logo.svg?react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useLocation } from "react-router-dom";
-import MobileMenu from "./MobileMenu/MobileMenu";
-import DesktopMenu from "./DesktopMenu/DesktopMenu";
 import gsap from "gsap";
+
+import Logo from "../../assets/icons/cpi_logo.svg?react";
 import { IconButton } from "../../components/IconButton/IconButton";
+import { useIsMobile } from "../../hooks/useIsMobile";
+import DesktopMenu from "./DesktopMenu/DesktopMenu";
+import MobileMenu from "./MobileMenu/MobileMenu";
+import "./Navbar.scss";
+
+/** Width below which the mobile menu replaces the desktop one. */
+const MOBILE_BREAKPOINT = 1075;
 
 const Navbar = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1075);
+  const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const location = useLocation();
   const menuButton = useRef<HTMLDivElement | null>(null);
   const menu = useRef<HTMLDivElement | null>(null);
   const menuBgWrapper = useRef<HTMLDivElement | null>(null);
   const menuWrapper = useRef<HTMLDivElement | null>(null);
-  const cpiWrapper = useRef<HTMLAnchorElement | null>(null);
-  const cpiText = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLDivElement | null>(null);
   const heroRef = useRef<HTMLDivElement | null>(null);
   const socialsRef = useRef<HTMLDivElement | null>(null);
   const routesRef = useRef<HTMLDivElement | null>(null);
 
-  const toggleMenu = () => {
-    const isOpening = menuButton.current!.getAttribute("data-state") !== "opened";
-    if (isOpening) {
-      menuButton.current!.setAttribute("data-state", "opened");
-      menuButton.current!.setAttribute("aria-expanded", "true");
-      menuWrapper.current!.style.display = "flex";
-      menuBgWrapper.current!.style.display = "block";
+  const openMenu = () => {
+    const button = menuButton.current;
+    const backdrop = menuBgWrapper.current;
+    if (!button || !backdrop) return;
 
-      // Find nav-icon distance from top and set menu top
-      if (menuButton.current && menuBgWrapper.current) {
-        const navIconRect = menuButton.current.getBoundingClientRect();
-        const scrollY = window.scrollY || window.pageYOffset;
-        const navIconTop = navIconRect.top + scrollY;
-        menuBgWrapper.current.style.top = `calc(${navIconTop}px - 5rem)`;
-      }
+    button.setAttribute("data-state", "opened");
+    button.setAttribute("aria-expanded", "true");
+    menuWrapper.current!.style.display = "flex";
+    backdrop.style.display = "block";
 
-      // Animate in
-      gsap.to(menu.current, { height: "500vw", width: "500vw", duration: 0.75 });
+    // Anchor the expanding circle to the menu button's position on the page.
+    const navIconTop = button.getBoundingClientRect().top + window.scrollY;
+    backdrop.style.top = `calc(${navIconTop}px - 5rem)`;
 
-      if (isMobile) {
-        gsap.set([titleRef.current, heroRef.current, socialsRef.current, routesRef.current], { opacity: 0 });
-        gsap.to(titleRef?.current, { opacity: 1, duration: 1, delay: 0 });
-      } else {
-        gsap.set([heroRef.current, socialsRef.current, routesRef.current], { opacity: 0 });
-      }
-      gsap.set([socialsRef.current, routesRef.current], { y: 20 });
-      gsap.to(heroRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
-      gsap.to(socialsRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
-      gsap.to(routesRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.3 });
+    gsap.to(menu.current, { height: "500vw", width: "500vw", duration: 0.75 });
+
+    if (isMobile) {
+      gsap.set([titleRef.current, heroRef.current, socialsRef.current, routesRef.current], { opacity: 0 });
+      gsap.to(titleRef.current, { opacity: 1, duration: 1, delay: 0 });
     } else {
-      menuButton.current!.setAttribute("data-state", "closed");
-      menuButton.current!.setAttribute("aria-expanded", "false");
+      gsap.set([heroRef.current, socialsRef.current, routesRef.current], { opacity: 0 });
+    }
+    gsap.set([socialsRef.current, routesRef.current], { y: 20 });
+    gsap.to(heroRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
+    gsap.to(socialsRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 });
+    gsap.to(routesRef.current, { opacity: 1, y: 0, duration: 0.6, delay: 0.3 });
+  };
 
-      // Animate out
-      gsap.to(menu.current, { height: "0", width: "0", duration: 0.5 });
+  const closeMenu = () => {
+    const button = menuButton.current;
+    if (!button) return;
 
-      if (isMobile) {
-        gsap.to(titleRef.current, { opacity: 0, duration: 0.2 });
-      }
-      gsap.to(heroRef.current, { opacity: 0, y: 20, duration: 0.2 });
-      gsap.to(socialsRef.current, { opacity: 0, y: 20, duration: 0.2 });
-      gsap.to(routesRef.current, { opacity: 0, y: 20, duration: 0.2 });
-      gsap.set(menuWrapper.current, { display: "none", delay: 0.2 });
-      gsap.set(menuBgWrapper.current, { display: "none", delay: 0.5 });
+    button.setAttribute("data-state", "closed");
+    button.setAttribute("aria-expanded", "false");
+
+    gsap.to(menu.current, { height: "0", width: "0", duration: 0.5 });
+
+    if (isMobile) {
+      gsap.to(titleRef.current, { opacity: 0, duration: 0.2 });
+    }
+    gsap.to(heroRef.current, { opacity: 0, y: 20, duration: 0.2 });
+    gsap.to(socialsRef.current, { opacity: 0, y: 20, duration: 0.2 });
+    gsap.to(routesRef.current, { opacity: 0, y: 20, duration: 0.2 });
+    gsap.set(menuWrapper.current, { display: "none", delay: 0.2 });
+    gsap.set(menuBgWrapper.current, { display: "none", delay: 0.5 });
+  };
+
+  const toggleMenu = () => {
+    if (menuButton.current?.getAttribute("data-state") === "opened") {
+      closeMenu();
+    } else {
+      openMenu();
     }
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      console.log("tracking");
-      setIsMobile(window.innerWidth < 1075);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <>
-      <a href="/" ref={cpiWrapper} className="cpi-wrapper">
+      <a href="/" className="cpi-wrapper">
         <div className="logo-wrapper">
           <Logo className="logo" />
         </div>
-        <div className="cpi-text" ref={cpiText}>
-          CONNER POHL INSTRUCTION
-        </div>
+        <div className="cpi-text">CONNER POHL INSTRUCTION</div>
       </a>
 
       {location.pathname !== "/book" && (
         <div className="menu-button-wrapper">
           <IconButton bgColor="" overlayColor="var(--primary-color)" onClick={toggleMenu} disableMotion={isMobile}>
             <div ref={menuButton} className="more-btn" aria-controls="primary-navigation" aria-expanded="false">
-              <svg fill="black" className="hamburger" viewBox="0 0 100 100" width="30px" height="30px">
-                <rect className="line top" width="100" x="0" y="35" rx="5" fill="black"></rect>
-                <rect className="line bottom" width="100" x="0" y="60" rx="5" fill="black"></rect>
+              <svg
+                fill="black"
+                className="hamburger"
+                viewBox="0 0 100 100"
+                width="30px"
+                height="30px"
+                role="img"
+                aria-label="Menu"
+              >
+                <rect className="line top" width="100" x="0" y="35" rx="5" fill="black" />
+                <rect className="line bottom" width="100" x="0" y="60" rx="5" fill="black" />
               </svg>
             </div>
           </IconButton>
@@ -102,7 +110,7 @@ const Navbar = () => {
       )}
 
       <div id="menu-background-wrapper" ref={menuBgWrapper}>
-        <div id="menu-background" ref={menu}></div>
+        <div id="menu-background" ref={menu} />
       </div>
 
       {isMobile ? (

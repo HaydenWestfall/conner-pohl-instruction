@@ -1,21 +1,12 @@
+import type { PropsWithChildren } from "react";
+
 import ActionHeroImage from "../../assets/images/contact_header.webp";
 import "./ActionHeader.scss";
 
-type MagneticProps = {
-  children: React.ReactNode;
-};
-
-const ActionHeader: React.FC<MagneticProps> = ({ children }) => {
-  //   useTitle("AlgoReads | Your one stop shop for computer science learning");
-
-  return (
-    <>
-      <div id="action-header" className="hero-wrapper short">
-        <img className="route-header-img" src={ActionHeroImage}></img>
-        <div className="hero-header">{children}</div>
-      </div>
-    </>
-  );
-};
-
-export { ActionHeader };
+/** Short banner used by the pages that have no full-height hero of their own. */
+export const ActionHeader: React.FC<PropsWithChildren> = ({ children }) => (
+  <div id="action-header" className="hero-wrapper short">
+    <img className="route-header-img" src={ActionHeroImage} alt="Baseball training session at Conner Pohl Instruction" />
+    <div className="hero-header">{children}</div>
+  </div>
+);

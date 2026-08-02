@@ -1,73 +1,72 @@
 import { useEffect, useRef, useState } from "react";
-import { CpiTag } from "../../../../components/cpiTag/CpiTag";
-import "./Testimonials.scss";
-import StarIcon from "../../../../assets/icons/star.svg?react";
 import { AnimatePresence, motion } from "framer-motion";
-import { TESTIMONIALS, type Testimony } from "../../../../models/Testimony";
 
-const reviews: Testimony[] = JSON.parse(JSON.stringify(TESTIMONIALS.slice(0, 4))).map((review: Testimony) => ({
+import StarIcon from "../../../../assets/icons/star.svg?react";
+import { CpiTag } from "../../../../components/CpiTag/CpiTag";
+import { TESTIMONIALS, type Testimony } from "../../../../data/testimonials";
+import { useIsMobile } from "../../../../hooks/useIsMobile";
+import "./Testimonials.scss";
+
+const MOBILE_BREAKPOINT = 768;
+const VISIBLE_COUNT = 4;
+const MAX_REVIEW_LENGTH = 280;
+const ROTATE_INTERVAL_MS = 10_000;
+
+const truncate = (text: string) =>
+  text.length > MAX_REVIEW_LENGTH ? `${text.slice(0, MAX_REVIEW_LENGTH).trimEnd()}...` : text;
+
+// `{ ...review }` already produces a fresh object per entry, so the previous
+// JSON.parse(JSON.stringify(...)) round trip was redundant work at module load.
+const reviews: Testimony[] = TESTIMONIALS.slice(0, VISIBLE_COUNT).map((review) => ({
   ...review,
-  review: review.review.length > 280 ? review.review.slice(0, 280).trimEnd() + "..." : review.review,
+  review: truncate(review.review),
 }));
 
+// The mobile tagline strip scrolls continuously, so the list is doubled and
+// snapped back to the start once the second copy is reached.
 const reviewsExtended: Testimony[] = [
-  ...reviews.map((r, i) => ({ ...r, id: i })),
-  ...reviews.map((r, i) => ({ ...r, id: i + reviews.length })),
+  ...reviews.map((review, index) => ({ ...review, id: index })),
+  ...reviews.map((review, index) => ({ ...review, id: index + reviews.length })),
 ];
 
 export const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [activeReviews, setActiveReviews] = useState<Testimony[]>(window.innerWidth < 768 ? reviewsExtended : reviews);
+  const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const taglinesRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setActiveReviews(reviewsExtended);
-        setIsMobile(true);
-      } else {
-        setActiveReviews(reviews);
-        setIsMobile(false);
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const activeReviews = isMobile ? reviewsExtended : reviews;
+  const activeReview = activeReviews[activeIndex % reviews.length];
 
+  // Advance the carousel, restarting the clock whenever the slide changes.
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % activeReviews.length);
-    }, 10000);
+    const timer = setTimeout(
+      () => setActiveIndex((prev) => (prev + 1) % activeReviews.length),
+      ROTATE_INTERVAL_MS
+    );
     return () => clearTimeout(timer);
   }, [activeIndex, activeReviews.length]);
 
-  // Animate horizontal scroll for taglines on mobile
+  // Slide the tagline strip so the active tagline sits at the left edge.
   useEffect(() => {
-    if (!isMobile || !taglinesRef.current) return;
-    const taglineWrapper = taglinesRef.current.querySelectorAll(".tagline-wrapper");
-    const reviewTagline = document.getElementById("review-tagline");
+    const strip = taglinesRef.current;
+    if (!isMobile || !strip) return;
 
-    const activeTagline = taglineWrapper[activeIndex] as HTMLElement | undefined;
-    reviewTagline!.style.transition = "left 0.3s";
+    const activeTagline = strip.querySelectorAll<HTMLElement>(".tagline-wrapper")[activeIndex];
+    if (!activeTagline) return;
 
-    if (activeIndex === reviews.length && reviewTagline) {
-      const left = activeTagline!.offsetLeft;
-      reviewTagline.style.left = -1 * left + "px";
+    strip.style.transition = "left 0.3s";
+    strip.style.left = `${-activeTagline.offsetLeft}px`;
 
-      setTimeout(() => {
-        reviewTagline.style.transition = "unset";
-        reviewTagline.style.left = "0px";
-        setActiveIndex(0);
-      }, 250);
-      return;
-    }
+    // Reaching the duplicated half means we can jump back to the real start
+    // without the user seeing it, giving the strip an endless feel.
+    if (activeIndex !== reviews.length) return;
 
-    if (activeTagline && reviewTagline) {
-      const left = activeTagline!.offsetLeft;
-      reviewTagline.style.left = -1 * left + "px";
-    }
+    const resetTimer = setTimeout(() => {
+      strip.style.transition = "unset";
+      strip.style.left = "0px";
+      setActiveIndex(0);
+    }, 250);
+    return () => clearTimeout(resetTimer);
   }, [activeIndex, isMobile]);
 
   return (
@@ -101,9 +100,7 @@ export const Testimonials = () => {
               )}
               <span
                 className="tagline"
-                style={{
-                  color: idx % reviews.length === activeIndex % reviews.length ? "#111" : "#a5a5a5",
-                }}
+                style={{ color: idx % reviews.length === activeIndex % reviews.length ? "#111" : "#a5a5a5" }}
               >
                 {review.tagline}
               </span>
@@ -115,8 +112,8 @@ export const Testimonials = () => {
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeIndex % reviews.length}
-                src={activeReviews[activeIndex % reviews.length]?.playerImage}
-                alt={activeReviews[activeIndex % reviews.length]?.tagline}
+                src={activeReview?.playerImage}
+                alt={activeReview?.tagline}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -126,8 +123,8 @@ export const Testimonials = () => {
             <div className="review-stats">
               84+
               <div className="rating">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon className="star-icon" key={i} />
+                {Array.from({ length: 5 }, (_, i) => (
+                  <StarIcon className="star-icon" key={i} aria-hidden="true" focusable="false" />
                 ))}
                 <span>4.9</span>
               </div>
@@ -142,12 +139,12 @@ export const Testimonials = () => {
               exit={{ opacity: 0, y: 0 }}
               transition={{ duration: 0.75, ease: "easeInOut" }}
             >
-              <p>{activeReviews[activeIndex % reviews.length]?.review}</p>
+              <p>{activeReview?.review}</p>
               <div className="reviewer">
-                <div className="initials">{activeReviews[activeIndex % reviews.length]?.initials}</div>
+                <div className="initials">{activeReview?.initials}</div>
                 <div className="info">
-                  <span className="name">{activeReviews[activeIndex % reviews.length]?.name}</span>
-                  <span className="team">{activeReviews[activeIndex % reviews.length]?.team}</span>
+                  <span className="name">{activeReview?.name}</span>
+                  <span className="team">{activeReview?.team}</span>
                 </div>
               </div>
             </motion.div>

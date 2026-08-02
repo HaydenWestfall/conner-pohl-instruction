@@ -1,25 +1,29 @@
-import Navbar from "./shared/navbar/Navbar";
-import { AllRoutes } from "./routes/AllRoutes";
-import { ScrollTrigger } from "gsap/all";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import "./App.scss";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { ToastContainer } from "react-toastify";
-import useSafariIos from "./hooks/SafariDetectionHook";
 
-gsap.registerPlugin(useGSAP);
-gsap.registerPlugin(ScrollTrigger);
+import { useSafariIos } from "./hooks/useSafariIos";
+import { AllRoutes } from "./routes/AllRoutes";
+import { Seo } from "./seo/Seo";
+import Navbar from "./shared/Navbar/Navbar";
 
-function App() {
+// Registered once at the app root; components then just import gsap directly.
+// Imported from "gsap/ScrollTrigger" rather than "gsap/all" so the bundler is
+// not asked to reason about every plugin in the package.
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+const App = () => {
   useSafariIos();
 
   return (
-    <div>
+    <>
+      <Seo />
       <Navbar />
       <AllRoutes />
       <ToastContainer position="top-right" autoClose={3000} />
-    </div>
+    </>
   );
-}
+};
 
 export default App;

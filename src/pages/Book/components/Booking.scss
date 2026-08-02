@@ -30,6 +30,7 @@
     max-width: 35rem;
     width: 50%;
     height: 80%;
+    min-height: 200px;
     z-index: 100;
     border-radius: var(--border-radius-1);
     background-color: white;
@@ -39,6 +40,7 @@
       position: relative;
       height: 100%;
       width: 100%;
+      border: 0;
       z-index: 20;
     }
 

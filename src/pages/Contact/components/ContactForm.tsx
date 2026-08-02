@@ -1,23 +1,25 @@
 import { useState } from "react";
-import HittingImage from "../../../assets/images/hitting1.webp";
-import CpiButton from "../../../components/cpiButton/CpiButton";
 import { toast } from "react-toastify";
+
+import HittingImage from "../../../assets/images/hitting1.webp";
+import CpiButton from "../../../components/CpiButton/CpiButton";
+import { CONTACT_API_URL } from "../../../config/links";
 import "./ContactForm.scss";
 
-export const ContactForm = () => {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const [touched, setTouched] = useState({
-    name: false,
-    email: false,
-    phone: false,
-    message: false,
-  });
+// Accepts (XXX) XXX-XXXX, XXX-XXX-XXXX, XXX.XXX.XXXX, XXX XXX XXXX, XXXXXXXXXX
+const PHONE_PATTERN = /^(\(\d{3}\)\s?|\d{3}[-.\s]?)\d{3}[-.\s]?\d{4}$/;
+
+const validateEmail = (email: string) => EMAIL_PATTERN.test(email);
+const validatePhone = (phone: string) => PHONE_PATTERN.test(phone);
+
+const EMPTY_FORM = { name: "", email: "", phone: "", message: "" };
+const UNTOUCHED = { name: false, email: false, phone: false, message: false };
+
+export const ContactForm = () => {
+  const [form, setForm] = useState(EMPTY_FORM);
+  const [touched, setTouched] = useState(UNTOUCHED);
 
   const [status, setStatus] = useState({ type: "", message: "" });
 
@@ -27,17 +29,6 @@ export const ContactForm = () => {
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setTouched({ ...touched, [e.target.name]: true });
-  };
-
-  // Validation helpers
-  const validateEmail = (email: string) => {
-    // Simple email regex
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-  const validatePhone = (phone: string) => {
-    // Accepts (XXX) XXX-XXXX, XXX-XXX-XXXX, XXX.XXX.XXXX, XXX XXX XXXX, XXXXXXXXXX
-    return /^(\(\d{3}\)\s?|\d{3}[-.\s]?)\d{3}[-.\s]?\d{4}$/.test(phone);
   };
 
   // Field-level validation
@@ -55,14 +46,14 @@ export const ContactForm = () => {
       touched.email && !form.email
         ? "Required"
         : touched.email && form.email && !validateEmail(form.email)
-        ? "Please enter a valid email address."
-        : "",
+          ? "Please enter a valid email address."
+          : "",
     phone:
       touched.phone && !form.phone
         ? "Required"
         : touched.phone && form.phone && !validatePhone(form.phone)
-        ? "Please enter a valid phone number."
-        : "",
+          ? "Please enter a valid phone number."
+          : "",
     message: touched.message && !form.message ? "Required" : "",
   };
 
@@ -83,12 +74,10 @@ export const ContactForm = () => {
       return;
     }
 
-    console.log("Form is valid, submitting...");
     setStatus({ type: "loading", message: "Sending..." });
 
     try {
-      console.log("Submitting form: ", form);
-      const res = await fetch(import.meta.env.VITE_CONTACT_API_URL + "/api/contact", {
+      const res = await fetch(`${CONTACT_API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -97,19 +86,21 @@ export const ContactForm = () => {
       const data = await res.json();
       if (res.ok && data.success) {
         setStatus({ type: "success", message: "Message sent successfully!" });
-        setForm({ name: "", email: "", phone: "", message: "" }); // reset form
-        setTouched({ name: false, email: false, phone: false, message: false }); // reset touched
+        setForm(EMPTY_FORM);
+        setTouched(UNTOUCHED);
         toast.success("Message sent successfully!");
       } else {
         setStatus({ type: "error", message: data.message || "Failed to send." });
         toast.error(data.message || "Failed to send.");
       }
     } catch {
+      // Note: unlike the branches above this shows no toast, so the only
+      // feedback is the inline status message.
       setStatus({ type: "error", message: "Network error." });
     }
   };
 
-  // Button should be disabled if any field is empty, any field is invalid, or form is already submitted (success)
+  // Disabled while empty, invalid, in flight, or already sent.
   const isFormEmpty = !form.name || !form.email || !form.phone || !form.message;
   const isFormInvalid = !validateEmail(form.email) || !validatePhone(form.phone) || isFormEmpty;
   const disableSubmit = isFormInvalid || status.type === "success" || status.type === "loading";

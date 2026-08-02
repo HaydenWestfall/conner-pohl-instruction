@@ -79,6 +79,24 @@ jobs:
           test -f dist/index.html
           test -f dist/.htaccess
           test -d dist/assets
+
+          # The SEO plugin must have produced one HTML file per route plus the
+          # generated sitemap and robots. A silent failure here would ship a
+          # site where every page shares the home page's metadata.
+          test -f dist/sitemap.xml
+          test -f dist/robots.txt
+          test -f dist/404.html
+          for route in about testimonies book contact faq cancellationPolicy privacyPolicy terms; do
+            test -f "dist/$route/index.html" || { echo "::error::missing prerendered page for /$route"; exit 1; }
+          done
+
+          # Every page must carry its own title, or the per-route injection
+          # silently no-oped and we are back to duplicate metadata.
+          titles=$(grep -h -o '<title>[^<]*</title>' $(find dist -name '*.html') | sort -u | wc -l)
+          pages=$(find dist -name '*.html' | wc -l)
+          echo "Distinct titles: $titles across $pages pages"
+          [ "$titles" -eq "$pages" ] || { echo "::error::duplicate <title> tags across built pages"; exit 1; }
+
           echo "Build contents:"
           ls -la dist
           echo "Total size: $(du -sh dist | cut -f1)"
