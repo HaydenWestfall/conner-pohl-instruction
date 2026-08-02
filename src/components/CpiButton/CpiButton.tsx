@@ -9,23 +9,20 @@ interface CpiButtonProps {
   disableButton?: boolean;
 }
 
+/** Pill button with the trailing arrow badge. Pair `className` with `cpi-button dark|light`. */
 const CpiButton: React.FC<CpiButtonProps> = ({
   label,
   onClick,
   type = "button",
   className = "",
   disableButton = false,
-}) => {
-  return (
-    <>
-      <button className={className} onClick={onClick} type={type} disabled={disableButton}>
-        <span id="button-label">{label}</span>
-        <div id="arrow-icon-wrapper">
-          <ArrowIcon id="arrow-icon" fill="white" />
-        </div>
-      </button>
-    </>
-  );
-};
+}) => (
+  <button className={className} onClick={onClick} type={type} disabled={disableButton}>
+    <span className="button-label">{label}</span>
+    <span className="arrow-icon-wrapper">
+      <ArrowIcon className="arrow-icon" aria-hidden="true" focusable="false" />
+    </span>
+  </button>
+);
 
 export default CpiButton;

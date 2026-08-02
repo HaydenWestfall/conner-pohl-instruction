@@ -3,98 +3,112 @@ import Instagram from "../../assets/icons/instagram.svg?react";
 import TikTok from "../../assets/icons/tiktok.svg?react";
 import Location from "../../assets/icons/location.svg?react";
 import Logo from "../../assets/icons/cpi_logo.svg?react";
-import "./Footer.scss";
+import { Link } from "react-router-dom";
 
-const GOOGLE_MAPS_URL = import.meta.env.VITE_GOOGLE_MAPS_URL;
-const FACEBOOK_URL = import.meta.env.VITE_FACEBOOK_URL;
-const INSTAGRAM_URL = import.meta.env.VITE_INSTAGRAM_URL;
-const TIKTOK_URL = import.meta.env.VITE_TIKTOK_URL;
+import { BOOKING_URL, FACEBOOK_URL, GOOGLE_MAPS_URL, INSTAGRAM_URL, TIKTOK_URL } from "../../config/links";
+import "./Footer.scss";
 
 export const Footer = () => {
   return (
-    <>
-      <footer>
-        <div className="footer-body">
-          <div className="footer-header">
-            <div className="branding-wrapper">
-              <div className="branding">
-                <Logo className="logo" />
-                <span className="brand-name">CONNER POHL INSTRUCTION</span>
-              </div>
-              <span className="mission">
-                Conner Pohl Instruction is built on a deep competitive drive and a passion for bringing out the best in
-                every player.
-              </span>
-              <div className="socials-location-wrapper">
-                <div className="socials-wrapper">
-                  <a href={FACEBOOK_URL} target="_blank">
-                    <Facebook className="social-icon" />
-                  </a>
-                  <a href={INSTAGRAM_URL} target="_blank">
-                    <Instagram className="social-icon" />
-                  </a>
-                  <a href={TIKTOK_URL} target="_blank">
-                    <TikTok className="social-icon" />
-                  </a>
-                </div>
-                <div className="locations-wrapper">
-                  <Location className="location-icon" />
-                  <a href={GOOGLE_MAPS_URL} target="_blank">
-                    2326 OH-718, Troy, OH 45373
-                  </a>
-                </div>
-              </div>
+    <footer>
+      <div className="footer-body">
+        <div className="footer-header">
+          <div className="branding-wrapper">
+            <div className="branding">
+              <Logo className="logo" />
+              <span className="brand-name">CONNER POHL INSTRUCTION</span>
             </div>
-            <div className="sitemap">
-              <div className="links-wrapper">
-                <span className="header">Quick Links</span>
-                <a href="/" className="rolling-link">
-                  <span data-hover="Home">Home</span>
+            <span className="mission">
+              Conner Pohl Instruction is built on a deep competitive drive and a passion for bringing out the best in
+              every player.
+            </span>
+            <div className="socials-location-wrapper">
+              <div className="socials-wrapper">
+                <a
+                  href={FACEBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Conner Pohl Instruction on Facebook"
+                >
+                  <Facebook className="social-icon" />
                 </a>
-                <a href="/about" className="rolling-link">
-                  <span data-hover="About">About</span>
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Conner Pohl Instruction on Instagram"
+                >
+                  <Instagram className="social-icon" />
                 </a>
-                <a href="/testimonies" className="rolling-link">
-                  <span data-hover="Testimonies">Testimonies</span>
+                <a
+                  href={TIKTOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Conner Pohl Instruction on TikTok"
+                >
+                  <TikTok className="social-icon" />
                 </a>
               </div>
-              <div className="links-wrapper">
-                <span className="header">Company</span>
-                <a href={import.meta.env.VITE_BOOKING_URL} className="rolling-link">
-                  <span data-hover="Book Session">Book Session</span>
-                </a>
-                <a href="/contact" className="rolling-link">
-                  <span data-hover="Contact">Contact</span>
-                </a>
-                <a href="/faq" className="rolling-link">
-                  <span data-hover="FAQ">FAQ</span>
-                </a>
-              </div>
-              <div className="links-wrapper">
-                <span className="header">Resources</span>
-                <a href="/review" className="rolling-link">
-                  <span data-hover="Leave a Review">Leave a Review</span>
-                </a>
-                <a href="/cancellationPolicy" className="rolling-link">
-                  <span data-hover="Cancellation Policy">Cancellation Policy</span>
+              <div className="locations-wrapper">
+                <Location className="location-icon" />
+                <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer">
+                  2326 OH-718, Troy, OH 45373
                 </a>
               </div>
             </div>
           </div>
-          <div className="divider"></div>
-          <div className="legal-wrapper">
-            <div className="copyright-wrapper">© &nbsp;2023 Conner Pohl Instruction. All rights reserved.</div>
-            <div className="terms-wrapper">
-              <a href="/terms">Terms of Service</a>
-              <a href="/privacyPolicy">Privacy Policy</a>
+          <nav className="sitemap" aria-label="Footer">
+            <div className="links-wrapper">
+              <span className="header">Quick Links</span>
+              <Link to="/" className="rolling-link">
+                <span data-hover="Home">Home</span>
+              </Link>
+              <Link to="/about" className="rolling-link">
+                <span data-hover="About">About</span>
+              </Link>
+              <Link to="/testimonies" className="rolling-link">
+                <span data-hover="Testimonies">Testimonies</span>
+              </Link>
             </div>
+            <div className="links-wrapper">
+              <span className="header">Company</span>
+              <a href={BOOKING_URL} className="rolling-link" target="_blank" rel="noopener noreferrer">
+                <span data-hover="Book Session">Book Session</span>
+              </a>
+              <Link to="/contact" className="rolling-link">
+                <span data-hover="Contact">Contact</span>
+              </Link>
+              <Link to="/faq" className="rolling-link">
+                <span data-hover="FAQ">FAQ</span>
+              </Link>
+            </div>
+            <div className="links-wrapper">
+              <span className="header">Resources</span>
+              {/* Was /review, which matched no route and rendered a blank page. */}
+              <a href={GOOGLE_MAPS_URL} className="rolling-link" target="_blank" rel="noopener noreferrer">
+                <span data-hover="Leave a Review">Leave a Review</span>
+              </a>
+              <Link to="/cancellationPolicy" className="rolling-link">
+                <span data-hover="Cancellation Policy">Cancellation Policy</span>
+              </Link>
+            </div>
+          </nav>
+        </div>
+        <div className="divider"></div>
+        <div className="legal-wrapper">
+          <div className="copyright-wrapper">
+            © &nbsp;{new Date().getFullYear()} Conner Pohl Instruction. All rights reserved.
+          </div>
+          <div className="terms-wrapper">
+            <Link to="/terms">Terms of Service</Link>
+            <Link to="/privacyPolicy">Privacy Policy</Link>
           </div>
         </div>
-        <div className="branding-accent">
-          CONNER POHL INSTRUCTION
-          <div className="overlay"></div>
-        </div>
-      </footer>
-    </>
+      </div>
+      <div className="branding-accent">
+        CONNER POHL INSTRUCTION
+        <div className="overlay"></div>
+      </div>
+    </footer>
   );
 };

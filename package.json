@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Professional baseball instruction and training website for CPI Baseball in Troy, OH",
-  "author": "Hayden Westfall <hayden@example.com>",
-  "homepage": "https://cpibaseball.com",
+  "author": "Hayden Westfall",
+  "homepage": "https://connerpohlinstruction.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/HaydenWestfall/conner-pohl-instruction.git"
@@ -21,13 +21,17 @@
     "ohio"
   ],
   "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "vite --mode development --host",
     "dev": "vite --host",
     "dev:prod": "vite --mode production --host",
     "build": "tsc -b && vite build",
     "build:dev": "tsc -b && vite build --mode development",
-    "lint": "eslint .",
+    "typecheck": "tsc -b --noEmit",
+    "lint": "eslint . --max-warnings 0",
     "preview": "vite preview --host"
   },
   "dependencies": {
@@ -42,6 +46,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
+    "@types/node": "^26.1.2",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react-swc": "^3.10.2",

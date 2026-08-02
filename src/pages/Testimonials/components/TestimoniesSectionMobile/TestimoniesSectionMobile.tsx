@@ -1,110 +1,43 @@
 import { useEffect, useRef, useState } from "react";
-import "./TestimoniesSectionMobile.scss";
-import CpiButton from "../../../../components/cpiButton/CpiButton";
-import QuoteIcon from "../../../../assets/icons/quote.svg?react";
-import ArrowIcon from "../../../../assets/icons/arrow.svg?react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TESTIMONIALS, type Testimony } from "../../../../models/Testimony";
 
-gsap.registerPlugin(ScrollTrigger);
+import ArrowIcon from "../../../../assets/icons/arrow.svg?react";
+import CpiButton from "../../../../components/CpiButton/CpiButton";
+import { TESTIMONIALS } from "../../../../data/testimonials";
+import { TestimonyCard } from "../TestimonyCard";
+import "./TestimoniesSectionMobile.scss";
+
+const INTRO_TEXT =
+  "We're proud to be a part of a passionate and supportive baseball community. Hear directly from players, parents, and coaches who’ve seen the impact of our training firsthand—their stories speak louder than stats.";
 
 export const TestimoniesSectionMobile = () => {
-  const reviews: Testimony[] = TESTIMONIALS;
-
-  // Combine images and descriptions into a single horizontally scrolling list
-  const items = [
-    {
-      type: "review",
-      review: reviews[0],
-    },
-    {
-      type: "review",
-      review: reviews[1],
-    },
-    {
-      type: "review",
-      review: reviews[2],
-    },
-    {
-      type: "review",
-      review: reviews[3],
-    },
-    {
-      type: "review",
-      review: reviews[4],
-    },
-  ];
-
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const scrollRef = useRef<HTMLDivElement | null>(null);
   const [currentIdx, setCurrentIdx] = useState(0);
-  const timerRef = useRef<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  // Scroll to the current testimonial, 1rem from left
+  // Bring the selected card to the left edge, less the list's own padding.
   useEffect(() => {
-    if (scrollRef.current) {
-      const children = scrollRef.current.children;
-      if (children[currentIdx]) {
-        const child = children[currentIdx] as HTMLElement;
-        const scrollList = scrollRef.current;
-        // Calculate the left position of the child relative to the scroll container
-        const childLeft = child.offsetLeft;
-        // Scroll so child is 1rem from left
-        scrollList.scrollTo({
-          left: childLeft - (window.innerWidth < 768 ? 16 : 48), // account for padding
-          behavior: "smooth",
-        });
-      }
-    }
+    const scrollList = scrollRef.current;
+    const card = scrollList?.children[currentIdx] as HTMLElement | undefined;
+    if (!scrollList || !card) return;
+
+    scrollList.scrollTo({
+      left: card.offsetLeft - (window.innerWidth < 768 ? 16 : 48),
+      behavior: "smooth",
+    });
   }, [currentIdx]);
 
-  const handlePrev = () => {
-    if (currentIdx === 0) return;
-    setCurrentIdx((prev) => (prev === 0 ? items.length - 1 : prev - 1));
-    if (timerRef.current) clearTimeout(timerRef.current);
-  };
-
-  const handleNext = () => {
-    if (currentIdx === items.length - 1) return;
-    setCurrentIdx((prev) => (prev === items.length - 1 ? 0 : prev + 1));
-    if (timerRef.current) clearTimeout(timerRef.current);
-  };
+  const handlePrev = () => setCurrentIdx((prev) => Math.max(prev - 1, 0));
+  const handleNext = () => setCurrentIdx((prev) => Math.min(prev + 1, TESTIMONIALS.length - 1));
 
   return (
-    <div className="testimonies-section-mobile-wrapper" ref={wrapperRef}>
+    <div className="testimonies-section-mobile-wrapper">
       <div className="statement">
         <h2>TESTIMONIALS</h2>
-        <p>
-          We're proud to be a part of a passionate and supportive baseball community. Hear directly from players,
-          parents, and coaches who’ve seen the impact of our training firsthand—their stories speak louder than stats.
-        </p>
+        <p>{INTRO_TEXT}</p>
       </div>
 
       <div className="horizontal-scroll-list" ref={scrollRef}>
-        {items.map((item, idx) => (
-          <div
-            className="review-wrapper"
-            key={idx}
-            style={
-              {
-                //   boxShadow: idx === currentIdx ? "0 0 0 2px #222" : undefined,
-                //   borderColor: idx === currentIdx ? "#222" : undefined,
-              }
-            }
-          >
-            <div className="review-header">
-              <div className="reviewer">{item.review!.name}</div>
-              <div className="initials-circle">{item.review!.initials}</div>
-            </div>
-            <div className="review-footer">
-              <div className="review">
-                <QuoteIcon />
-                <p>{item.review!.review}</p>
-              </div>
-              <span>{item.review!.context}</span>
-            </div>
-          </div>
+        {TESTIMONIALS.map((testimony) => (
+          <TestimonyCard key={testimony.id} testimony={testimony} />
         ))}
       </div>
 
@@ -116,11 +49,13 @@ export const TestimoniesSectionMobile = () => {
           <button
             onClick={handleNext}
             aria-label="Next Testimony"
-            className={currentIdx === items.length - 1 ? "inactive" : ""}
+            className={currentIdx === TESTIMONIALS.length - 1 ? "inactive" : ""}
           >
             <ArrowIcon id="next-testimony" />
           </button>
         </div>
+        {/* TODO: still a placeholder — wire this to the Google review link the
+            footer already uses. */}
         <CpiButton label="Leave a Review" onClick={() => window.alert("Test")} className="cpi-button dark" />
       </div>
     </div>

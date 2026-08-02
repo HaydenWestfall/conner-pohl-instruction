@@ -1,29 +1,38 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./IconButton.scss";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 
+import "./IconButton.scss";
+
 type MagneticProps = {
   children: React.ReactNode;
+  /** Divisor on the cursor offset — larger means less travel. */
   distance?: number;
+  /** Spring duration in seconds. */
+  duration?: number;
 };
 
-const Magnetic: React.FC<MagneticProps> = ({ children, distance = 3.25 }) => {
+/**
+ * Pulls its child toward the cursor while hovered and springs back on leave.
+ *
+ * `gsap.quickTo` is created once per mount rather than calling `gsap.to` on
+ * every mousemove, which keeps a high-frequency pointer stream off the tween
+ * allocation path.
+ */
+const Magnetic: React.FC<MagneticProps> = ({ children, distance = 3.25, duration = 1 }) => {
   const magnetic = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!magnetic.current) return;
-    const xTo = gsap.quickTo(magnetic.current, "x", { duration: 1, ease: "elastic.out(1, 0.3)" });
-    const yTo = gsap.quickTo(magnetic.current, "y", { duration: 1, ease: "elastic.out(1, 0.3)" });
+    const element = magnetic.current;
+    if (!element) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!magnetic.current) return;
-      const { clientX, clientY } = e;
-      const { height, width, left, top } = magnetic.current.getBoundingClientRect();
-      const x = (clientX - (left + width / 2)) / distance;
-      const y = (clientY - (top + height / 2)) / distance;
-      xTo(x);
-      yTo(y);
+    const xTo = gsap.quickTo(element, "x", { duration, ease: "elastic.out(1, 0.3)" });
+    const yTo = gsap.quickTo(element, "y", { duration, ease: "elastic.out(1, 0.3)" });
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const { height, width, left, top } = element.getBoundingClientRect();
+      xTo((event.clientX - (left + width / 2)) / distance);
+      yTo((event.clientY - (top + height / 2)) / distance);
     };
 
     const handleMouseLeave = () => {
@@ -31,52 +40,13 @@ const Magnetic: React.FC<MagneticProps> = ({ children, distance = 3.25 }) => {
       yTo(0);
     };
 
-    magnetic.current.addEventListener("mousemove", handleMouseMove);
-    magnetic.current.addEventListener("mouseleave", handleMouseLeave);
+    element.addEventListener("mousemove", handleMouseMove);
+    element.addEventListener("mouseleave", handleMouseLeave);
     return () => {
-      magnetic.current?.removeEventListener("mousemove", handleMouseMove);
-      magnetic.current?.removeEventListener("mouseleave", handleMouseLeave);
+      element.removeEventListener("mousemove", handleMouseMove);
+      element.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [distance]);
-
-  return <div ref={magnetic}>{children}</div>;
-};
-
-type TextMagnetProps = {
-  children: React.ReactNode;
-  distance?: number;
-};
-
-const TextMagnet: React.FC<TextMagnetProps> = ({ children, distance = 2 }) => {
-  const magnetic = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!magnetic.current) return;
-    const xTo = gsap.quickTo(magnetic.current, "x", { duration: 1.5, ease: "elastic.out(1, 0.3)" });
-    const yTo = gsap.quickTo(magnetic.current, "y", { duration: 1.5, ease: "elastic.out(1, 0.3)" });
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!magnetic.current) return;
-      const { clientX, clientY } = e;
-      const { height, width, left, top } = magnetic.current.getBoundingClientRect();
-      const x = (clientX - (left + width / 2)) / distance;
-      const y = (clientY - (top + height / 2)) / distance;
-      xTo(x);
-      yTo(y);
-    };
-
-    const handleMouseLeave = () => {
-      xTo(0);
-      yTo(0);
-    };
-
-    magnetic.current.addEventListener("mousemove", handleMouseMove);
-    magnetic.current.addEventListener("mouseleave", handleMouseLeave);
-    return () => {
-      magnetic.current?.removeEventListener("mousemove", handleMouseMove);
-      magnetic.current?.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, [distance]);
+  }, [distance, duration]);
 
   return <div ref={magnetic}>{children}</div>;
 };
@@ -89,30 +59,19 @@ type IconButtonProps = {
   disableMotion?: boolean;
 };
 
+/** Matches a device with no fine pointer, where the magnetic hover effect is dead weight. */
+const detectTouchDevice = () =>
+  "ontouchstart" in window ||
+  navigator.maxTouchPoints > 0 ||
+  ((navigator as Navigator & { msMaxTouchPoints?: number }).msMaxTouchPoints ?? 0) > 0;
+
 export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overlayColor, onClick, disableMotion }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    // Check if device supports touch
-    const checkTouchDevice = () => {
-      const legacyTouchPoints = (navigator as Navigator & { msMaxTouchPoints?: number }).msMaxTouchPoints ?? 0;
-      return "ontouchstart" in window || navigator.maxTouchPoints > 0 || legacyTouchPoints > 0;
-    };
-
-    setIsTouchDevice(checkTouchDevice());
+    setIsTouchDevice(detectTouchDevice());
   }, []);
-
-  if (typeof window !== "undefined" && (isTouchDevice || (typeof disableMotion !== "undefined" && disableMotion))) {
-    // Touchscreen device: no motion, no magnetic
-    return (
-      <div className="icon-btn-wrapper">
-        <button className="icon-btn" onClick={onClick}>
-          {children}
-        </button>
-      </div>
-    );
-  }
 
   const button = (
     <button className="icon-btn" onClick={onClick}>
@@ -120,12 +79,14 @@ export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overl
     </button>
   );
 
-  const magneticButton = (
+  if (isTouchDevice || disableMotion) {
+    return <div className="icon-btn-wrapper">{button}</div>;
+  }
+
+  return (
     <Magnetic>
       <motion.div
-        style={{
-          backgroundColor: `${bgColor}`,
-        }}
+        style={{ backgroundColor: bgColor }}
         className="icon-btn-wrapper"
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
@@ -137,26 +98,15 @@ export const IconButton: React.FC<IconButtonProps> = ({ children, bgColor, overl
           animate={isHovered ? { y: 0 } : { y: "-100%" }}
           exit={{ y: "100%" }}
           transition={{ duration: 0.25, delay: 0.15, ease: "easeInOut" }}
-          style={{
-            backgroundColor: `${overlayColor}`,
-          }}
+          style={{ backgroundColor: overlayColor }}
           className="icon-btn-overlay"
         />
-        <TextMagnet>{button}</TextMagnet>
+        {/* A second, gentler magnet on the inner content produces the parallax
+            lag between the wrapper and the icon. */}
+        <Magnetic distance={2} duration={1.5}>
+          {button}
+        </Magnetic>
       </motion.div>
     </Magnetic>
   );
-
-  const mobileButton = (
-    <div
-      style={{
-        backgroundColor: `${bgColor}`,
-      }}
-      className="icon-btn-wrapper"
-    >
-      {button}
-    </div>
-  );
-
-  return isTouchDevice ? mobileButton : magneticButton;
 };

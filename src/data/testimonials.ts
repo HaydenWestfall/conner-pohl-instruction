@@ -1,3 +1,12 @@
+/**
+ * Customer testimonials, rendered by the home-page carousel and both
+ * testimonials sections.
+ *
+ * Note: several entries are placeholder copy rather than real reviews. That is
+ * why `src/seo/schema.ts` deliberately emits no Review / AggregateRating
+ * structured data — marking up fabricated reviews risks a Google manual action.
+ */
+
 import playerImage1 from "../assets/images/testimony_1.webp";
 import playerImage2 from "../assets/images/testimony_2.webp";
 import playerImage3 from "../assets/images/testimony_3.webp";
@@ -5,11 +14,13 @@ import playerImage4 from "../assets/images/testimony_4.webp";
 
 export interface Testimony {
   id: number;
+  /** Short headline used as the carousel's selectable label. */
   tagline: string;
   name: string;
   initials: string;
   playerImage: string;
   review: string;
+  /** Sub-label, e.g. "Player for Dayton Classics". */
   context: string;
   team: string;
 }

@@ -1,61 +1,31 @@
-import CrossIcon from "../../../assets/icons/cross.svg?react";
-import ArrowIcon from "../../../assets/icons/arrow.svg?react";
 import { useState } from "react";
-import "./FAQSection.scss";
-import CpiButton from "../../../components/cpiButton/CpiButton";
+
+import ArrowIcon from "../../../assets/icons/arrow.svg?react";
+import CrossIcon from "../../../assets/icons/cross.svg?react";
 import CpiLocation from "../../../assets/images/cpi_location.png";
+import CpiLink from "../../../components/CpiButton/CpiLink";
+import { GOOGLE_MAPS_URL } from "../../../config/links";
+import { FAQS } from "../../../data/faqs";
+import "./FAQSection.scss";
 
-const GOOGLE_MAPS_URL = import.meta.env.VITE_GOOGLE_MAPS_URL;
+/** Linkified inline wherever it appears in an answer. */
+const STUDIO_ADDRESS = "2326 OH-718, Troy, OH 45373";
 
-interface FAQ {
-  question: string;
-  answer: string[];
-  hasMap?: boolean;
-}
+/** Turns the studio address inside an answer into a Google Maps link. */
+const linkifyAddress = (paragraph: string) => {
+  if (!paragraph.includes(STUDIO_ADDRESS)) return paragraph;
 
-const faqs: FAQ[] = [
-  {
-    question: "What is CPI?",
-    answer: [
-      "CPI stands for Conner Pohl Instruction, founded by Conner Pohl, a lifelong ballplayer with a passion for teaching the game. CPI was founded simply out of a love for the game and a desire to give back. The goal is to pass on the knowledge and experiences that Conner and the CPI staff have gained over the years, helping athletes grow both on and off the field.",
-    ],
-  },
-  {
-    question: "Where are the baseball lessons held?",
-    answer: [
-      "Lessons are located at 2326 OH-718, Troy, OH 45373. The barn itself does not have its own mailing address, as it is part of the Splash and Smash Swim Club parcel.",
-    ],
-    hasMap: true,
-  },
-  {
-    question: "What should my child bring to their first lesson?",
-    answer: [
-      "Any ballplayer should bring the following equipment: helmet, bat, batting gloves (if your player uses them), and a ball glove (especially for pitching/fielding lessons)",
-    ],
-  },
-  {
-    question: "Are there age requirements for CPI Baseball training?",
-    answer: [
-      "No — there are no strict age requirements. Every player develops on their own timeline, and we welcome any aspiring ballplayer to come check us out.",
-      "That said, we also believe in being honest with families. If we feel a player isn’t quite ready for lessons, we’ll have an open conversation about it and provide guidance on next steps.",
-    ],
-  },
-  {
-    question: "How do I contact CPI for more information?",
-    answer: [
-      "If you have any questions or inquiries, please visit the “Contact” tab on our website. You can also reach us directly by email at cpohl@connerpohlinstruction.com",
-    ],
-  },
-  {
-    question: "Can I cancel or reschedule a lesson?",
-    answer: [
-      "Yes, you can cancel a lesson, but it must be done at least 24 hours in advance. This allows us to fill the spot for another player.",
-      "If you cancel more than 24 hours before your scheduled lesson, you will be refunded the full amount.",
-      "If you cancel within 24 hours of the lesson, you will not be refunded, unless there is a medical emergency or a subjective decision is made by CPI.",
-      "Please note: there are no reschedules. If you need a different time, you’ll need to book a new lesson through our online calendar.",
-    ],
-  },
-];
+  const [before, after] = paragraph.split(STUDIO_ADDRESS);
+  return (
+    <>
+      {before}
+      <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="map-link">
+        {STUDIO_ADDRESS}
+      </a>
+      {after}
+    </>
+  );
+};
 
 export const FAQSection = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
@@ -68,7 +38,7 @@ export const FAQSection = () => {
     <div className="faq-section-wrapper">
       <h2>Frequently Asked Questions</h2>
       <div className="faq-wrapper">
-        {faqs.map((faq, idx) => (
+        {FAQS.map((faq, idx) => (
           <div className="faq-item" key={idx}>
             <div className="faq-question-row">
               <h3>{faq.question}</h3>
@@ -87,34 +57,23 @@ export const FAQSection = () => {
                 {faq.answer.map((paragraph, i) => (
                   <div key={i} className={faq.hasMap ? "answer-wrapper has-map" : "answer-wrapper"}>
                     {faq.hasMap && (
-                      <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener">
-                        <img src={CpiLocation} alt="Find us on Google Maps" />
+                      <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer">
+                        <img src={CpiLocation} alt="Find us on Google Maps" loading="lazy" />
                       </a>
                     )}
-                    <p>
-                      {paragraph.includes("2326 OH-718, Troy, OH 45373") ? (
-                        <>
-                          {paragraph.split("2326 OH-718, Troy, OH 45373")[0]}
-                          <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener" className="map-link">
-                            2326 OH-718, Troy, OH 45373
-                          </a>
-                          {paragraph.split("2326 OH-718, Troy, OH 45373")[1]}
-                        </>
-                      ) : (
-                        paragraph
-                      )}
-                    </p>
+                    <p>{linkifyAddress(paragraph)}</p>
                   </div>
                 ))}
               </div>
             )}
-            {idx < faqs.length - 1 && <div className="faq-divider" />}
+            {idx < FAQS.length - 1 && <div className="faq-divider" />}
           </div>
         ))}
       </div>
       <div className="contact-wrapper">
         <h2>Still have questions?</h2>
-        <CpiButton label="Get in touch" onClick={() => window.alert("Test")} className="cpi-button light" />
+        {/* This CTA previously fired window.alert("Test") and went nowhere. */}
+        <CpiLink label="Get in touch" href="/contact" className="cpi-button light" />
       </div>
     </div>
   );

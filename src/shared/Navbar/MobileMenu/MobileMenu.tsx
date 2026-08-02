@@ -1,7 +1,10 @@
 import type { RefObject } from "react";
+import { useLocation } from "react-router-dom";
+
 import Arrow from "../../../assets/icons/arrow.svg?react";
+import CpiLink from "../../../components/CpiButton/CpiLink";
+import { BOOKING_URL, GOOGLE_MAPS_URL, SOCIAL_LINKS } from "../../../config/links";
 import "./MobileMenu.scss";
-import CpiLink from "../../../components/cpiButton/CpiLink";
 
 type MobileMenuProps = {
   menuWrapper: RefObject<HTMLDivElement | null>;
@@ -11,58 +14,56 @@ type MobileMenuProps = {
   routesRef: RefObject<HTMLDivElement | null>;
 };
 
-const GOOGLE_MAPS_URL = import.meta.env.VITE_GOOGLE_MAPS_URL;
-const FACEBOOK_URL = import.meta.env.VITE_FACEBOOK_URL;
-const INSTAGRAM_URL = import.meta.env.VITE_INSTAGRAM_URL;
-const TIKTOK_URL = import.meta.env.VITE_TIKTOK_URL;
+// Same socials as the desktop menu, plus a directions link that only appears here.
+const MOBILE_LINKS = [...SOCIAL_LINKS, { label: "Directions", href: GOOGLE_MAPS_URL }];
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ menuWrapper, titleRef, heroRef, socialsRef, routesRef }) => (
-  <div className="mobile-menu-wrapper" ref={menuWrapper}>
-    <div className="mobile-content-wrapper">
-      <div className="logo-overlay" ref={titleRef}>
-        Conner Pohl Instruction
-      </div>
+const ROUTE_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Testimonies", href: "/testimonies" },
+  { label: "Contact", href: "/contact" },
+  { label: "FAQ", href: "/faq" },
+];
 
-      <span className="hero" ref={heroRef}>
-        YOUR JOURNEY BEGINS TODAY
-      </span>
+const MobileMenu: React.FC<MobileMenuProps> = ({ menuWrapper, titleRef, heroRef, socialsRef, routesRef }) => {
+  const { pathname } = useLocation();
 
-      <div className="body">
-        <div className="socials-links" ref={socialsRef}>
-          <a href={FACEBOOK_URL} target="_blank" className="social">
-            Facebook <Arrow className="arrow" />
-          </a>
-          <a href={INSTAGRAM_URL} target="_blank" className="social">
-            Instagram <Arrow className="arrow" />
-          </a>
-          <a href={TIKTOK_URL} target="_blank" className="social">
-            TikTok <Arrow className="arrow" />
-          </a>
-          <a href={GOOGLE_MAPS_URL} target="_blank" className="social">
-            Directions <Arrow className="arrow" />
-          </a>
+  return (
+    <div className="mobile-menu-wrapper" ref={menuWrapper}>
+      <div className="mobile-content-wrapper">
+        <div className="logo-overlay" ref={titleRef}>
+          Conner Pohl Instruction
         </div>
-        <div className="route-links" ref={routesRef}>
-          <a href="/" className={window.location.pathname === "/" ? "active" : ""}>
-            Home
-          </a>
-          <a href="/about" className={window.location.pathname === "/about" ? "active" : ""}>
-            About
-          </a>
-          <a href="/testimonies" className={window.location.pathname === "/testimonies" ? "active" : ""}>
-            Testimonies
-          </a>
-          <a href="/contact" className={window.location.pathname === "/contact" ? "active" : ""}>
-            Contact
-          </a>
-          <a href="/faq" className={window.location.pathname === "/faq" ? "active" : ""}>
-            FAQ
-          </a>
-          <CpiLink label="Book a session" href={import.meta.env.VITE_BOOKING_URL} className="cpi-button light" />
+
+        <span className="hero" ref={heroRef}>
+          YOUR JOURNEY BEGINS TODAY
+        </span>
+
+        <div className="body">
+          <div className="socials-links" ref={socialsRef}>
+            {MOBILE_LINKS.map(({ label, href }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="social">
+                {label} <Arrow className="arrow" />
+              </a>
+            ))}
+          </div>
+          <nav className="route-links" ref={routesRef} aria-label="Primary" id="primary-navigation">
+            {ROUTE_LINKS.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                className={pathname === href ? "active" : ""}
+                aria-current={pathname === href ? "page" : undefined}
+              >
+                {label}
+              </a>
+            ))}
+            <CpiLink label="Book a session" href={BOOKING_URL} className="cpi-button light" newTab />
+          </nav>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default MobileMenu;
